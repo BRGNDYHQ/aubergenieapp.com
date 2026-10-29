@@ -27,7 +27,7 @@
 <link rel="apple-touch-icon" href="/static/icons/icon-180.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/static/fonts/archivo-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/static/css/site.css?v=a79d737801">
+<link rel="stylesheet" href="/static/css/site.css?v=d7b0f3b975">
 <script>(function(d){d.classList.add('js');try{d.classList.add(matchMedia('(prefers-reduced-motion: reduce)').matches?'still':'motion')}catch(e){d.classList.add('still')}setTimeout(function(){if(!d.classList.contains('js-ready')){d.classList.remove('motion');d.classList.add('still')}},4000)})(document.documentElement)</script>
 </head>
 <body class="page-home">
@@ -50,7 +50,7 @@
     <div class="hero-copy">
       <p class="hero-eyebrow">Aubergenie · a recipe app for iPhone, iPad and Mac</p>
       <h1>Every recipe you love, ready to cook.</h1>
-      <p class="lede">Photograph a card, paste a link or say what you fancy. Each one becomes a recipe you can cook tonight.</p>
+      <p class="lede">Say what you fancy, paste a link, photograph a card or open one a friend sent. Each becomes a recipe you can cook tonight, written around how you eat.</p>
       <div class="actions">
         <a class="btn btn-primary" href="mailto:hello@aubergenieapp.com?subject=Can%20I%20try%20Aubergenie%3F&amp;body=I%27d%20like%20to%20try%20the%20Aubergenie%20beta%20on%20TestFlight.%0A%0AA%20line%20about%20what%20I%20cook%2C%20if%20I%20like%3A%0A%0A%0AI%27d%20use%20it%20on%20%28keep%20any%20that%20apply%29%3A%20iPhone%2C%20iPad%2C%20Mac%0A%0AThanks%0A" data-hero-cta data-cta="beta-request">Ask to try the beta</a>
       </div>
@@ -90,16 +90,19 @@
 <section class="scene scene-find" id="find" data-reveal data-find>
   <div class="wrap find-grid">
     <div class="find-words">
+      <p class="scene-problem">Nan's card in a drawer. A link in the group chat. A craving with no recipe. A photo from a friend.</p>
       <h2 class="verbs"><span data-verb="find">Find it.</span> <span data-verb="save">Save it.</span> <span data-verb="make">Make it.</span></h2>
       <p class="scene-lede">A recipe's whole life in one place. However it reaches you, it lands as one clean page: amounts, steps and timers. From there it's yours to cook, change, shop for and send on.</p>
       <div class="chips" role="group" aria-label="Where a recipe comes from">
-        <button class="chip" type="button" data-source="link" aria-pressed="true">A Link</button>
+        <button class="chip" type="button" data-source="words" aria-pressed="true">Your Words</button>
+        <button class="chip" type="button" data-source="link" aria-pressed="false">A Link</button>
         <button class="chip" type="button" data-source="photo" aria-pressed="false">A Photo</button>
         <button class="chip" type="button" data-source="friend" aria-pressed="false">A Friend</button>
         <button class="chip" type="button" data-source="hand" aria-pressed="false">By Hand</button>
       </div>
       <p class="truth" data-truth aria-live="polite">
-        <span data-truth-for="link">Paste a link. Most recipe sites publish their recipe in a form the app can read, so it is copied on your device exactly as written. No account, no AI.</span>
+        <span data-truth-for="words">Say what you fancy and Aubergenie AI writes the whole recipe: ingredients, amounts, steps and timers, around how you eat. You'll sign in with Apple first, and it uses one recipe from your allowance.</span>
+        <span data-truth-for="link" hidden>Paste a link. Most recipe sites publish their recipe in a form the app can read, so it is copied on your device exactly as written. No account, no AI.</span>
         <span data-truth-for="photo" hidden>Photograph a handwritten card or a cookbook page and Aubergenie AI copies it out as written, for you to check before you save. Photograph the dish and it suggests how to make it. You'll sign in with Apple first.</span>
         <span data-truth-for="friend" hidden>A friend with Aubergenie sends the recipe itself, photo and all. It opens as one page, "Shared with you, exactly as it was sent", with one button: Save Recipe. No account, no AI.</span>
         <span data-truth-for="hand" hidden>Write your own. No account, no AI, and it works offline.</span>
@@ -108,7 +111,11 @@
 
     <div class="find-stage reveal">
       <div class="find-input" data-find-input>
-        <div class="input-link" data-input="link">
+        <div class="input-words" data-input="words">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 15l.7 2.3L22 18l-2.3.7L19 21l-.7-2.3L16 18l2.3-.7z"/></svg>
+          <span class="typed" data-typed data-text="Thai chicken with peanut sauce, for four">Thai chicken with peanut sauce, for four</span>
+        </div>
+        <div class="input-link" data-input="link" hidden>
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>
           <span class="typed" data-typed data-text="…/recipes/satay-chicken">…/recipes/satay-chicken</span>
         </div>
@@ -152,9 +159,61 @@
   </div>
 </section>
 
+<section class="scene scene-once" id="once" data-reveal data-once>
+  <div class="wrap once-grid">
+    <div class="once-words">
+      <p class="scene-problem">One of you can't have milk. There are four at the table, and the air fryer is the only thing that gets used.</p>
+      <h2>Say it once.</h2>
+      <p class="scene-lede">Aubergenie asks how you eat the first time you open it, and remembers. Allergies, diet, dislikes, what's in your kitchen, how many you cook for: said once, kept to every time.</p>
+      <ul class="once-truths">
+        <li><strong>Every recipe it writes</strong> works around them, without being asked again.</li>
+        <li><strong>Change the servings</strong> and every amount follows, in Cook Mode and on the shopping list.</li>
+        <li><strong>Plan My Week</strong> never proposes a saved recipe that mentions your allergy or breaks your diet.</li>
+        <li><strong>It matches words</strong>, so it never says a dish is safe. If you have an allergy, check every ingredient and label yourself.</li>
+      </ul>
+    </div>
+    <div class="once-stage reveal">
+      <div class="once-card" role="group" aria-label="Example: what Aubergenie should know. Tap to change the answers.">
+        <p class="demo-tag" aria-hidden="true">Example · tap to change</p>
+        <p class="once-q">What should Aubergenie know?</p>
+        <p class="pref-label" id="pref-allergy">Any food allergies?</p>
+        <div class="chips chips-tight" role="group" aria-labelledby="pref-allergy">
+          <button class="chip" type="button" data-pref="allergy" data-value="peanut" aria-pressed="false">Peanuts</button>
+          <button class="chip" type="button" data-pref="allergy" data-value="milk" aria-pressed="true">Milk</button>
+          <button class="chip" type="button" data-pref="allergy" data-value="egg" aria-pressed="false">Eggs</button>
+          <button class="chip" type="button" data-pref="allergy" data-value="gluten" aria-pressed="false">Gluten</button>
+        </div>
+        <p class="pref-label" id="pref-diet">How do you eat?</p>
+        <div class="chips chips-tight" role="radiogroup" aria-labelledby="pref-diet">
+          <button class="chip" type="button" role="radio" data-pref="diet" data-value="" aria-checked="true">Everything</button>
+          <button class="chip" type="button" role="radio" data-pref="diet" data-value="vegetarian" aria-checked="false">Vegetarian</button>
+          <button class="chip" type="button" role="radio" data-pref="diet" data-value="vegan" aria-checked="false">Vegan</button>
+          <button class="chip" type="button" role="radio" data-pref="diet" data-value="pescatarian" aria-checked="false">Pescatarian</button>
+        </div>
+        <p class="pref-label" id="pref-kit">Your kitchen</p>
+        <div class="chips chips-tight" role="group" aria-labelledby="pref-kit">
+          <button class="chip" type="button" data-pref="kit" data-value="air fryer" aria-pressed="true">Air fryer</button>
+          <button class="chip" type="button" data-pref="kit" data-value="slow cooker" aria-pressed="false">Slow cooker</button>
+          <button class="chip" type="button" data-pref="kit" data-value="blender" aria-pressed="false">Blender</button>
+        </div>
+        <p class="pref-label" id="pref-serves">Who are you cooking for?</p>
+        <div class="chips chips-tight" role="radiogroup" aria-labelledby="pref-serves">
+          <button class="chip" type="button" role="radio" data-pref="serves" data-value="1" aria-checked="false">Just me</button>
+          <button class="chip" type="button" role="radio" data-pref="serves" data-value="2" aria-checked="false">2</button>
+          <button class="chip" type="button" role="radio" data-pref="serves" data-value="4" aria-checked="true">4</button>
+          <button class="chip" type="button" role="radio" data-pref="serves" data-value="6" aria-checked="false">6</button>
+        </div>
+      </div>
+      <p class="once-sentence" data-once-sentence aria-live="polite">Aubergenie will work around your milk allergy, make use of your air fryer and size recipes for four.</p>
+      <p class="once-note">The sentence is the app's own, from the end of its first run. Change an answer and it changes with you.</p>
+    </div>
+  </div>
+</section>
+
 <section class="scene scene-tonight" id="tonight" data-reveal>
   <div class="wrap">
     <header class="scene-head">
+      <p class="scene-problem">Ten past five. Nothing's defrosted, and everyone's asking.</p>
       <h2>What should I cook tonight?</h2>
       <p class="scene-lede">Two ways to answer it: ask for something new, or pick from what you've already saved.</p>
     </header>
@@ -162,22 +221,17 @@
     <div class="tonight-grid">
       <div class="answer answer-new reveal">
         <h3>Say what you fancy.</h3>
-        <p>Type a dinner and Aubergenie AI writes the whole recipe, around the allergies, diet and servings you've saved. It can get this wrong, so if you have an allergy, check every ingredient and label yourself.</p>
+        <p>Type a dinner and Aubergenie AI writes the whole recipe, around everything you told it once. A minute later it's on the page, ready to cook. It can get things wrong, so if you have an allergy, check every ingredient and label yourself.</p>
         <figure class="screen screen-create screen-crop">
           <picture><source srcset="/static/images/screen-05b-create-no-keyboard-dark.jpg" media="(prefers-color-scheme: dark)"><img src="/static/images/screen-05b-create-no-keyboard.jpg" width="600" height="1212" loading="lazy" decoding="async"
                alt="Create a Recipe: 'What are you in the mood for?' with 'Something warming and spicy, ready in 30 minutes' typed, For 4, and a Make this button."></picture>
         </figure>
-        <div class="once" role="group" aria-label="Example: what Aubergenie remembers about how you eat">
-          <p class="once-lede">Tell it once how you eat, and it remembers: allergies, diet, dislikes, what's in your kitchen, how many you cook for.</p>
-          <p class="once-line"><span class="demo-tag">Example</span>Aubergenie will leave out peanuts, keep things vegetarian, make use of your air fryer and size recipes for four.</p>
-          <p class="once-note">Every recipe it writes keeps to that. So does Plan My Week, which proposes nothing that mentions an allergy you've named, and uses no AI at all.</p>
-        </div>
         <p class="quiet">Aubergenie's cloud AI runs only when you ask, with Sign in with Apple; the recipes are written by Anthropic's Claude on Aubergenie's server. Switch it off in Settings and everything else still works. Recipes it writes use an allowance you can see in the app.</p>
       </div>
 
       <div class="answer answer-saved reveal">
         <h3>Or pick from your own.</h3>
-        <p>Your own library, with the app's filters. One tap narrows it to what you can face tonight. These nine are from ours.</p>
+        <p>Everything you've saved, with the app's filters. One tap narrows it to what you can face tonight, and Plan My Week can do the whole week from it. These nine are from ours.</p>
         <div class="chips" role="group" aria-label="Filter the recipes">
           <button class="chip" type="button" data-filter="all" aria-pressed="true">All</button>
           <button class="chip" type="button" data-filter="quick" aria-pressed="false">Quick</button>
@@ -203,6 +257,7 @@
 <section class="scene scene-week" id="week" data-reveal>
   <div class="wrap">
     <header class="scene-head">
+      <p class="scene-problem">Sunday night. Seven dinners to think of, one trip to the shop, and hands that will be covered in flour by Tuesday.</p>
       <h2>From plan to plate.</h2>
       <p class="scene-lede">Put meals on days, shop one list, then cook in big type. The week carries you to dinner.</p>
     </header>
@@ -283,6 +338,7 @@
 <section class="scene scene-send band" id="send" data-reveal data-send>
   <div class="wrap">
     <header class="scene-head scene-head-centre">
+      <p class="scene-problem scene-problem-centre">"Send me that recipe." What they usually get is a screenshot with the amounts cut off.</p>
       <h2>Send recipes, not screenshots.</h2>
       <p class="scene-lede">Photo, amounts, method and timers, in one file. A friend with Aubergenie saves it in a tap. Anyone else gets a picture or the text.</p>
       <p class="quiet quiet-centre">Your recipes stay on your devices and in your own iCloud. No ads, no tracking. Your name travels with a recipe only when you switch that on.</p>
@@ -310,6 +366,7 @@
 
 <section class="scene scene-invite" id="join" data-reveal>
   <div class="wrap invite-grid reveal">
+    <p class="scene-problem scene-problem-centre invite-week">A week in: Nan's card is a page you can cook from. The shop took one list. Four plates wear your own photographs, and your sister has the ragu exactly as you make it.</p>
     <div class="yolk">
       <div class="float invite-float">
         <picture>
@@ -357,6 +414,6 @@
     <p class="footer-legal">© 2026 <span class="brgndy">BRGNDY</span> LTD · Registered in England and Wales, company number 17537333 · Registered office: 71-75 Shelton Street, London WC2H 9JQ · Aubergenie is a trading name of BRGNDY LTD</p>
   </div>
 </footer>
-<script src="/static/js/site.js?v=ee5eac671b" defer></script>
+<script src="/static/js/site.js?v=6543b858ce" defer></script>
 </body>
 </html>

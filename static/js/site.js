@@ -1,7 +1,3 @@
-// Aubergenie website: the only script, about 6 KB. Nothing is fetched; nothing is tracked.
-// Without JavaScript the page is complete and still: the satay plate, the recipe sheet
-// composed, the list with its ticks, the timer at rest. With Reduce Motion on, the same,
-// except that the controls (next dish, chips, ticks) still work without animating.
 (function () {
   var root = document.documentElement;
   var reduce = false;
@@ -12,8 +8,6 @@
   root.classList.add('js-ready');
   var $ = function (s, el) { return (el || document).querySelector(s); };
   var $$ = function (s, el) { return Array.prototype.slice.call((el || document).querySelectorAll(s)); };
-
-  // ---- Header: glass once the page moves; on a phone the pill waits for the hero's.
   var header = $('[data-header]');
   if (header) {
     var onScroll = function () { header.classList.toggle('is-scrolled', window.scrollY > 8); };
@@ -25,9 +19,6 @@
       }, { threshold: 0 }).observe(heroCta);
     } else { header.classList.add('cta-away'); }
   }
-
-  // ---- "Tell me when it launches" is an email. On a desk without a mail app the address
-  // is shown with a copy button, so the invitation is never a dead end.
   $$('[data-copy]').forEach(function (btn) {
     btn.setAttribute('aria-live', 'polite');
     btn.addEventListener('click', function () {
@@ -40,19 +31,15 @@
       if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback); else fallback();
     });
   });
-
-  // ---- Hero: the plate turns to the next dish on request. Real names and times.
   var hero = $('[data-hero]');
   if (hero) {
     var dishes = JSON.parse($('[data-dishes]', hero).textContent);
     var plate = $('[data-hero-plate]', hero), img = $('[data-plate-img]', hero), avif = $('[data-plate-avif]', hero);
     var title = $('[data-plate-title]', hero), facts = $('[data-plate-facts]', hero);
     var next = $('[data-next-dish]', hero), current = 0, busy = false;
-    // The browser has already chosen AVIF or JPEG for the first plate; the warm-up follows that choice.
     var avifOk = function () { return !!(avif && img.currentSrc && /\.avif/.test(img.currentSrc)); };
     var url = function (d, w) { return '/static/images/plate-' + d.stem + '-' + w + (avifOk() ? '.avif' : '.jpg'); };
     var wanted = function () { return img.currentSrc && img.currentSrc.indexOf('1440') > -1 ? 1440 : 720; };
-    // The next dish is decoded off screen and only then swapped in, so the old plate never shows under a new name.
     var ready = {};
     var warm = function (d) { if (ready[d.stem]) return; var i = new Image(); i.src = url(d, wanted()); ready[d.stem] = (i.decode ? i.decode() : Promise.resolve()).catch(function () {}); };
     var show = function (i) {
@@ -80,10 +67,6 @@
       });
     }
   }
-
-  // ---- Scenes arrive as they are reached.
-  // Each element arrives on its own as it enters the viewport (threshold 0, so a tall
-  // scene still appears on a short screen), with no section-level gate.
   var seen = function (el, cb, threshold) {
     if (!('IntersectionObserver' in window)) { cb(); return; }
     var io = new IntersectionObserver(function (entries) {
@@ -92,9 +75,6 @@
     io.observe(el);
   };
   $$('.reveal, .rail-step, .float').forEach(function (el) { seen(el, function () { el.classList.add('is-in'); }); });
-
-  // ---- Find it. Save it. Make it. The start changes with the chip; the end is always the
-  // same recipe composing itself, read from the app's own data at build time.
   var find = $('[data-find]');
   if (find) {
     var sheet = $('[data-sheet]', find), verbs = $$('[data-verb]', find), typingTimer = null, timers = [], chosen = false;
@@ -109,8 +89,10 @@
       }, 34);
     };
     var light = function (name) { verbs.forEach(function (v) { v.classList.toggle('is-on', v.getAttribute('data-verb') === name); }); };
+    var order = $$('[data-source]', find).map(function (c) { return c.getAttribute('data-source'); });
     var play = function (source) {
       timers.forEach(clearTimeout); timers = []; clearInterval(typingTimer);
+      $$('[data-source]', find).forEach(function (c) { c.setAttribute('aria-pressed', String(c.getAttribute('data-source') === source)); });
       $$('[data-input]', find).forEach(function (b) { b.classList.remove('is-typing'); });
       $$('[data-input]', find).forEach(function (b) { b.hidden = b.getAttribute('data-input') !== source; });
       $$('[data-truth-for]', find).forEach(function (t) { t.hidden = t.getAttribute('data-truth-for') !== source; });
@@ -119,22 +101,50 @@
       var compose = function () {
         timers.push(setTimeout(function () { light('save'); sheet.classList.add('is-composed'); }, still ? 0 : 350));
         timers.push(setTimeout(function () { light('make'); }, still ? 0 : 1600));
+        if (!still) timers.push(setTimeout(function () { if (!chosen) play(order[(order.indexOf(source) + 1) % order.length]); }, 5200));
       };
       var typed = $('[data-input="' + source + '"] [data-typed]', find);
       if (typed) typeInto(typed, compose); else timers.push(setTimeout(compose, still ? 0 : 500));
     };
     $$('[data-source]', find).forEach(function (chip) {
-      chip.addEventListener('click', function () {
-        chosen = true;
-        $$('[data-source]', find).forEach(function (c) { c.setAttribute('aria-pressed', String(c === chip)); });
-        play(chip.getAttribute('data-source'));
-      });
+      chip.addEventListener('click', function () { chosen = true; play(chip.getAttribute('data-source')); });
     });
     if (still) { sheet.classList.add('is-composed'); light('make'); }
-    else seen($('[data-find-input]', find), function () { if (!chosen) play('link'); }, 0.5);
+    else seen($('[data-find-input]', find), function () { if (!chosen) play(order[0]); }, 0.5);
   }
-
-  // ---- What should I cook tonight? The app's chips, filtering real plates.
+  var once = $('[data-once]');
+  if (once) {
+    var sentence = $('[data-once-sentence]', once), product = sentence.textContent.split(' will ')[0];
+    var numbers = { 1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five', 6: 'six', 8: 'eight', 10: 'ten', 12: 'twelve' }; // the app's number words
+    var join = function (parts) { return parts.length < 2 ? parts.join('') : parts.slice(0, -1).join(', ') + ' and ' + parts[parts.length - 1]; };
+    var compose = function () {
+      var allergies = $$('[data-pref="allergy"][aria-pressed="true"]', once).map(function (c) { return c.getAttribute('data-value'); });
+      var diet = ($('[data-pref="diet"][aria-checked="true"]', once) || {}).getAttribute ? $('[data-pref="diet"][aria-checked="true"]', once).getAttribute('data-value') : '';
+      var kit = $$('[data-pref="kit"][aria-pressed="true"]', once).map(function (c) { return c.getAttribute('data-value'); });
+      var serves = ($('[data-pref="serves"][aria-checked="true"]', once) || { getAttribute: function () { return '4'; } }).getAttribute('data-value');
+      var clauses = [];
+      if (allergies.length === 1) clauses.push('work around your ' + allergies[0] + ' allergy');
+      else if (allergies.length === 2) clauses.push('work around your ' + allergies[0] + ' and ' + allergies[1] + ' allergies');
+      else if (allergies.length > 2) clauses.push('work around your ' + allergies.length + ' allergies');
+      if (diet) clauses.push('keep things ' + diet);
+      if (kit.length) clauses.push('make use of your ' + join(kit));
+      clauses.push(serves === '1' ? 'size recipes for one' : 'size recipes for ' + (numbers[serves] || serves));
+      var text = product + ' will ' + join(clauses) + '.';
+      if (still) { sentence.textContent = text; return; }
+      sentence.classList.add('is-changing');
+      setTimeout(function () { sentence.textContent = text; sentence.classList.remove('is-changing'); }, 180);
+    };
+    $$('[data-pref]', once).forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        if (chip.getAttribute('role') === 'radio') {
+          $$('[data-pref="' + chip.getAttribute('data-pref') + '"]', once).forEach(function (c) { c.setAttribute('aria-checked', String(c === chip)); });
+        } else {
+          chip.setAttribute('aria-pressed', String(chip.getAttribute('aria-pressed') !== 'true'));
+        }
+        compose();
+      });
+    });
+  }
   var plates = $('[data-plates]');
   if (plates) {
     var count = $('[data-count]'), items = $$('[data-plate]', plates);
@@ -151,11 +161,8 @@
       });
     });
   }
-
-  // ---- Shop one list: rows tick, the heading counts.
   var list = $('[data-list]');
   if (list) {
-    // The list is the app's real one for two recipes (20 rows); eight are shown.
     var rows = $$('[role="checkbox"]', list), remaining = $('[data-list-remaining]', list), collected = $('[data-list-collected]', list);
     var listTotal = 20;
     var recount = function () {
@@ -167,8 +174,6 @@
     rows.forEach(function (r) { r.addEventListener('click', function () { r.setAttribute('aria-checked', String(r.getAttribute('aria-checked') !== 'true')); recount(); }); });
     recount();
   }
-
-  // ---- Cook in big type: the timer is alive while you look at it, and it can be paused.
   var cook = $('[data-cook]');
   if (cook) {
     var digits = $('[data-cook-digits]', cook), ring = $('.cook-ring-fill', cook), pause = $('[data-cook-pause]', cook);
@@ -182,7 +187,6 @@
       if (left > 1) { left -= 1; paint(); }
       else { left = total; ring.classList.add('no-transition'); paint(); setTimeout(function () { ring.classList.remove('no-transition'); }, 50); }
     }, 1000); };
-    // The step's "10 minutes" chip is the timer's own control in the app: tapping it starts the timer again.
     var chip = $('.cook-time', cook);
     if (chip) { chip.setAttribute('role', 'button'); chip.setAttribute('tabindex', '0');
       var help = document.createElement('span'); help.className = 'sr-only'; help.id = 'cook-chip-help'; help.textContent = 'Starts the timer again.'; cook.appendChild(help); chip.setAttribute('aria-describedby', 'cook-chip-help');
@@ -204,8 +208,6 @@
       } else start();
     }
   }
-
-  // ---- Send: the recipe file travels from one phone to the other when seen, once.
   var send = $('[data-send]');
   if (send && !still) seen($('.send-path', send) || send, function () { send.classList.add('is-sending'); }, 0.5);
 })();
