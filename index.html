@@ -27,7 +27,7 @@
 <link rel="apple-touch-icon" href="/static/icons/icon-180.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/static/fonts/archivo-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/static/css/site.css?v=465cbb53c3">
+<link rel="stylesheet" href="/static/css/site.css?v=a79d737801">
 <script>(function(d){d.classList.add('js');try{d.classList.add(matchMedia('(prefers-reduced-motion: reduce)').matches?'still':'motion')}catch(e){d.classList.add('still')}setTimeout(function(){if(!d.classList.contains('js-ready')){d.classList.remove('motion');d.classList.add('still')}},4000)})(document.documentElement)</script>
 </head>
 <body class="page-home">
@@ -91,15 +91,17 @@
   <div class="wrap find-grid">
     <div class="find-words">
       <h2 class="verbs"><span data-verb="find">Find it.</span> <span data-verb="save">Save it.</span> <span data-verb="make">Make it.</span></h2>
-      <p class="scene-lede">However a recipe reaches you, it lands as one clean page: amounts, steps and timers, ready to cook.</p>
+      <p class="scene-lede">A recipe's whole life in one place. However it reaches you, it lands as one clean page: amounts, steps and timers. From there it's yours to cook, change, shop for and send on.</p>
       <div class="chips" role="group" aria-label="Where a recipe comes from">
         <button class="chip" type="button" data-source="link" aria-pressed="true">A Link</button>
         <button class="chip" type="button" data-source="photo" aria-pressed="false">A Photo</button>
+        <button class="chip" type="button" data-source="friend" aria-pressed="false">A Friend</button>
         <button class="chip" type="button" data-source="hand" aria-pressed="false">By Hand</button>
       </div>
       <p class="truth" data-truth aria-live="polite">
         <span data-truth-for="link">Paste a link. Most recipe sites publish their recipe in a form the app can read, so it is copied on your device exactly as written. No account, no AI.</span>
         <span data-truth-for="photo" hidden>Photograph a handwritten card or a cookbook page and Aubergenie AI copies it out as written, for you to check before you save. Photograph the dish and it suggests how to make it. You'll sign in with Apple first.</span>
+        <span data-truth-for="friend" hidden>A friend with Aubergenie sends the recipe itself, photo and all. It opens as one page, "Shared with you, exactly as it was sent", with one button: Save Recipe. No account, no AI.</span>
         <span data-truth-for="hand" hidden>Write your own. No account, no AI, and it works offline.</span>
       </p>
     </div>
@@ -113,6 +115,14 @@
         <div class="input-photo" data-input="photo" hidden>
           <picture><source type="image/avif" srcset="/static/images/plate-satay-720.avif"><img src="/static/images/plate-satay-720.jpg" width="720" height="720" loading="lazy" decoding="async" alt=""></picture>
           <i></i><i></i><i></i><i></i>
+        </div>
+        <div class="input-friend" data-input="friend" hidden>
+          <div class="file-tile" aria-hidden="true">
+            <picture><source type="image/avif" srcset="/static/images/plate-satay-720.avif"><img src="/static/images/plate-satay-720.jpg" width="720" height="720" loading="lazy" decoding="async" alt=""></picture>
+            <span class="recipe-file-title">Satay Chicken</span>
+            <span class="recipe-file-ext">.recipe</span>
+          </div>
+          <span class="input-friend-from">Sam sent you this</span>
         </div>
         <div class="input-hand" data-input="hand" hidden>
           <span class="typed" data-typed data-text="Satay Chicken">Satay Chicken</span>
@@ -157,6 +167,11 @@
           <picture><source srcset="/static/images/screen-05b-create-no-keyboard-dark.jpg" media="(prefers-color-scheme: dark)"><img src="/static/images/screen-05b-create-no-keyboard.jpg" width="600" height="1212" loading="lazy" decoding="async"
                alt="Create a Recipe: 'What are you in the mood for?' with 'Something warming and spicy, ready in 30 minutes' typed, For 4, and a Make this button."></picture>
         </figure>
+        <div class="once" role="group" aria-label="Example: what Aubergenie remembers about how you eat">
+          <p class="once-lede">Tell it once how you eat, and it remembers: allergies, diet, dislikes, what's in your kitchen, how many you cook for.</p>
+          <p class="once-line"><span class="demo-tag">Example</span>Aubergenie will leave out peanuts, keep things vegetarian, make use of your air fryer and size recipes for four.</p>
+          <p class="once-note">Every recipe it writes keeps to that. So does Plan My Week, which proposes nothing that mentions an allergy you've named, and uses no AI at all.</p>
+        </div>
         <p class="quiet">Aubergenie's cloud AI runs only when you ask, with Sign in with Apple; the recipes are written by Anthropic's Claude on Aubergenie's server. Switch it off in Settings and everything else still works. Recipes it writes use an allowance you can see in the app.</p>
       </div>
 
@@ -237,6 +252,7 @@
         <div class="rail-words">
           <h3>Cook in big type.</h3>
           <p>One step at a time, and a timer wherever the recipe says so. With alarms allowed it rings even when your iPhone is locked, and shows in the Dynamic Island on iPhones that have one. On a Mac, timers arrive as notifications.</p>
+          <p>At the end: <strong>You made it</strong>, and a photograph while it looks its best, which becomes the recipe's photo. The recipe keeps the rest too: how many times you've made it, your rating, your notes for next time. The plates on this page are the cook's own, from the recipes in the app.</p>
         </div>
         <div class="cookpanel" role="group" aria-label="Example Cook Mode, step 1 of 6">
           <p class="demo-tag" aria-hidden="true">Example · the timer runs</p>
@@ -286,7 +302,7 @@
       </div>
       <div class="send-to">
         <p class="send-to-label">Them</p>
-        <p>It opens in Aubergenie exactly as you sent it, with one button: <strong>Save Recipe</strong>. The recipe is theirs to cook, change and send on.</p>
+        <p>It opens in Aubergenie as "Shared with you, exactly as it was sent", with one button: <strong>Save Recipe</strong>. Then it's theirs: to cook, to change, to shop for, and to send on. A recipe's whole life, again.</p>
       </div>
     </div>
   </div>
