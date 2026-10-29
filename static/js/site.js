@@ -101,7 +101,8 @@
       var compose = function () {
         timers.push(setTimeout(function () { light('save'); sheet.classList.add('is-composed'); }, still ? 0 : 350));
         timers.push(setTimeout(function () { light('make'); }, still ? 0 : 1600));
-        if (!still) timers.push(setTimeout(function () { if (!chosen) play(order[(order.indexOf(source) + 1) % order.length]); }, 5200));
+        var at = order.indexOf(source);
+        if (!still && at < order.length - 1) timers.push(setTimeout(function () { if (!chosen) play(order[at + 1]); }, 5200));
       };
       var typed = $('[data-input="' + source + '"] [data-typed]', find);
       if (typed) typeInto(typed, compose); else timers.push(setTimeout(compose, still ? 0 : 500));
@@ -110,7 +111,7 @@
       chip.addEventListener('click', function () { chosen = true; play(chip.getAttribute('data-source')); });
     });
     if (still) { sheet.classList.add('is-composed'); light('make'); }
-    else seen($('[data-find-input]', find), function () { if (!chosen) play(order[0]); }, 0.5);
+    else seen($('[data-find-input]', find), function () { if (!chosen) play(order[0]); }, 0.25);
   }
   var once = $('[data-once]');
   if (once) {
@@ -127,6 +128,8 @@
       else if (allergies.length === 2) clauses.push('work around your ' + allergies[0] + ' and ' + allergies[1] + ' allergies');
       else if (allergies.length > 2) clauses.push('work around your ' + allergies.length + ' allergies');
       if (diet) clauses.push('keep things ' + diet);
+      var dislikes = $$('[data-pref="dislike"][aria-pressed="true"]', once).map(function (c) { return c.getAttribute('data-value'); });
+      if (dislikes.length) clauses.push('leave out ' + dislikes.join(' and '));
       if (kit.length) clauses.push('make use of your ' + join(kit));
       clauses.push(serves === '1' ? 'size recipes for one' : 'size recipes for ' + (numbers[serves] || serves));
       var text = product + ' will ' + join(clauses) + '.';

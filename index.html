@@ -27,7 +27,7 @@
 <link rel="apple-touch-icon" href="/static/icons/icon-180.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/static/fonts/archivo-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/static/css/site.css?v=d7b0f3b975">
+<link rel="stylesheet" href="/static/css/site.css?v=f44f515d5d">
 <script>(function(d){d.classList.add('js');try{d.classList.add(matchMedia('(prefers-reduced-motion: reduce)').matches?'still':'motion')}catch(e){d.classList.add('still')}setTimeout(function(){if(!d.classList.contains('js-ready')){d.classList.remove('motion');d.classList.add('still')}},4000)})(document.documentElement)</script>
 </head>
 <body class="page-home">
@@ -50,11 +50,11 @@
     <div class="hero-copy">
       <p class="hero-eyebrow">Aubergenie · a recipe app for iPhone, iPad and Mac</p>
       <h1>Every recipe you love, ready to cook.</h1>
-      <p class="lede">Say what you fancy, paste a link, photograph a card or open one a friend sent. Each becomes a recipe you can cook tonight, written around how you eat.</p>
+      <p class="lede">Describe a dish, paste a link, photograph a card or open one a friend sent. Cook it tonight.</p>
       <div class="actions">
         <a class="btn btn-primary" href="mailto:hello@aubergenieapp.com?subject=Can%20I%20try%20Aubergenie%3F&amp;body=I%27d%20like%20to%20try%20the%20Aubergenie%20beta%20on%20TestFlight.%0A%0AA%20line%20about%20what%20I%20cook%2C%20if%20I%20like%3A%0A%0A%0AI%27d%20use%20it%20on%20%28keep%20any%20that%20apply%29%3A%20iPhone%2C%20iPad%2C%20Mac%0A%0AThanks%0A" data-hero-cta data-cta="beta-request">Ask to try the beta</a>
       </div>
-      <p class="cta-note">Free to try, in Apple's TestFlight app. Places are few, so this opens an email to hello@aubergenieapp.com: a line about what you cook helps, and we reply either way.</p>
+      <p class="cta-note">Free, through Apple's TestFlight. Places are few, so this opens an email to us; we reply to everyone.</p>
       <p class="cta-secondary"><a class="link-quiet" href="mailto:hello@aubergenieapp.com?subject=Tell%20me%20when%20Aubergenie%20is%20out&amp;body=Please%20email%20me%20once%2C%20when%20Aubergenie%20is%20on%20the%20App%20Store.%0A%0AI%27d%20use%20it%20on%20%28keep%20any%20that%20apply%29%3A%20iPhone%2C%20iPad%2C%20Mac%0A%0AThanks%0A">Rather wait? Tell me when it's out.</a></p>
     </div>
 
@@ -90,9 +90,9 @@
 <section class="scene scene-find" id="find" data-reveal data-find>
   <div class="wrap find-grid">
     <div class="find-words">
-      <p class="scene-problem">Nan's card in a drawer. A link in the group chat. A craving with no recipe. A photo from a friend.</p>
+      <p class="scene-problem">Nan's card in a drawer. Sam's satay in the group chat. A craving with no recipe.</p>
       <h2 class="verbs"><span data-verb="find">Find it.</span> <span data-verb="save">Save it.</span> <span data-verb="make">Make it.</span></h2>
-      <p class="scene-lede">A recipe's whole life in one place. However it reaches you, it lands as one clean page: amounts, steps and timers. From there it's yours to cook, change, shop for and send on.</p>
+      <p class="scene-lede">However it arrives, it lands as one page: amounts, steps and timers, ready to cook.</p>
       <div class="chips" role="group" aria-label="Where a recipe comes from">
         <button class="chip" type="button" data-source="words" aria-pressed="true">Your Words</button>
         <button class="chip" type="button" data-source="link" aria-pressed="false">A Link</button>
@@ -101,11 +101,11 @@
         <button class="chip" type="button" data-source="hand" aria-pressed="false">By Hand</button>
       </div>
       <p class="truth" data-truth aria-live="polite">
-        <span data-truth-for="words">Say what you fancy and Aubergenie AI writes the whole recipe: ingredients, amounts, steps and timers, around how you eat. You'll sign in with Apple first, and it uses one recipe from your allowance.</span>
-        <span data-truth-for="link" hidden>Paste a link. Most recipe sites publish their recipe in a form the app can read, so it is copied on your device exactly as written. No account, no AI.</span>
-        <span data-truth-for="photo" hidden>Photograph a handwritten card or a cookbook page and Aubergenie AI copies it out as written, for you to check before you save. Photograph the dish and it suggests how to make it. You'll sign in with Apple first.</span>
-        <span data-truth-for="friend" hidden>A friend with Aubergenie sends the recipe itself, photo and all. It opens as one page, "Shared with you, exactly as it was sent", with one button: Save Recipe. No account, no AI.</span>
-        <span data-truth-for="hand" hidden>Write your own. No account, no AI, and it works offline.</span>
+        <span data-truth-for="words">Say what you fancy. Aubergenie AI writes it around how you eat.<b class="truth-tag">Sign in with Apple · uses 1 from your allowance</b></span>
+        <span data-truth-for="link" hidden>Paste a link. Most sites copy across exactly as written.<b class="truth-tag">No account · no AI</b></span>
+        <span data-truth-for="photo" hidden>A card or cookbook page, copied as written. A dish gets Aubergenie's own take.<b class="truth-tag">Sign in with Apple · uses 1 from your allowance</b></span>
+        <span data-truth-for="friend" hidden>Sam sends the recipe itself. One tap saves it.<b class="truth-tag">No account · no AI</b></span>
+        <span data-truth-for="hand" hidden>Write your own, even offline.<b class="truth-tag">No account · no AI</b></span>
       </p>
     </div>
 
@@ -162,33 +162,36 @@
 <section class="scene scene-once" id="once" data-reveal data-once>
   <div class="wrap once-grid">
     <div class="once-words">
-      <p class="scene-problem">One of you can't have milk. There are four at the table, and the air fryer is the only thing that gets used.</p>
+      <p class="scene-problem">Four at the table. One won't touch mushrooms. Only the air fryer gets used.</p>
       <h2>Say it once.</h2>
-      <p class="scene-lede">Aubergenie asks how you eat the first time you open it, and remembers. Allergies, diet, dislikes, what's in your kitchen, how many you cook for: said once, kept to every time.</p>
+      <p class="scene-lede">Allergies, diet, dislikes, your kitchen, how many. Asked once, remembered.</p>
       <ul class="once-truths">
-        <li><strong>Every recipe it writes</strong> works around them, without being asked again.</li>
-        <li><strong>Change the servings</strong> and every amount follows, in Cook Mode and on the shopping list.</li>
-        <li><strong>Plan My Week</strong> never proposes a saved recipe that mentions your allergy or breaks your diet.</li>
-        <li><strong>It matches words</strong>, so it never says a dish is safe. If you have an allergy, check every ingredient and label yourself.</li>
+        <li><strong>Recipes it writes</strong> work around it.</li>
+        <li><strong>Servings</strong> scale every amount, right through to the shop.</li>
+        <li><strong>Plan My Week</strong> skips anything that mentions your allergy.</li>
       </ul>
     </div>
     <div class="once-stage reveal">
       <div class="once-card" role="group" aria-label="Example: what Aubergenie should know. Tap to change the answers.">
-        <p class="demo-tag" aria-hidden="true">Example · tap to change</p>
+        <p class="demo-tag" aria-hidden="true">Example · tap an answer, watch below</p>
         <p class="once-q">What should Aubergenie know?</p>
         <p class="pref-label" id="pref-allergy">Any food allergies?</p>
         <div class="chips chips-tight" role="group" aria-labelledby="pref-allergy">
           <button class="chip" type="button" data-pref="allergy" data-value="peanut" aria-pressed="false">Peanuts</button>
-          <button class="chip" type="button" data-pref="allergy" data-value="milk" aria-pressed="true">Milk</button>
+          <button class="chip" type="button" data-pref="allergy" data-value="milk" aria-pressed="false">Milk</button>
           <button class="chip" type="button" data-pref="allergy" data-value="egg" aria-pressed="false">Eggs</button>
-          <button class="chip" type="button" data-pref="allergy" data-value="gluten" aria-pressed="false">Gluten</button>
+        </div>
+        <p class="pref-label" id="pref-dislike">Anything you don't like?</p>
+        <div class="chips chips-tight" role="group" aria-labelledby="pref-dislike">
+          <button class="chip" type="button" data-pref="dislike" data-value="mushrooms" aria-pressed="true">Mushrooms</button>
+          <button class="chip" type="button" data-pref="dislike" data-value="coriander" aria-pressed="false">Coriander</button>
+          <button class="chip" type="button" data-pref="dislike" data-value="olives" aria-pressed="false">Olives</button>
         </div>
         <p class="pref-label" id="pref-diet">How do you eat?</p>
         <div class="chips chips-tight" role="radiogroup" aria-labelledby="pref-diet">
           <button class="chip" type="button" role="radio" data-pref="diet" data-value="" aria-checked="true">Everything</button>
           <button class="chip" type="button" role="radio" data-pref="diet" data-value="vegetarian" aria-checked="false">Vegetarian</button>
           <button class="chip" type="button" role="radio" data-pref="diet" data-value="vegan" aria-checked="false">Vegan</button>
-          <button class="chip" type="button" role="radio" data-pref="diet" data-value="pescatarian" aria-checked="false">Pescatarian</button>
         </div>
         <p class="pref-label" id="pref-kit">Your kitchen</p>
         <div class="chips chips-tight" role="group" aria-labelledby="pref-kit">
@@ -204,8 +207,8 @@
           <button class="chip" type="button" role="radio" data-pref="serves" data-value="6" aria-checked="false">6</button>
         </div>
       </div>
-      <p class="once-sentence" data-once-sentence aria-live="polite">Aubergenie will work around your milk allergy, make use of your air fryer and size recipes for four.</p>
-      <p class="once-note">The sentence is the app's own, from the end of its first run. Change an answer and it changes with you.</p>
+      <p class="once-sentence" data-once-sentence aria-live="polite">Aubergenie will leave out mushrooms, make use of your air fryer and size recipes for four.</p>
+      <p class="once-caveat">It matches words, so it never calls a dish safe. Always check labels.</p>
     </div>
   </div>
 </section>
@@ -215,23 +218,23 @@
     <header class="scene-head">
       <p class="scene-problem">Ten past five. Nothing's defrosted, and everyone's asking.</p>
       <h2>What should I cook tonight?</h2>
-      <p class="scene-lede">Two ways to answer it: ask for something new, or pick from what you've already saved.</p>
+      <p class="scene-lede">Ask for something new, or pick from your own.</p>
     </header>
 
     <div class="tonight-grid">
       <div class="answer answer-new reveal">
         <h3>Say what you fancy.</h3>
-        <p>Type a dinner and Aubergenie AI writes the whole recipe, around everything you told it once. A minute later it's on the page, ready to cook. It can get things wrong, so if you have an allergy, check every ingredient and label yourself.</p>
+        <p>Type a dinner. Aubergenie AI writes it around everything you said once.</p>
         <figure class="screen screen-create screen-crop">
           <picture><source srcset="/static/images/screen-05b-create-no-keyboard-dark.jpg" media="(prefers-color-scheme: dark)"><img src="/static/images/screen-05b-create-no-keyboard.jpg" width="600" height="1212" loading="lazy" decoding="async"
                alt="Create a Recipe: 'What are you in the mood for?' with 'Something warming and spicy, ready in 30 minutes' typed, For 4, and a Make this button."></picture>
         </figure>
-        <p class="quiet">Aubergenie's cloud AI runs only when you ask, with Sign in with Apple; the recipes are written by Anthropic's Claude on Aubergenie's server. Switch it off in Settings and everything else still works. Recipes it writes use an allowance you can see in the app.</p>
+        <p class="quiet ai-facts">Only when you ask · Sign in with Apple · written by Anthropic's Claude · off in Settings · <a href="/support/#first-recipe">How the AI works</a></p>
       </div>
 
       <div class="answer answer-saved reveal">
         <h3>Or pick from your own.</h3>
-        <p>Everything you've saved, with the app's filters. One tap narrows it to what you can face tonight, and Plan My Week can do the whole week from it. These nine are from ours.</p>
+        <p>Your saved recipes, narrowed in a tap. These nine are ours.</p>
         <div class="chips" role="group" aria-label="Filter the recipes">
           <button class="chip" type="button" data-filter="all" aria-pressed="true">All</button>
           <button class="chip" type="button" data-filter="quick" aria-pressed="false">Quick</button>
@@ -257,16 +260,15 @@
 <section class="scene scene-week" id="week" data-reveal>
   <div class="wrap">
     <header class="scene-head">
-      <p class="scene-problem">Sunday night. Seven dinners to think of, one trip to the shop, and hands that will be covered in flour by Tuesday.</p>
+      <p class="scene-problem">Sunday night. Seven dinners to think of, one trip to the shop.</p>
       <h2>From plan to plate.</h2>
-      <p class="scene-lede">Put meals on days, shop one list, then cook in big type. The week carries you to dinner.</p>
     </header>
 
     <ol class="rail">
       <li class="rail-step reveal" id="plan">
         <div class="rail-words">
           <h3>Plan the week.</h3>
-          <p>Put meals on days, or let Plan My Week suggest them from the recipes you've saved. Leftovers land on the days they'll be eaten, and Today shows what's next.</p>
+          <p>Plan My Week suggests from your own recipes and places the leftovers. It says why.</p>
         </div>
         <figure class="screen screen-week">
           <picture><source srcset="/static/images/screen-09-plan-today-dark.jpg" media="(prefers-color-scheme: dark)"><img src="/static/images/screen-09-plan-today.jpg" width="600" height="1212" loading="lazy" decoding="async"
@@ -277,12 +279,12 @@
       <li class="rail-step reveal" id="shop">
         <div class="rail-words">
           <h3>Shop one list.</h3>
-          <p>Everything for the week, merged and in aisle order. Tick things off in the shop; with iCloud on, the list follows you between your own Apple devices.</p>
+          <p>Merged, in aisle order. With iCloud on, it follows you between your devices.</p>
         </div>
         <div class="list" data-list role="group" aria-label="Example shopping list, live: tap a row to tick it">
-          <p class="demo-tag" aria-hidden="true">Example · tap to tick</p>
+          <p class="demo-tag" aria-hidden="true">Example · tap to tick, like in the shop</p>
           <p class="list-head"><strong data-list-remaining>17 items remaining</strong><span data-list-collected>3 of 20 collected</span></p>
-          <p class="aisle">Fruit &amp; vegetables</p>
+          <p class="aisle">Fruit &amp; Vegetables</p>
           <ul>
             <li><button type="button" role="checkbox" aria-checked="true"><i></i><span>Carrot</span><b><span class="sr-only">, </span>2</b></button></li>
             <li><button type="button" role="checkbox" aria-checked="true"><i></i><span>Garlic</span><b><span class="sr-only">, </span>2 cloves</b></button></li>
@@ -290,12 +292,12 @@
             <li><button type="button" role="checkbox" aria-checked="false"><i></i><span>Pak choi</span><b><span class="sr-only">, </span>2</b></button></li>
             <li><button type="button" role="checkbox" aria-checked="false"><i></i><span>Spring onions</span><b><span class="sr-only">, </span>2</b></button></li>
           </ul>
-          <p class="aisle">Meat &amp; fish</p>
+          <p class="aisle">Meat &amp; Fish</p>
           <ul>
             <li><button type="button" role="checkbox" aria-checked="true"><i></i><span>Chicken thigh</span><b><span class="sr-only">, </span>600 g</b></button></li>
             <li><button type="button" role="checkbox" aria-checked="false"><i></i><span>Pork mince</span><b><span class="sr-only">, </span>500 g</b></button></li>
           </ul>
-          <p class="aisle">Dairy &amp; eggs</p>
+          <p class="aisle">Dairy &amp; Eggs</p>
           <ul>
             <li><button type="button" role="checkbox" aria-checked="false"><i></i><span>Egg</span><b><span class="sr-only">, </span>4</b></button></li>
           </ul>
@@ -306,11 +308,10 @@
       <li class="rail-step reveal" id="cook" data-cook>
         <div class="rail-words">
           <h3>Cook in big type.</h3>
-          <p>One step at a time, and a timer wherever the recipe says so. With alarms allowed it rings even when your iPhone is locked, and shows in the Dynamic Island on iPhones that have one. On a Mac, timers arrive as notifications.</p>
-          <p>At the end: <strong>You made it</strong>, and a photograph while it looks its best, which becomes the recipe's photo. The recipe keeps the rest too: how many times you've made it, your rating, your notes for next time. The plates on this page are the cook's own, from the recipes in the app.</p>
+          <p>One step at a time. Once you allow alarms, timers ring even with your iPhone locked.</p>
         </div>
         <div class="cookpanel" role="group" aria-label="Example Cook Mode, step 1 of 6">
-          <p class="demo-tag" aria-hidden="true">Example · the timer runs</p>
+          <p class="demo-tag" aria-hidden="true">Example · it counts down, tap to pause</p>
           <div class="cook-bar"><span class="cook-recipe">Satay Chicken</span><span class="cook-stepcount">Step 1 of 6</span></div>
           <div class="cook-progress" aria-hidden="true"><i class="is-on"></i><i></i><i></i><i></i><i></i><i></i></div>
           <p class="cook-step">Mix the chicken with 100ml coconut milk, the curry powder, 1 tbsp red curry paste and 1 tbsp soy sauce. Leave to marinate for <span class="nowrap"><span class="cook-time"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="8.5"/><path d="M12 8.5V13l3 2"/><path d="M9 3h6"/></svg>10 minutes</span>.</span></p>
@@ -328,8 +329,23 @@
               <svg viewBox="0 0 24 24" aria-hidden="true" data-icon-play hidden><path d="M7 5l12 7-12 7z"/></svg>
             </button>
           </div>
-          <p class="cook-next"><span>Up next:</span> Meanwhile, add the remaining 300ml coconut milk, peanut butter, remaining 1 tbsp red curry paste, remaining 1 tbsp soy sauce, honey and the juice of half the lime to a small saucepan. Cook over a low heat for 5 minutes, stirring regularly, until smooth and glossy.</p>
+          <p class="cook-next"><span>Up next:</span> Meanwhile, add the remaining 300ml coconut milk, peanut butter, remaining 1 tbsp red curry paste, remaining 1 tbsp soy sauce, honey and the juice of half the lime to a small saucepan.</p>
         </div>
+      </li>
+
+      <li class="rail-step rail-step-plate reveal" id="made">
+        <div class="rail-words">
+          <h3>You made it.</h3>
+          <p>Catch it while it looks its best. It becomes the recipe's photo, with your rating and a note for next time.</p>
+          <p class="quiet">Every plate on this page is the cook's own, from the recipes in the app.</p>
+        </div>
+        <figure class="plate plate-made" role="group" aria-label="Example: the recipe after cooking">
+          <picture>
+            <source type="image/avif" srcset="/static/images/plate-satay-720.avif 720w, /static/images/plate-satay-1440.avif 1440w" sizes="(min-width: 900px) 380px, 72vw">
+            <img src="/static/images/plate-satay-720.jpg" srcset="/static/images/plate-satay-720.jpg 720w, /static/images/plate-satay-1440.jpg 1440w" sizes="(min-width: 900px) 380px, 72vw" width="1440" height="1440" loading="lazy" decoding="async" alt="Satay chicken on jasmine rice with chopped peanuts, coriander and a lime wedge, on a red plate.">
+          </picture>
+          <figcaption class="made-caption"><span class="dish">Satay Chicken</span><span class="facts">Cooked twice · last cooked yesterday</span></figcaption>
+        </figure>
       </li>
     </ol>
   </div>
@@ -338,10 +354,10 @@
 <section class="scene scene-send band" id="send" data-reveal data-send>
   <div class="wrap">
     <header class="scene-head scene-head-centre">
-      <p class="scene-problem scene-problem-centre">"Send me that recipe." What they usually get is a screenshot with the amounts cut off.</p>
+      <p class="scene-problem scene-problem-centre">"Send me that recipe." They get a screenshot, amounts cut off.</p>
       <h2>Send recipes, not screenshots.</h2>
-      <p class="scene-lede">Photo, amounts, method and timers, in one file. A friend with Aubergenie saves it in a tap. Anyone else gets a picture or the text.</p>
-      <p class="quiet quiet-centre">Your recipes stay on your devices and in your own iCloud. No ads, no tracking. Your name travels with a recipe only when you switch that on.</p>
+      <p class="scene-lede">Photo, amounts, method and timers, in one file. No Aubergenie? They get a picture or the text.</p>
+      <p class="quiet quiet-centre">Your name goes with it only when you switch that on.</p>
     </header>
     <div class="send-stage reveal">
       <figure class="screen send-from">
@@ -358,7 +374,7 @@
       </div>
       <div class="send-to">
         <p class="send-to-label">Them</p>
-        <p>It opens in Aubergenie as "Shared with you, exactly as it was sent", with one button: <strong>Save Recipe</strong>. Then it's theirs: to cook, to change, to shop for, and to send on. A recipe's whole life, again.</p>
+        <p>It opens as "Shared with you, exactly as it was sent". One button: <strong>Save Recipe</strong>.</p>
       </div>
     </div>
   </div>
@@ -366,7 +382,8 @@
 
 <section class="scene scene-invite" id="join" data-reveal>
   <div class="wrap invite-grid reveal">
-    <p class="scene-problem scene-problem-centre invite-week">A week in: Nan's card is a page you can cook from. The shop took one list. Four plates wear your own photographs, and your sister has the ragu exactly as you make it.</p>
+    <p class="scene-problem scene-problem-centre invite-week">Nan's ragu was a card in a drawer. Tonight, Sam's cooking it.</p>
+    <p class="invite-ask">Where's yours?</p>
     <div class="yolk">
       <div class="float invite-float">
         <picture>
@@ -378,17 +395,17 @@
     </div>
     <p class="invite-says">Glad to help. Pull up a chair.</p>
     <h2>Try the beta.</h2>
-    <p class="scene-lede invite-lede">Aubergenie is in beta, free to try through TestFlight, Apple's app for trying apps before they reach the App Store. We're letting people in a few at a time, because each tester's AI recipes cost us to write, so tell us a little about what you cook. Bringing your own recipes with the AI switched off is just as welcome.</p>
+    <p class="scene-lede invite-lede">Free, through Apple's TestFlight. We let people in a few at a time, so tell us what you cook. Bringing your own recipes with the AI off is just as welcome.</p>
     <div class="actions actions-centre">
       <a class="btn btn-primary" href="mailto:hello@aubergenieapp.com?subject=Can%20I%20try%20Aubergenie%3F&amp;body=I%27d%20like%20to%20try%20the%20Aubergenie%20beta%20on%20TestFlight.%0A%0AA%20line%20about%20what%20I%20cook%2C%20if%20I%20like%3A%0A%0A%0AI%27d%20use%20it%20on%20%28keep%20any%20that%20apply%29%3A%20iPhone%2C%20iPad%2C%20Mac%0A%0AThanks%0A" data-cta="beta-request">Ask to try the beta</a>
     </div>
+    <p class="invite-trust">No ads, no tracking. Your recipes stay in your own iCloud.</p>
     <p class="cta-secondary"><a class="link-quiet" href="mailto:hello@aubergenieapp.com?subject=Tell%20me%20when%20Aubergenie%20is%20out&amp;body=Please%20email%20me%20once%2C%20when%20Aubergenie%20is%20on%20the%20App%20Store.%0A%0AI%27d%20use%20it%20on%20%28keep%20any%20that%20apply%29%3A%20iPhone%2C%20iPad%2C%20Mac%0A%0AThanks%0A">Rather wait? Tell me when it's out.</a></p>
     <ol class="next-steps" aria-label="What happens next">
-      <li><strong>Your email reaches a person</strong>, who reads it and replies within a few days either way. Please leave health details out.</li>
-      <li><strong>If there's a place, Apple emails you a TestFlight invitation.</strong> Install the free TestFlight app, open the link, tap Install.</li>
-      <li><strong>Free to try.</strong> App Store prices aren't set yet. Your recipes stay in your own iCloud whatever happens to the beta.</li>
+      <li><strong>A person reads it</strong> and replies within days, either way. Leave health details out.</li>
+      <li><strong>If there's a place,</strong> Apple emails your TestFlight invitation.</li>
     </ol>
-    <p class="cta-note">For iPhone, iPad and Mac · needs iOS, iPadOS or macOS 26.4 or later (Settings › General › About shows your version; on a Mac, About This Mac)</p>
+    <p class="cta-note cta-small">Needs iOS, iPadOS or macOS 26.4 or later.</p>
     <p class="invite-address" data-copy-address>
       <span>Or write to</span> <a href="mailto:hello@aubergenieapp.com">hello@aubergenieapp.com</a>
       <button type="button" class="copy-btn" data-copy="hello@aubergenieapp.com">Copy address</button>
@@ -414,6 +431,6 @@
     <p class="footer-legal">© 2026 <span class="brgndy">BRGNDY</span> LTD · Registered in England and Wales, company number 17537333 · Registered office: 71-75 Shelton Street, London WC2H 9JQ · Aubergenie is a trading name of BRGNDY LTD</p>
   </div>
 </footer>
-<script src="/static/js/site.js?v=6543b858ce" defer></script>
+<script src="/static/js/site.js?v=95c656e06f" defer></script>
 </body>
 </html>
