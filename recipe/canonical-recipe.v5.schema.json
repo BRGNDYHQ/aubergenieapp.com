@@ -1,0 +1,278 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chef.app/schemas/recipe.v5.json",
+  "title": "Chef Canonical Recipe",
+  "description": "Canonical Recipe JSON 5.0, the launch format (2026-10-18): version 4, frozen 2026-10-06, plus optional schemaMinor, language, attestation, provenance.authorLinks, provenance.basedOn and the transformation kind cook_edit. A recipe of a newer schemaMinor is read reduced to these members (docs/CANONICAL-RECIPE.md section 2a). The structural half of the contract; cross-field and domain rules live in RecipeValidator (docs/CANONICAL-RECIPE.md section 6). Absent means unknown: empty strings and empty optional arrays are never valid, they are omitted. Zero is a real value wherever a minimum of 0 is allowed.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "id", "title", "servings", "ingredients", "method", "provenance"],
+  "properties": {
+    "schemaVersion": { "const": 5 },
+    "schemaMinor": { "type": "integer", "minimum": 0 },
+    "language": { "type": "string", "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$", "maxLength": 35 },
+    "id": { "$ref": "#/$defs/recipeId" },
+    "title": { "$ref": "#/$defs/text", "maxLength": 200 },
+    "recipeDescription": { "$ref": "#/$defs/text", "maxLength": 2000 },
+
+    "servings": { "type": "integer", "minimum": 1, "maximum": 1000 },
+    "yieldText": { "$ref": "#/$defs/text", "maxLength": 80 },
+
+    "totalTimeMinutes": { "type": "integer", "minimum": 1, "maximum": 525600 },
+    "prepTimeMinutes": { "type": "integer", "minimum": 0, "maximum": 525600 },
+    "cookTimeMinutes": { "type": "integer", "minimum": 0, "maximum": 525600 },
+    "difficulty": { "enum": ["easy", "medium", "hard"] },
+
+    "cuisine": { "$ref": "#/$defs/text", "maxLength": 60 },
+    "course": {
+      "enum": ["breakfast", "starter", "main", "side", "dessert", "snack", "baking", "drink", "condiment"]
+    },
+    "diets": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "enum": ["vegetarian", "vegan", "pescatarian"] }
+    },
+    "tags": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 30,
+      "items": { "$ref": "#/$defs/tag" }
+    },
+
+    "equipment": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 50,
+      "items": { "$ref": "#/$defs/equipment" }
+    },
+
+    "ingredientGroups": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 30,
+      "items": { "$ref": "#/$defs/group" }
+    },
+    "ingredients": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 300,
+      "items": { "$ref": "#/$defs/ingredient" }
+    },
+
+    "methodGroups": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 30,
+      "items": { "$ref": "#/$defs/group" }
+    },
+    "method": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 200,
+      "items": { "$ref": "#/$defs/step" }
+    },
+
+    "tips": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 20,
+      "items": { "$ref": "#/$defs/text", "maxLength": 2000 }
+    },
+
+    "nutrition": { "$ref": "#/$defs/nutrition" },
+    "provenance": { "$ref": "#/$defs/provenance" },
+    "attestation": { "$ref": "#/$defs/attestation" }
+  },
+
+  "$defs": {
+    "text": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^\\S(?:[\\s\\S]*\\S)?$",
+      "description": "Non-empty, no leading or trailing whitespace."
+    },
+    "tag": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 40,
+      "pattern": "^[^,\\s](?:[^,\\n\\r\\t]*[^,\\s])?$",
+      "description": "One word or phrase: trimmed, single-line, no commas."
+    },
+    "recipeId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+      "description": "Lowercase UUID. Minted once by whoever first produces the recipe."
+    },
+    "localId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{0,63}$",
+      "description": "Recipe-local identifier, unique across every id in the recipe."
+    },
+    "unit": {
+      "enum": [
+        "g", "kg", "ml", "l", "tsp", "tbsp", "cup", "oz", "lb",
+        "clove", "tin", "can", "pack", "slice", "piece", "bunch", "handful", "pinch",
+        "sprig", "bag", "jar", "punnet", "pouch", "rasher", "stick", "knob", "head",
+        "bulb", "fillet", "block", "sheet", "stalk", "strip", "wedge", "dash", "splash",
+        "squeeze", "drizzle", "glug"
+      ],
+      "description": "Canonical unit codes — exactly IngredientQuantityParser's vocabulary. Anything else is a customUnit."
+    },
+    "customUnit": {
+      "$ref": "#/$defs/text",
+      "maxLength": 20,
+      "description": "A unit outside the canonical list (\"cm\", \"fl oz\"), kept as written. Never combined or converted."
+    },
+    "group": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title"],
+      "properties": {
+        "id": { "$ref": "#/$defs/localId" },
+        "title": { "$ref": "#/$defs/text", "maxLength": 120 }
+      }
+    },
+    "ingredient": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name"],
+      "properties": {
+        "id": { "$ref": "#/$defs/localId" },
+        "name": { "$ref": "#/$defs/text", "maxLength": 200 },
+        "quantity": { "$ref": "#/$defs/text", "maxLength": 80 },
+        "amount": { "type": "number", "exclusiveMinimum": 0, "maximum": 1000000 },
+        "unit": { "$ref": "#/$defs/unit" },
+        "customUnit": { "$ref": "#/$defs/customUnit" },
+        "preparation": { "$ref": "#/$defs/text", "maxLength": 300 },
+        "groupId": { "$ref": "#/$defs/localId" },
+        "optional": { "const": true, "description": "Present only when true." },
+        "substitutions": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 10,
+          "items": { "$ref": "#/$defs/text", "maxLength": 300 }
+        }
+      }
+    },
+    "step": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "text"],
+      "properties": {
+        "id": { "$ref": "#/$defs/localId" },
+        "text": { "$ref": "#/$defs/text", "maxLength": 4000 },
+        "groupId": { "$ref": "#/$defs/localId" },
+        "timers": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 20,
+          "items": { "$ref": "#/$defs/timer" }
+        },
+        "ingredients": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 100,
+          "items": { "$ref": "#/$defs/ingredientUse" }
+        }
+      }
+    },
+    "timer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "durationSeconds"],
+      "properties": {
+        "id": { "$ref": "#/$defs/localId" },
+        "durationSeconds": { "type": "integer", "minimum": 1, "maximum": 604800 },
+        "label": { "$ref": "#/$defs/text", "maxLength": 60 }
+      }
+    },
+    "ingredientUse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ingredientId"],
+      "properties": {
+        "ingredientId": { "$ref": "#/$defs/localId" },
+        "amount": { "type": "number", "exclusiveMinimum": 0, "maximum": 1000000 },
+        "unit": { "$ref": "#/$defs/unit" },
+        "customUnit": { "$ref": "#/$defs/customUnit" }
+      }
+    },
+    "equipment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name"],
+      "properties": {
+        "name": { "$ref": "#/$defs/text", "maxLength": 120 },
+        "appliance": {
+          "enum": ["oven", "hob", "grill", "microwave", "air_fryer", "slow_cooker", "pressure_cooker", "rice_cooker", "blender"]
+        }
+      }
+    },
+    "nutrition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["basis", "servings"],
+      "properties": {
+        "basis": { "const": "per_serving", "description": "Every figure is per serving. Whole-recipe figures are divided at the point of capture." },
+        "servings": { "type": "integer", "minimum": 1, "maximum": 1000, "description": "The serving count the figures were worked out for. Must equal the recipe's servings. At least one figure below is required (validator rule nutrition.empty)." },
+        "calories": { "type": "integer", "minimum": 0, "maximum": 20000, "description": "kcal per serving." },
+        "proteinG": { "type": "integer", "minimum": 0, "maximum": 2000 },
+        "carbsG": { "type": "integer", "minimum": 0, "maximum": 2000 },
+        "fatG": { "type": "integer", "minimum": 0, "maximum": 2000 },
+        "source": { "enum": ["publisher", "calculated", "estimated", "cook"] }
+      }
+    },
+    "transformation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "at"],
+      "properties": {
+        "kind": { "enum": ["chef_edit", "cook_edit", "servings_rescale"] },
+        "engine": { "enum": ["cloud", "on_device"] },
+        "at": { "$ref": "#/$defs/timestamp" }
+      }
+    },
+    "timestamp": {
+      "type": "string",
+      "pattern": "^\\d{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\dZ$",
+      "description": "ISO 8601, UTC, whole seconds: 2026-10-06T18:30:00Z."
+    },
+    "attestation": {
+      "type": "object",
+      "required": ["by", "signature"],
+      "properties": {
+        "by": { "type": "string", "minLength": 1, "maxLength": 64 },
+        "signature": { "type": "string", "minLength": 1, "maxLength": 1000 }
+      },
+      "description": "Chef's signature over the recipe's credit and content (docs/CANONICAL-RECIPE.md section 10a). Opaque and open: only its core is named here, and whatever else it holds is kept exactly as it arrived. A form a reader doesn't know is unverified, never invalid."
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["origin"],
+      "properties": {
+        "origin": { "enum": ["manual", "website", "photo", "prompt", "imported"] },
+        "writtenBy": { "enum": ["cook", "source", "chef"] },
+        "generator": { "enum": ["cloud", "on_device"] },
+        "url": { "type": "string", "pattern": "^https?://[^\\s/?#]+[^\\s]*$", "maxLength": 2000 },
+        "siteName": { "$ref": "#/$defs/text", "maxLength": 120 },
+        "author": { "$ref": "#/$defs/text", "maxLength": 120 },
+        "authorLinks": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 3,
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^https://[^\\s/?#]+[^\\s]*$", "maxLength": 500 },
+          "description": "Where to find the author: a profile or website, as its address. Only with author (RecipeValidator)."
+        },
+        "basedOn": { "$ref": "#/$defs/recipeId" },
+        "transformations": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 100,
+          "items": { "$ref": "#/$defs/transformation" }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,244 @@
+{
+  "format" : "recipe",
+  "version" : 1,
+  "recipe" : {
+    "course" : "main",
+    "cuisine" : "Thai",
+    "difficulty" : "medium",
+    "equipment" : [
+      {
+        "appliance" : "blender",
+        "name" : "Blender"
+      },
+      {
+        "name" : "Wok"
+      }
+    ],
+    "id" : "c0ffee00-1d2e-4f30-8a41-b52c63d74e85",
+    "ingredientGroups" : [
+      {
+        "id" : "paste",
+        "title" : "For the paste"
+      },
+      {
+        "id" : "curry",
+        "title" : "For the curry"
+      }
+    ],
+    "ingredients" : [
+      {
+        "amount" : 4,
+        "groupId" : "paste",
+        "id" : "green-chillies",
+        "name" : "green chillies",
+        "preparation" : "roughly chopped",
+        "quantity" : "4"
+      },
+      {
+        "amount" : 2,
+        "groupId" : "paste",
+        "id" : "lemongrass",
+        "name" : "lemongrass",
+        "preparation" : "tough outer leaves removed",
+        "quantity" : "2 stalks",
+        "unit" : "stalk"
+      },
+      {
+        "amount" : 3,
+        "groupId" : "paste",
+        "id" : "garlic",
+        "name" : "garlic",
+        "quantity" : "3 cloves",
+        "unit" : "clove"
+      },
+      {
+        "amount" : 5,
+        "customUnit" : "cm",
+        "groupId" : "paste",
+        "id" : "ginger",
+        "name" : "fresh ginger",
+        "preparation" : "peeled",
+        "quantity" : "5cm piece"
+      },
+      {
+        "amount" : 30,
+        "groupId" : "paste",
+        "id" : "coriander",
+        "name" : "fresh coriander",
+        "quantity" : "30g",
+        "unit" : "g"
+      },
+      {
+        "amount" : 1,
+        "groupId" : "paste",
+        "id" : "lime",
+        "name" : "lime",
+        "preparation" : "zested and juiced",
+        "quantity" : "1"
+      },
+      {
+        "amount" : 300,
+        "groupId" : "curry",
+        "id" : "jasmine-rice",
+        "name" : "jasmine rice",
+        "quantity" : "300g",
+        "unit" : "g"
+      },
+      {
+        "amount" : 1,
+        "groupId" : "curry",
+        "id" : "vegetable-oil",
+        "name" : "vegetable oil",
+        "quantity" : "1 tbsp",
+        "unit" : "tbsp"
+      },
+      {
+        "amount" : 400,
+        "groupId" : "curry",
+        "id" : "coconut-milk",
+        "name" : "coconut milk",
+        "quantity" : "400ml",
+        "unit" : "ml"
+      },
+      {
+        "amount" : 150,
+        "groupId" : "curry",
+        "id" : "green-beans",
+        "name" : "green beans",
+        "preparation" : "trimmed and halved",
+        "quantity" : "150g",
+        "unit" : "g"
+      },
+      {
+        "amount" : 300,
+        "groupId" : "curry",
+        "id" : "king-prawns",
+        "name" : "raw king prawns",
+        "quantity" : "300g",
+        "unit" : "g"
+      },
+      {
+        "amount" : 1,
+        "groupId" : "curry",
+        "id" : "fish-sauce",
+        "name" : "fish sauce",
+        "quantity" : "1 tbsp",
+        "unit" : "tbsp"
+      }
+    ],
+    "method" : [
+      {
+        "id" : "step-1",
+        "ingredients" : [
+          {
+            "ingredientId" : "green-chillies"
+          },
+          {
+            "ingredientId" : "lemongrass"
+          },
+          {
+            "ingredientId" : "garlic"
+          },
+          {
+            "amount" : 5,
+            "customUnit" : "cm",
+            "ingredientId" : "ginger"
+          },
+          {
+            "ingredientId" : "coriander"
+          },
+          {
+            "ingredientId" : "lime"
+          }
+        ],
+        "text" : "Blitz all the paste ingredients to a smooth paste in a blender."
+      },
+      {
+        "id" : "step-2",
+        "ingredients" : [
+          {
+            "ingredientId" : "jasmine-rice"
+          }
+        ],
+        "text" : "Cook the rice following the pack instructions."
+      },
+      {
+        "id" : "step-3",
+        "ingredients" : [
+          {
+            "ingredientId" : "vegetable-oil"
+          }
+        ],
+        "text" : "Fry the paste in the oil in a wok for 2 minutes until fragrant.",
+        "timers" : [
+          {
+            "durationSeconds" : 120,
+            "id" : "step-3-timer-1",
+            "label" : "Fry paste"
+          }
+        ]
+      },
+      {
+        "id" : "step-4",
+        "ingredients" : [
+          {
+            "ingredientId" : "coconut-milk"
+          },
+          {
+            "ingredientId" : "green-beans"
+          }
+        ],
+        "text" : "Add the coconut milk and green beans and simmer for 6 minutes.",
+        "timers" : [
+          {
+            "durationSeconds" : 360,
+            "id" : "step-4-timer-1",
+            "label" : "Simmer curry"
+          }
+        ]
+      },
+      {
+        "id" : "step-5",
+        "ingredients" : [
+          {
+            "ingredientId" : "king-prawns"
+          },
+          {
+            "ingredientId" : "fish-sauce"
+          }
+        ],
+        "text" : "Stir in the prawns and cook for 3 minutes until pink, then season with the fish sauce and serve with the rice.",
+        "timers" : [
+          {
+            "durationSeconds" : 180,
+            "id" : "step-5-timer-1",
+            "label" : "Cook prawns"
+          }
+        ]
+      }
+    ],
+    "nutrition" : {
+      "basis" : "per_serving",
+      "calories" : 520,
+      "carbsG" : 58,
+      "fatG" : 21,
+      "proteinG" : 26,
+      "servings" : 4,
+      "source" : "calculated"
+    },
+    "provenance" : {
+      "generator" : "cloud",
+      "origin" : "prompt",
+      "writtenBy" : "chef"
+    },
+    "recipeDescription" : "A fresh, fragrant curry with a homemade green paste, sweet prawns and crisp green beans.",
+    "schemaVersion" : 5,
+    "servings" : 4,
+    "tags" : [
+      "Curry",
+      "Prawns"
+    ],
+    "title" : "Thai Green Prawn Curry",
+    "totalTimeMinutes" : 35
+  }
+}

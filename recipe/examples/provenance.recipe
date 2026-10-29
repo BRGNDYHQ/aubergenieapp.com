@@ -1,0 +1,166 @@
+{
+  "format" : "recipe",
+  "version" : 1,
+  "recipe" : {
+    "cookTimeMinutes" : 20,
+    "course" : "baking",
+    "cuisine" : "British",
+    "diets" : [
+      "vegetarian"
+    ],
+    "difficulty" : "easy",
+    "id" : "0d9c8b7a-6f5e-4d4c-8b3a-2f1e0d9c8b7a",
+    "ingredientGroups" : [
+      {
+        "id" : "muffins",
+        "title" : "For the muffins"
+      },
+      {
+        "id" : "drizzle",
+        "title" : "For the drizzle"
+      }
+    ],
+    "ingredients" : [
+      {
+        "amount" : 250,
+        "groupId" : "muffins",
+        "id" : "self-raising-flour",
+        "name" : "self-raising flour",
+        "quantity" : "250g",
+        "unit" : "g"
+      },
+      {
+        "amount" : 150,
+        "groupId" : "muffins",
+        "id" : "caster-sugar",
+        "name" : "caster sugar",
+        "quantity" : "150g",
+        "unit" : "g"
+      },
+      {
+        "amount" : 2,
+        "groupId" : "muffins",
+        "id" : "eggs",
+        "name" : "eggs",
+        "quantity" : "2"
+      },
+      {
+        "amount" : 150,
+        "groupId" : "muffins",
+        "id" : "milk",
+        "name" : "milk",
+        "quantity" : "150ml",
+        "unit" : "ml"
+      },
+      {
+        "amount" : 100,
+        "groupId" : "muffins",
+        "id" : "butter",
+        "name" : "butter",
+        "preparation" : "melted",
+        "quantity" : "100g",
+        "unit" : "g"
+      },
+      {
+        "amount" : 2,
+        "groupId" : "muffins",
+        "id" : "lemons",
+        "name" : "lemons",
+        "preparation" : "zested and juiced",
+        "quantity" : "2"
+      },
+      {
+        "amount" : 100,
+        "groupId" : "drizzle",
+        "id" : "granulated-sugar",
+        "name" : "granulated sugar",
+        "quantity" : "100g",
+        "unit" : "g"
+      }
+    ],
+    "method" : [
+      {
+        "id" : "step-1",
+        "text" : "Heat the oven to 200°C (180°C fan). Line a 12-hole muffin tin with paper cases."
+      },
+      {
+        "id" : "step-2",
+        "ingredients" : [
+          {
+            "ingredientId" : "self-raising-flour"
+          },
+          {
+            "ingredientId" : "caster-sugar"
+          }
+        ],
+        "text" : "Mix the flour and caster sugar in a large bowl."
+      },
+      {
+        "id" : "step-3",
+        "ingredients" : [
+          {
+            "ingredientId" : "eggs"
+          },
+          {
+            "ingredientId" : "milk"
+          },
+          {
+            "ingredientId" : "butter"
+          },
+          {
+            "ingredientId" : "lemons"
+          }
+        ],
+        "text" : "Whisk the eggs, milk, melted butter and lemon zest, then stir into the dry mix until just combined."
+      },
+      {
+        "id" : "step-4",
+        "text" : "Divide between the cases and bake for 20 minutes until risen and golden.",
+        "timers" : [
+          {
+            "durationSeconds" : 1200,
+            "id" : "step-4-timer-1",
+            "label" : "Bake muffins"
+          }
+        ]
+      },
+      {
+        "id" : "step-5",
+        "ingredients" : [
+          {
+            "ingredientId" : "granulated-sugar"
+          }
+        ],
+        "text" : "Stir the lemon juice into the granulated sugar and spoon it over the warm muffins."
+      }
+    ],
+    "nutrition" : {
+      "basis" : "per_serving",
+      "calories" : 248,
+      "carbsG" : 37,
+      "fatG" : 9,
+      "proteinG" : 4,
+      "servings" : 12,
+      "source" : "calculated"
+    },
+    "prepTimeMinutes" : 15,
+    "provenance" : {
+      "author" : "Example Kitchen",
+      "generator" : "cloud",
+      "origin" : "website",
+      "siteName" : "example.com",
+      "url" : "https://www.example.com/recipes/lemon-drizzle-muffins",
+      "writtenBy" : "chef"
+    },
+    "recipeDescription" : "Light, zesty muffins soaked in a crunchy lemon sugar drizzle.",
+    "schemaVersion" : 5,
+    "servings" : 12,
+    "tags" : [
+      "Muffins",
+      "Lemon"
+    ],
+    "title" : "Lemon Drizzle Muffins",
+    "totalTimeMinutes" : 35,
+    "yieldText" : "Makes 12"
+  }
+}

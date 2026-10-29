@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Recipe File · Aubergenie</title>
+<meta name="description" content="A simple, portable .recipe file so recipes can move between people and apps.">
+<link rel="canonical" href="https://aubergenieapp.com/recipe/">
+
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#FFF8EE" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16101A" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Aubergenie">
+<meta property="og:title" content="The Recipe File · Aubergenie">
+<meta property="og:description" content="A simple, portable .recipe file so recipes can move between people and apps.">
+<meta property="og:url" content="https://aubergenieapp.com/recipe/">
+<meta property="og:image" content="https://aubergenieapp.com/static/images/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Aubergenie: Every recipe you love, ready to cook.">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/static/icons/icon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/static/icons/icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/static/icons/icon-180.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preload" href="/static/fonts/archivo-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/static/css/site.css?v=0541bfc63a">
+<script>(function(d){d.classList.add('js');try{d.classList.add(matchMedia('(prefers-reduced-motion: reduce)').matches?'still':'motion')}catch(e){d.classList.add('still')}})(document.documentElement)</script>
+</head>
+<body class="page-document">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header" data-header>
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="Aubergenie home">
+      <span class="wordmark" aria-hidden="true">aubergen<span class="wm-i">ı<svg viewBox="0 0 100 100"><path d="M50 2C78 20 92 48 84 78 78 96 56 100 40 90 14 74 10 36 50 2Z"/></svg></span>e</span>
+    </a>
+    <nav class="site-nav" aria-label="Site">
+      <a href="/support/">Support</a>
+      <a class="btn btn-small header-cta" href="/#join" data-header-cta>Ask to try it</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<article class="document wrap">
+  <header class="page-head">
+    <p class="eyebrow">The Recipe File</p>
+    <h1>A recipe should be yours to keep.</h1>
+    <p class="lede"><code>.recipe</code> is a simple, portable recipe file, designed so recipes can move between people and between apps.</p>
+  </header>
+
+  <div class="document-grid">
+    <aside class="document-aside">
+      <nav class="contents" aria-label="Contents">
+        <p class="contents-title">On this page</p>
+        <ul>
+          <li><a href="#what">What a Recipe File is</a></li>
+          <li><a href="#open">Opening one</a></li>
+          <li><a href="#developers">For developers</a></li>
+          <li><a href="#examples">Examples</a></li>
+          <li><a href="#versions">Versions</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <div class="prose">
+      <h2 id="what">What a Recipe File is</h2>
+      <p>One file holds <strong>one recipe</strong>: its title, servings, times, structured ingredients and method, and where it came from. Optionally it carries one photograph of the dish. That is all.</p>
+      <ul>
+        <li><strong>Portable.</strong> It is an ordinary JSON text file. Any app, on any platform, can read or write one with nothing more than a JSON parser.</li>
+        <li><strong>Yours.</strong> It is not tied to anyone's Aubergenie account, and it works without AI or an internet connection.</li>
+        <li><strong>Honest about people.</strong> It carries the recipe and its source, never anything about the person sending it: no account, no notes or ratings, no cooking history, no preferences, and no hidden camera or location data inside the photo.</li>
+        <li><strong>Forgiving.</strong> A reader that cannot show the photograph, or does not understand some optional detail, still opens the recipe. Nothing optional can make a recipe unreadable.</li>
+      </ul>
+      <p>Aubergenie is the format's reference implementation and first app, not the owner of recipes as an idea. The format is published here so that other apps can read and write it too.</p>
+
+      <h2 id="open">Opening one</h2>
+      <p>With Aubergenie on your iPhone, iPad or Mac, opening a <code>.recipe</code> file, wherever it arrived, shows you the recipe in the app and offers to save it. Files, Messages and Mail show the dish on the file's icon. In Aubergenie, every recipe's share button offers <strong>Send Recipe</strong>, which makes one.</p>
+
+      <h2 id="developers">For developers</h2>
+      <p>The format has two layers, each with its own specification and JSON Schema, both rendered here from the repository's current documents rather than maintained as a second copy.</p>
+      <dl>
+        <dt><a href="/recipe/spec/">Recipe File specification</a> · <a href="/recipe/recipe-file.v1.schema.json">schema</a></dt>
+        <dd>The envelope: <code>format</code>, <code>version</code>, the <code>recipe</code>, and the optional <code>image</code>. How to name, size, read and refuse a file, and what must never be in one.</dd>
+        <dt><a href="/recipe/canonical-recipe/">Canonical Recipe</a> · <a href="/recipe/canonical-recipe.v5.schema.json">schema 5.0</a> · <a href="/recipe/canonical-recipe.v4.schema.json">schema v4</a></dt>
+        <dd>The recipe inside: every field, its bounds, the cross-field rules, validation and migration from earlier versions. Version 5.0 is v4 plus optional additions, so every v4 recipe is a valid 5.0 recipe.</dd>
+      </dl>
+      <p>The smallest file looks like this:</p>
+<pre><code class="language-json">{
+  "format" : "recipe",
+  "version" : 1,
+  "recipe" : {
+    "schemaVersion" : 4,
+    "id" : "b7c6d5e4-f3a2-4b1c-8d0e-9f8a7b6c5d4e",
+    "title" : "Cheese on Toast",
+    "servings" : 1,
+    "ingredients" : [ { "id" : "bread", "name" : "thick white bread", "quantity" : "2 slices" }, … ],
+    "method" : [ { "id" : "step-1", "text" : "Toast the bread on one side under the grill." }, … ],
+    "provenance" : { "origin" : "manual" }
+  }
+}</code></pre>
+
+      <h2 id="examples">Examples</h2>
+      <p>Valid files, each exercising a different part of the format. They contain no personal data; the photographs are test images made for the purpose.</p>
+      <table>
+        <thead><tr><th>File</th><th>Shows</th><th class="num">Size</th></tr></thead>
+        <tbody>
+<tr><td><a href="/recipe/examples/adapted.recipe" download>adapted.recipe</a></td><td>Someone&#x27;s recipe, changed by the app, with the change recorded.</td><td class="num">2 KB</td></tr>
+<tr><td><a href="/recipe/examples/complex.recipe" download>complex.recipe</a></td><td>Every optional field in use.</td><td class="num">6 KB</td></tr>
+<tr><td><a href="/recipe/examples/grouped.recipe" download>grouped.recipe</a></td><td>Ingredient and method sections.</td><td class="num">6 KB</td></tr>
+<tr><td><a href="/recipe/examples/photo.recipe" download>photo.recipe</a></td><td>With the cook&#x27;s own photograph.</td><td class="num">95 KB</td></tr>
+<tr><td><a href="/recipe/examples/provenance.recipe" download>provenance.recipe</a></td><td>A recipe copied from a website, with its source recorded.</td><td class="num">4 KB</td></tr>
+<tr><td><a href="/recipe/examples/reshared.recipe" download>reshared.recipe</a></td><td>Received from someone, then sent on.</td><td class="num">129 KB</td></tr>
+<tr><td><a href="/recipe/examples/simple.recipe" download>simple.recipe</a></td><td>The smallest useful recipe: three ingredients, three steps, one timer.</td><td class="num">1 KB</td></tr>
+<tr><td><a href="/recipe/examples/timers.recipe" download>timers.recipe</a></td><td>Several timers, each where the words state a duration.</td><td class="num">2 KB</td></tr>
+<tr><td><a href="/recipe/examples/website-photo.recipe" download>website-photo.recipe</a></td><td>With a photograph credited to the website it came from.</td><td class="num">220 KB</td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="versions">Versions</h2>
+      <table>
+        <thead><tr><th>Layer</th><th>Current</th><th>Changes</th></tr></thead>
+        <tbody>
+          <tr><td>Recipe File (envelope)</td><td>v1.1, 2026-10-09</td><td>Optional additions a reader can ignore keep version 1; anything else is version 2, which a v1 reader refuses rather than misreads.</td></tr>
+          <tr><td>Canonical Recipe</td><td>5.0, 2026-10-18</td><td>An optional addition a reader can ignore is a new minor version; any change to a field, value, bound or rule is a new <code>schemaVersion</code> with a migration from the last.</td></tr>
+        </tbody>
+      </table>
+      <p>Identifiers on a device: extension <code>.recipe</code>, Apple type <code>com.nathan.chef.recipe</code>, media type <code>application/x.recipe+json</code> (unregistered). A file is identified by its contents, never by its name; other programs have used <code>.recipe</code> for unrelated files.</p>
+    </div>
+  </div>
+</article>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-brand">
+      <span class="wordmark wordmark-small" aria-hidden="true">aubergen<span class="wm-i">ı<svg viewBox="0 0 100 100"><path d="M50 2C78 20 92 48 84 78 78 96 56 100 40 90 14 74 10 36 50 2Z"/></svg></span>e</span><span class="sr-only">Aubergenie</span>
+      <span class="footer-tag">Your recipes, your next idea, and dinner on the table.</span>
+    </div>
+    <nav class="footer-nav" aria-label="Legal and support">
+      <a href="/support/">Support</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/privacy/choices/">Privacy choices</a>
+      <a href="/recipe/">Recipe File</a>
+      <a href="mailto:hello@aubergenieapp.com">hello@aubergenieapp.com</a>
+    </nav>
+    <p class="footer-legal">© 2026 <span class="brgndy">BRGNDY</span> LTD · Registered in England and Wales, company number 17537333 · Registered office: 71-75 Shelton Street, London WC2H 9JQ</p>
+  </div>
+</footer>
+<script src="/static/js/site.js?v=1d1b9aba96" defer></script>
+</body>
+</html>

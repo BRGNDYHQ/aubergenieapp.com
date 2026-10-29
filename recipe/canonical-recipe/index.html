@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Canonical Recipe 5.0 — the recipe contract · Aubergenie</title>
+<meta name="description" content="Canonical Recipe, the recipe contract.">
+<link rel="canonical" href="https://aubergenieapp.com/recipe/canonical-recipe/">
+
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#FFF8EE" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16101A" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Aubergenie">
+<meta property="og:title" content="Canonical Recipe 5.0 — the recipe contract · Aubergenie">
+<meta property="og:description" content="Canonical Recipe, the recipe contract.">
+<meta property="og:url" content="https://aubergenieapp.com/recipe/canonical-recipe/">
+<meta property="og:image" content="https://aubergenieapp.com/static/images/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Aubergenie: Every recipe you love, ready to cook.">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/static/icons/icon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/static/icons/icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/static/icons/icon-180.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preload" href="/static/fonts/archivo-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/static/css/site.css?v=0541bfc63a">
+<script>(function(d){d.classList.add('js');try{d.classList.add(matchMedia('(prefers-reduced-motion: reduce)').matches?'still':'motion')}catch(e){d.classList.add('still')}})(document.documentElement)</script>
+</head>
+<body class="page-document">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header" data-header>
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="Aubergenie home">
+      <span class="wordmark" aria-hidden="true">aubergen<span class="wm-i">ı<svg viewBox="0 0 100 100"><path d="M50 2C78 20 92 48 84 78 78 96 56 100 40 90 14 74 10 36 50 2Z"/></svg></span>e</span>
+    </a>
+    <nav class="site-nav" aria-label="Site">
+      <a href="/support/">Support</a>
+      <a class="btn btn-small header-cta" href="/#join" data-header-cta>Ask to try it</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<article class="document wrap">
+  <header class="page-head">
+    <p class="eyebrow">Recipe File · developer documentation</p>
+    <h1>Canonical Recipe 5.0 — the recipe contract</h1>
+    <p class="lede">The recipe contract a Recipe File carries: shape, bounds, cross-field rules, validation and migration. Rendered from the repository's own document; some of its references are to source files that are not published here.</p>
+    <p class="meta"></p>
+  </header>
+  <div class="document-grid">
+    <aside class="document-aside">
+      <div class="callout">
+  <p class="callout-title">Recipe File</p>
+  <ul>
+    <li><a href="/recipe/">Introduction</a></li>
+    <li><a href="/recipe/spec/">Recipe File specification</a></li>
+    <li><a href="/recipe/canonical-recipe/">Canonical Recipe</a></li>
+    <li><a href="/recipe/recipe-file.v1.schema.json">Envelope schema</a></li>
+    <li><a href="/recipe/canonical-recipe.v5.schema.json">Recipe schema 5.0</a> · <a href="/recipe/canonical-recipe.v4.schema.json">v4</a></li>
+    <li><a href="/recipe/#examples">Example files</a></li>
+  </ul>
+</div>
+
+      <nav class="contents" aria-label="Contents">
+        <p class="contents-title">On this page</p>
+        <div class="toc">
+<ul>
+<li><a href="#1-principles">1. Principles</a></li>
+<li><a href="#2-shape">2. Shape</a></li>
+<li><a href="#2a-versions-and-recipes-from-a-newer-chef">2a. Versions, and recipes from a newer Chef</a></li>
+<li><a href="#3-field-reference-and-bounds">3. Field reference and bounds</a></li>
+<li><a href="#4-rule-classification">4. Rule classification</a></li>
+<li><a href="#5-kept-outside-the-recipe">5. Kept outside the recipe</a></li>
+<li><a href="#6-validation">6. Validation</a></li>
+<li><a href="#7-migration">7. Migration</a></li>
+<li><a href="#8-stable-identity">8. Stable identity</a></li>
+<li><a href="#9-storage-d1">9. Storage (D1)</a></li>
+<li><a href="#10-sharing-and-export">10. Sharing and export</a></li>
+<li><a href="#10a-proof-fingerprints-and-the-attestation">10a. Proof — fingerprints and the attestation</a></li>
+<li><a href="#11-edge-functions-unchanged-compatible">11. Edge Functions — unchanged, compatible</a></li>
+<li><a href="#12-pipelines-and-enforcement">12. Pipelines and enforcement</a></li>
+<li><a href="#13-evidence">13. Evidence</a></li>
+<li><a href="#14-known-limits-not-contract-gaps">14. Known limits (not contract gaps)</a></li>
+<li><a href="#15-not-in-50">15. Not in 5.0</a></li>
+<li><a href="#16-changing-the-contract">16. Changing the contract</a></li>
+</ul>
+</div>
+
+      </nav>
+    </aside>
+    <div class="prose">
+      <p><strong>Status: 5.0, the launch format (2026-10-18).</strong> v4 (FROZEN 2026-10-06,
+committed <code>660553b</code> on <code>codex/canonical-recipe-schema</code>) plus optional
+additions: <code>schemaMinor</code>, <code>language</code> and <code>attestation</code> on the recipe;
+<code>author</code> for a cook who signs, <code>authorLinks</code> and <code>basedOn</code> in provenance; and
+the transformation kind <code>cook_edit</code>. Every v4 recipe is a valid 5.0 recipe; the
+migration changes the version number only. Chef's backend still speaks v4
+(§11). Where this document says "v4" of the structure, it holds for 5.0 too.
+After launch the contract changes only by the rules in §16.</p>
+<p>This document is the authoritative recipe contract; anything elsewhere that
+disagrees with it is out of date.
+Canonical Recipe v4 is the single authoritative recipe structure in Chef.
+Every feature that creates, imports, edits, stores, loads or shares a recipe
+reads or writes it, and every recipe-writing path ends in
+<em>result → canonical v4 → validate → persist</em>.</p>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Where</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Structural contract (JSON Schema 2020-12, bundled in the app)</td>
+<td><a href="/recipe/canonical-recipe.v5.schema.json"><code>MyRecipes/Resources/CanonicalRecipe.v5.schema.json</code></a></td>
+</tr>
+<tr>
+<td>Structural contract v4 (kept byte-for-byte: the backend bundles it and its tests check it against the app's copy)</td>
+<td><a href="/recipe/canonical-recipe.v4.schema.json"><code>MyRecipes/Resources/CanonicalRecipe.v4.schema.json</code></a></td>
+</tr>
+<tr>
+<td>Swift model</td>
+<td><code>Models/CanonicalRecipe.swift</code></td>
+</tr>
+<tr>
+<td><code>validateRecipe</code> — the one validator</td>
+<td><code>Models/RecipeValidator.swift</code></td>
+</tr>
+<tr>
+<td>The only allowed repairs</td>
+<td><code>Models/RecipeRepair.swift</code></td>
+</tr>
+<tr>
+<td><code>migrateRecipeToLatest</code> — v1 → v2 → v3 → v4 → v5</td>
+<td><code>Models/RecipeMigrator.swift</code></td>
+</tr>
+<tr>
+<td>Persistence (load / save / backfill)</td>
+<td><code>Persistence/CanonicalRecipeStore.swift</code>, schemas V9–V10 in <code>RecipeSchema.swift</code></td>
+</tr>
+<tr>
+<td>Fixtures + manifest (shared by Swift and TypeScript)</td>
+<td><code>MyRecipesTests/Fixtures/CanonicalRecipe/</code></td>
+</tr>
+<tr>
+<td>Tests</td>
+<td><code>CanonicalRecipeContractTests</code>, <code>CanonicalRecipePersistenceTests</code></td>
+</tr>
+<tr>
+<td>Shared TypeScript implementation (Edge Functions + fixture runner)</td>
+<td><code>supabase/functions/_shared/canonicalRecipe.ts</code>, re-exported by <code>docs/canonical-recipe/reference/</code></td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-bash">deno run --allow-read docs/canonical-recipe/reference/check.ts
+</code></pre>
+<p><strong>Sign-off.</strong> <em>Can every legitimate Chef recipe be represented, migrated,
+validated, persisted and shared through one canonical structure without
+special-case recipe models or loss of information?</em> — <strong>Yes</strong> (§13 has the
+evidence, §14 the known limits, none of which is a contract gap). v4 is frozen
+and ready for downstream Edge Function work.</p>
+<hr />
+<h2 id="1-principles">1. Principles</h2>
+<ol>
+<li><strong>Absent means unknown; zero is a value.</strong> An optional field is present and
+   meaningful, or omitted. <code>""</code>, <code>[]</code> and <code>null</code> are never valid. <code>0</code> minutes of
+   cooking and <code>0</code> calories are real values and round-trip as <code>0</code>.</li>
+<li><strong>The words are the truth; structure supports them.</strong> <code>quantity</code> is what the
+   cook reads, and <code>amount</code>/<code>unit</code> serve scaling and shopping. Step <code>text</code> is the
+   instruction, and <code>timers</code> serve Cook Mode. Free-text quantities ("a pinch",
+   "to taste") are never forced into numbers.</li>
+<li><strong>Computed facts are not stored.</strong> Allergens, free-from claims, step numbers,
+   where a timer sits in the text, and display labels are derived by
+   deterministic helpers.</li>
+<li><strong>Recipe content and user state are separate</strong> (§5).</li>
+<li><strong>One spelling per field.</strong> Older aliases are accepted only by the migrator.</li>
+<li><strong>Strict in what Chef writes; safe with what it can't understand.</strong> Unknown
+   fields are errors in a recipe of a version this build knows. A recipe of a
+   newer <em>minor</em> version is opened, shown as far as it is understood and never
+   rewritten; a newer <em>major</em> version is refused, never guessed at (§2a).</li>
+<li><strong>The schema permits; Chef's generation guidance constrains.</strong> Several
+   timers in one step are valid. New Chef recipes normally use one, and a
+   warning lints it (§4).</li>
+</ol>
+<h2 id="2-shape">2. Shape</h2>
+<p>Abbreviated from
+<code>valid/14-shared-kitchen-sink.json</code>,
+which uses every field. The smallest valid recipe has seven fields
+(<code>valid/12-incomplete-optional.json</code>).</p>
+<pre><code class="language-jsonc">{
+  &quot;schemaVersion&quot;: 5,
+  &quot;id&quot;: &quot;9e8d7c6b-5a49-4382-a716-05f4e3d2c1b0&quot;,
+  &quot;title&quot;: &quot;Halloumi &amp; Chickpea Traybake with Herby Yoghurt&quot;,
+  &quot;servings&quot;: 4, &quot;yieldText&quot;: &quot;Serves 4&quot;,
+  &quot;totalTimeMinutes&quot;: 45, &quot;prepTimeMinutes&quot;: 10, &quot;cookTimeMinutes&quot;: 35,
+  &quot;difficulty&quot;: &quot;easy&quot;, &quot;cuisine&quot;: &quot;Middle Eastern&quot;, &quot;course&quot;: &quot;main&quot;,
+  &quot;diets&quot;: [&quot;vegetarian&quot;], &quot;tags&quot;: [&quot;Traybake&quot;, &quot;Halloumi&quot;, &quot;Midweek&quot;],
+  &quot;equipment&quot;: [{ &quot;name&quot;: &quot;Oven&quot;, &quot;appliance&quot;: &quot;oven&quot; }, { &quot;name&quot;: &quot;Large roasting tin&quot; }],
+  &quot;ingredientGroups&quot;: [{ &quot;id&quot;: &quot;traybake&quot;, &quot;title&quot;: &quot;For the traybake&quot; }, …],
+  &quot;ingredients&quot;: [
+    { &quot;id&quot;: &quot;halloumi&quot;, &quot;name&quot;: &quot;halloumi&quot;, &quot;quantity&quot;: &quot;225g&quot;, &quot;amount&quot;: 225, &quot;unit&quot;: &quot;g&quot;,
+      &quot;preparation&quot;: &quot;sliced&quot;, &quot;groupId&quot;: &quot;traybake&quot;, &quot;substitutions&quot;: [&quot;225g paneer, for a milder flavour&quot;] },
+    { &quot;id&quot;: &quot;mint&quot;, &quot;name&quot;: &quot;fresh mint&quot;, &quot;quantity&quot;: &quot;a small bunch&quot;, &quot;groupId&quot;: &quot;yoghurt&quot;, &quot;optional&quot;: true }, …
+  ],
+  &quot;methodGroups&quot;: [{ &quot;id&quot;: &quot;make-traybake&quot;, &quot;title&quot;: &quot;Traybake&quot; }, …],
+  &quot;method&quot;: [
+    { &quot;id&quot;: &quot;step-2&quot;, &quot;groupId&quot;: &quot;make-traybake&quot;,
+      &quot;text&quot;: &quot;Roast for 20 minutes, then lay the halloumi on top and roast for 10 minutes more until golden.&quot;,
+      &quot;timers&quot;: [ { &quot;id&quot;: &quot;step-2-timer-1&quot;, &quot;durationSeconds&quot;: 1200, &quot;label&quot;: &quot;Roast chickpeas&quot; },
+                  { &quot;id&quot;: &quot;step-2-timer-2&quot;, &quot;durationSeconds&quot;: 600,  &quot;label&quot;: &quot;Roast halloumi&quot; } ],
+      &quot;ingredients&quot;: [{ &quot;ingredientId&quot;: &quot;halloumi&quot; }] }, …
+  ],
+  &quot;tips&quot;: [&quot;Pat the chickpeas dry before roasting so they crisp rather than steam.&quot;, …],
+  &quot;nutrition&quot;: { &quot;basis&quot;: &quot;per_serving&quot;, &quot;servings&quot;: 4, &quot;calories&quot;: 470, &quot;proteinG&quot;: 24,
+                 &quot;carbsG&quot;: 36, &quot;fatG&quot;: 25, &quot;source&quot;: &quot;calculated&quot; },
+  &quot;provenance&quot;: { &quot;origin&quot;: &quot;website&quot;, &quot;writtenBy&quot;: &quot;chef&quot;, &quot;generator&quot;: &quot;cloud&quot;,
+                  &quot;url&quot;: &quot;https://www.example.com/recipes/halloumi-chickpea-traybake&quot;,
+                  &quot;siteName&quot;: &quot;example.com&quot;, &quot;author&quot;: &quot;Example Kitchen&quot;,
+                  &quot;transformations&quot;: [
+                    { &quot;kind&quot;: &quot;servings_rescale&quot;, &quot;at&quot;: &quot;2026-10-01T18:00:00Z&quot; },
+                    { &quot;kind&quot;: &quot;chef_edit&quot;, &quot;engine&quot;: &quot;cloud&quot;, &quot;at&quot;: &quot;2026-10-05T19:12:00Z&quot; } ] }
+}
+</code></pre>
+<h2 id="2a-versions-and-recipes-from-a-newer-chef">2a. Versions, and recipes from a newer Chef</h2>
+<p>A recipe's version is two numbers: <code>schemaVersion</code>, the <strong>major</strong>, and
+<code>schemaMinor</code>, the <strong>minor</strong> (absent = 0). 5.0 is written <code>"schemaVersion": 5</code>
+with no <code>schemaMinor</code>.</p>
+<ul>
+<li><strong>Minor</strong> changes only add something optional that a reader can leave out
+  without misreading the rest: a field, an enum value, a looser bound. A
+  <strong>major</strong> change is anything else, and needs a migration step (§7).</li>
+<li><strong>Writers write the lowest minor their content needs</strong> (<code>requiredMinor</code>). A
+  recipe that uses nothing added in 5.1 is written as 5.0, so every 5.x reader
+  can still edit it.</li>
+<li><strong>Newer is judged by content as well as numbers.</strong> Chef stores only JSON it
+  has validated, so stored JSON of this build's own version that holds a member
+  or a value this build doesn't know can only come from a newer writer — one
+  that forgot its minor, say. It is treated exactly as a newer minor.</li>
+<li><strong>A reader meeting a newer minor of its own major</strong> reduces the recipe to
+  what it knows and shows that:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Unknown</th>
+<th>Read as</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Member of a closed object</td>
+<td>Left out (an open object, such as <code>attestation</code>, keeps everything)</td>
+</tr>
+<tr>
+<td>Unit</td>
+<td>The ingredient's custom unit, as written</td>
+</tr>
+<tr>
+<td>Course, difficulty, <code>writtenBy</code>, generator, engine, nutrition source</td>
+<td>Absent</td>
+</tr>
+<tr>
+<td>Diet</td>
+<td>Dropped</td>
+</tr>
+<tr>
+<td>Origin</td>
+<td><code>imported</code></td>
+</tr>
+<tr>
+<td>Transformation kind</td>
+<td><code>cook_edit</code>, so the credit reads "Adapted"</td>
+</tr>
+<tr>
+<td>A changed fixed value (nutrition <code>basis</code>)</td>
+<td>Absent: never read with the old meaning</td>
+</tr>
+</tbody>
+</table>
+<p>An object left without a member it must have is left out whole: optional
+  nutrition, a step. The recipe itself, left so, is not readable.</p>
+<p>The recipe is <strong>read-only</strong> on that build: shown, cooked, shopped and sent
+  exactly as it is, never edited, refined or rewritten. Chef says "Update Chef
+  to edit this recipe". It is <strong>sent, exported and backed up exactly as
+  stored</strong>, never as the part this build could read. A received file of a
+  newer minor is kept with its JSON untouched, but only if what this build
+  reads of it is a valid recipe, and only up to 256 KB.
+- <strong>A newer major</strong> is refused as a file ("Chef can't open this recipe yet").
+  A recipe synced into the library from a newer Chef is shown from its stored
+  rows only (its JSON is never read through this build's model, since its
+  meanings changed) and is also read-only.
+- <strong>One write gate.</strong> <code>SavedRecipe.store</code> refuses to replace a recipe whose
+  stored JSON is newer than this build reads. That covers the editor, Refine,
+  Undo and every background pass.</p>
+<h2 id="3-field-reference-and-bounds">3. Field reference and bounds</h2>
+<p><strong>Req</strong> = required. A <em>text</em> is non-empty, with no leading or trailing
+whitespace. A <em>local id</em> matches <code>^[a-z0-9][a-z0-9._-]{0,63}$</code> and is unique
+across every id in the recipe (ingredients, groups, steps and timers alike).
+Bounds are data-sanity limits, not culinary preferences.</p>
+<h3 id="recipe">Recipe</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Req</th>
+<th>Type / bounds</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>schemaVersion</code></td>
+<td>✓</td>
+<td><code>5</code></td>
+<td>The major version (§2a).</td>
+</tr>
+<tr>
+<td><code>schemaMinor</code></td>
+<td></td>
+<td>int ≥0</td>
+<td>The minor version; absent = 0. Written only when the content needs it.</td>
+</tr>
+<tr>
+<td><code>language</code></td>
+<td></td>
+<td>BCP 47 tag ≤35 (<code>en-GB</code>)</td>
+<td>The language the words are in, set only where a route knows it (a page's declared language). Absent = unknown.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td>✓</td>
+<td>lowercase UUID</td>
+<td>The recipe's identity. Minted once by its first producer; kept through edits, export and import.</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td>✓</td>
+<td>text ≤200</td>
+<td>Dish name.</td>
+</tr>
+<tr>
+<td><code>recipeDescription</code></td>
+<td></td>
+<td>text ≤2000</td>
+<td>The finished dish in a sentence or two.</td>
+</tr>
+<tr>
+<td><code>servings</code></td>
+<td>✓</td>
+<td>int 1–1000</td>
+<td>Portions the stated quantities make. <code>0</code> is invalid.</td>
+</tr>
+<tr>
+<td><code>yieldText</code></td>
+<td></td>
+<td>text ≤80</td>
+<td>The source's own yield wording ("Makes about 20").</td>
+</tr>
+<tr>
+<td><code>totalTimeMinutes</code></td>
+<td></td>
+<td>int 1–525600</td>
+<td>Elapsed minutes from starting to serving. <strong>The one answer</strong> that filters and choosing read.</td>
+</tr>
+<tr>
+<td><code>prepTimeMinutes</code> / <code>cookTimeMinutes</code></td>
+<td></td>
+<td>int 0–525600</td>
+<td>Breakdown. <code>0</code> is meaningful ("no cooking").</td>
+</tr>
+<tr>
+<td><code>difficulty</code></td>
+<td></td>
+<td><code>easy</code> <code>medium</code> <code>hard</code></td>
+<td>Effort for an ordinary home cook.</td>
+</tr>
+<tr>
+<td><code>cuisine</code></td>
+<td></td>
+<td>text ≤60</td>
+<td>Free text. Not constrained.</td>
+</tr>
+<tr>
+<td><code>course</code></td>
+<td></td>
+<td><code>breakfast</code> <code>starter</code> <code>main</code> <code>side</code> <code>dessert</code> <code>snack</code> <code>baking</code> <code>drink</code> <code>condiment</code></td>
+<td>The meal role (D2). Text that isn't a course ("Soup") becomes a tag.</td>
+</tr>
+<tr>
+<td><code>diets</code></td>
+<td></td>
+<td>set of <code>vegetarian</code> <code>vegan</code> <code>pescatarian</code></td>
+<td>Declared suitability. Checked against the ingredients and never trusted on its own.</td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td></td>
+<td>≤30 × tag (≤40, single line, no commas)</td>
+<td>Free search words, unique ignoring case.</td>
+</tr>
+<tr>
+<td><code>equipment</code></td>
+<td></td>
+<td>≤50 × <code>{name, appliance?}</code></td>
+<td>Notable kit. <code>appliance</code> uses <code>CookingAppliance</code> raw values when the item is one.</td>
+</tr>
+<tr>
+<td><code>ingredientGroups</code></td>
+<td></td>
+<td>≤30 × <code>{id, title ≤120}</code></td>
+<td>Ordered ingredient sections.</td>
+</tr>
+<tr>
+<td><code>ingredients</code></td>
+<td>✓</td>
+<td>1–300</td>
+<td>Ordered: ungrouped items first, then each group's items together, in group order.</td>
+</tr>
+<tr>
+<td><code>methodGroups</code></td>
+<td></td>
+<td>≤30 × <code>{id, title ≤120}</code></td>
+<td>Ordered method sections, independent of the ingredient groups.</td>
+</tr>
+<tr>
+<td><code>method</code></td>
+<td>✓</td>
+<td>1–200</td>
+<td>Ordered; step numbers are positions. Same grouping rule as ingredients.</td>
+</tr>
+<tr>
+<td><code>tips</code></td>
+<td></td>
+<td>≤20 × text ≤2000</td>
+<td>Advice for the whole recipe, from the author or Chef.</td>
+</tr>
+<tr>
+<td><code>nutrition</code></td>
+<td></td>
+<td>object</td>
+<td>Per-serving figures. Absent = "Nutrition not added".</td>
+</tr>
+<tr>
+<td><code>provenance</code></td>
+<td>✓</td>
+<td>object</td>
+<td>Where the recipe came from and what has happened to it (§3, Provenance).</td>
+</tr>
+<tr>
+<td><code>attestation</code></td>
+<td></td>
+<td>open object, <code>by</code> and <code>signature</code> required</td>
+<td>Chef's signature vouching for the credit and the content (§10a). Opaque: kept exactly as it arrived, whatever a later Chef puts in it. Checked, never validated beyond its core: a recipe is valid with or without one, and one that doesn't verify, or whose form a reader doesn't know, is treated as absent but kept.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ingredient">Ingredient</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Req</th>
+<th>Type / bounds</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>✓</td>
+<td>local id</td>
+<td>Stable through renames and reorders.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>✓</td>
+<td>text ≤200</td>
+<td>The ingredient alone.</td>
+</tr>
+<tr>
+<td><code>quantity</code></td>
+<td></td>
+<td>text ≤80</td>
+<td>The amount as written ("2 × 400g tins", "a pinch"). Required whenever <code>amount</code> is present.</td>
+</tr>
+<tr>
+<td><code>amount</code></td>
+<td></td>
+<td>number &gt;0, ≤1,000,000</td>
+<td>Numeric part, for scaling and shopping.</td>
+</tr>
+<tr>
+<td><code>unit</code></td>
+<td></td>
+<td>canonical unit</td>
+<td>One of the 39 codes <code>IngredientQuantityParser</code> recognises (<code>g</code> <code>kg</code> <code>ml</code> <code>l</code> <code>tsp</code> <code>tbsp</code> <code>cup</code> <code>oz</code> <code>lb</code> <code>clove</code> <code>tin</code> <code>can</code> <code>pack</code> <code>slice</code> <code>piece</code> <code>bunch</code> <code>handful</code> <code>pinch</code> <code>sprig</code> <code>bag</code> <code>jar</code> <code>punnet</code> <code>pouch</code> <code>rasher</code> <code>stick</code> <code>knob</code> <code>head</code> <code>bulb</code> <code>fillet</code> <code>block</code> <code>sheet</code> <code>stalk</code> <code>strip</code> <code>wedge</code> <code>dash</code> <code>splash</code> <code>squeeze</code> <code>drizzle</code> <code>glug</code>). Only with <code>amount</code>. A test keeps the list equal to the parser's.</td>
+</tr>
+<tr>
+<td><code>customUnit</code></td>
+<td></td>
+<td>text ≤20</td>
+<td>Any other unit ("cm", "fl oz"), kept as written. Never converted or combined. Only with <code>amount</code>, and never alongside <code>unit</code>.</td>
+</tr>
+<tr>
+<td><code>preparation</code></td>
+<td></td>
+<td>text ≤300</td>
+<td>"finely chopped", "skin on".</td>
+</tr>
+<tr>
+<td><code>groupId</code></td>
+<td></td>
+<td>local id</td>
+<td>Its <code>ingredientGroups</code> entry.</td>
+</tr>
+<tr>
+<td><code>optional</code></td>
+<td></td>
+<td><code>true</code></td>
+<td>Present only when the ingredient may be left out.</td>
+</tr>
+<tr>
+<td><code>substitutions</code></td>
+<td></td>
+<td>≤10 × text ≤300</td>
+<td>Alternatives in words. Never used in arithmetic or allergen checks.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="step-timer-ingredient-use">Step, timer, ingredient use</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Req</th>
+<th>Type / bounds</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>step <code>id</code></td>
+<td>✓</td>
+<td>local id</td>
+<td>Stable identity for Cook Mode, timers and edits.</td>
+</tr>
+<tr>
+<td>step <code>text</code></td>
+<td>✓</td>
+<td>text ≤4000</td>
+<td>The instruction.</td>
+</tr>
+<tr>
+<td>step <code>groupId</code></td>
+<td></td>
+<td>local id</td>
+<td>Its <code>methodGroups</code> entry.</td>
+</tr>
+<tr>
+<td>step <code>timers</code></td>
+<td></td>
+<td>1–20 timers</td>
+<td><strong>Zero or more</strong>, in the order they run.</td>
+</tr>
+<tr>
+<td>step <code>ingredients</code></td>
+<td></td>
+<td>1–100 uses</td>
+<td>Ingredients the step uses, each at most once.</td>
+</tr>
+<tr>
+<td>timer <code>id</code></td>
+<td>✓</td>
+<td>local id</td>
+<td>Stable identity for AlarmKit and the Live Activity.</td>
+</tr>
+<tr>
+<td>timer <code>durationSeconds</code></td>
+<td>✓</td>
+<td>int 1–604800</td>
+<td>Positive, up to 7 days (an overnight or two-day marinade is legitimate).</td>
+</tr>
+<tr>
+<td>timer <code>label</code></td>
+<td></td>
+<td>text ≤60</td>
+<td>What is being timed ("Simmer ragù"). Optional: timers a cook sets by hand and older recipes have none, and the Lock Screen then reads the prose.</td>
+</tr>
+<tr>
+<td>use <code>ingredientId</code></td>
+<td>✓</td>
+<td>local id</td>
+<td>Must name an ingredient in this recipe.</td>
+</tr>
+<tr>
+<td>use <code>amount</code></td>
+<td></td>
+<td>number &gt;0</td>
+<td>The step's portion. Absent = the amount is in the words of the step (all of it, the remaining, to taste).</td>
+</tr>
+<tr>
+<td>use <code>unit</code> / <code>customUnit</code></td>
+<td></td>
+<td>as for ingredients</td>
+<td>Only with <code>amount</code>, and never both.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="nutrition">Nutrition</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Req</th>
+<th>Type / bounds</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>basis</code></td>
+<td>✓</td>
+<td><code>per_serving</code></td>
+<td>Every figure is per serving. Whole-recipe figures are divided at capture.</td>
+</tr>
+<tr>
+<td><code>servings</code></td>
+<td>✓</td>
+<td>int 1–1000</td>
+<td>The serving count the figures were worked out for. <strong>Must equal the recipe's <code>servings</code>.</strong></td>
+</tr>
+<tr>
+<td><code>calories</code></td>
+<td></td>
+<td>int 0–20000</td>
+<td>kcal per serving.</td>
+</tr>
+<tr>
+<td><code>proteinG</code> <code>carbsG</code> <code>fatG</code></td>
+<td></td>
+<td>int 0–2000</td>
+<td>Grams per serving.</td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td></td>
+<td><code>publisher</code> <code>calculated</code> <code>estimated</code> <code>cook</code></td>
+<td>Website or a photographed page, as printed / <code>nutrition.ts</code>'s ingredient calculation / a model / typed by the cook. Absent = unknown (legacy).</td>
+</tr>
+</tbody>
+</table>
+<p>At least one figure is required. A publisher may give only calories, and a
+legacy recipe only protein.</p>
+<h3 id="provenance-portable-authorship-and-transformation-only">Provenance — portable authorship and transformation only</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Req</th>
+<th>Type</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>origin</code></td>
+<td>✓</td>
+<td><code>manual</code> <code>website</code> <code>photo</code> <code>prompt</code> <code>imported</code></td>
+<td>How the recipe entered Chef. <code>imported</code> = route unknown (legacy, or another app's file).</td>
+</tr>
+<tr>
+<td><code>writtenBy</code></td>
+<td></td>
+<td><code>cook</code> <code>source</code> <code>chef</code></td>
+<td>Who wrote the words. Absent = unknown (legacy).</td>
+</tr>
+<tr>
+<td><code>generator</code></td>
+<td></td>
+<td><code>cloud</code> <code>on_device</code></td>
+<td>The engine that wrote it. Only with <code>writtenBy: chef</code>.</td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td></td>
+<td>http(s) URL with a host</td>
+<td>Source page. Required for <code>origin: website</code>.</td>
+</tr>
+<tr>
+<td><code>siteName</code></td>
+<td></td>
+<td>text ≤120</td>
+<td>The publication the recipe came from.</td>
+</tr>
+<tr>
+<td><code>author</code></td>
+<td></td>
+<td>text ≤120</td>
+<td>The person who wrote it: the author a page names, or the cook who signed a recipe they typed (SCOPE §2.5).</td>
+</tr>
+<tr>
+<td><code>authorLinks</code></td>
+<td></td>
+<td>1–3 unique <code>https</code> URLs with a host, each ≤500</td>
+<td>Where to find the author: a profile or website. Only with <code>author</code>. Stored as addresses, never as a platform name, so a new platform needs no contract change.</td>
+</tr>
+<tr>
+<td><code>basedOn</code></td>
+<td></td>
+<td>lowercase UUID</td>
+<td>The <strong>original</strong> this recipe was copied from — the first in the chain, never the copy in between (<code>source.basedOn ?? source.id</code>) — set whenever Chef gives a copy an id of its own (Keep Both, a duplicate, a restored copy, save as new).</td>
+</tr>
+<tr>
+<td><code>transformations</code></td>
+<td></td>
+<td>≤100 × <code>{kind, engine?, at}</code></td>
+<td>What has happened since, in date order: <code>chef_edit</code> (Refine, change ingredients, change method; <code>engine</code> says which), <code>cook_edit</code> (the cook changed a recipe they didn't write — by hand in Chef's editor, or by refining it with Chef, alongside <code>chef_edit</code>; no engine; at most one a day, never dated before the last change) and <code>servings_rescale</code> (quantities rescaled; arithmetic, so no engine).</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Dates</strong> use one convention: ISO 8601, UTC, whole seconds —
+<code>2026-10-06T18:30:00Z</code>. The validator also rejects a well-formed but
+impossible date (30 February).</p>
+<p>Allowed <code>origin</code> × <code>writtenBy</code>: <code>manual</code>→<code>cook</code>, <code>prompt</code>→<code>chef</code>,
+<code>website</code>/<code>photo</code>→<code>source</code> or <code>chef</code>, <code>imported</code>→any.</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Provenance written</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Typed in the editor</td>
+<td><code>manual</code>, <code>cook</code></td>
+</tr>
+<tr>
+<td>Create with Chef / Dinner / Ask</td>
+<td><code>prompt</code>, <code>chef</code>, <code>cloud</code> or <code>on_device</code></td>
+</tr>
+<tr>
+<td>Website — Keep as written / read by Chef</td>
+<td><code>website</code>, <code>source</code>, url, siteName, author (when the page names one)</td>
+</tr>
+<tr>
+<td>Website — Make it Chef-ready</td>
+<td><code>website</code>, <code>chef</code>, <code>cloud</code>, url, siteName, author — the source's, with only <code>writtenBy</code>/<code>generator</code> changed</td>
+</tr>
+<tr>
+<td>Photo of a written recipe</td>
+<td><code>photo</code>, <code>source</code></td>
+</tr>
+<tr>
+<td>Photo of a prepared dish</td>
+<td><code>photo</code>, <code>chef</code>, <code>cloud</code></td>
+</tr>
+<tr>
+<td>Refine on the review screen, or a Chef edit of a saved recipe</td>
+<td>+ <code>chef_edit</code> transformation</td>
+</tr>
+<tr>
+<td>Servings rescaled before saving / on receipt</td>
+<td>+ <code>servings_rescale</code> transformation</td>
+</tr>
+<tr>
+<td>A hand edit saved to a recipe the cook didn't write</td>
+<td>+ <code>cook_edit</code> transformation</td>
+</tr>
+<tr>
+<td>The cook signs a recipe they typed</td>
+<td><code>author</code>, and <code>authorLinks</code> when given, saved with the recipe</td>
+</tr>
+<tr>
+<td>Received <code>.recipe</code> / pasted v4 or v5 JSON</td>
+<td>unchanged</td>
+</tr>
+</tbody>
+</table>
+<p>Never in provenance: account ids, plan or billing state, prompts, request ids,
+audit data, backend-only metadata, or anything else about the person. The only
+personal details a recipe may carry are <code>author</code> and <code>authorLinks</code>: a name and
+links its writer chose to sign it with, never an account name, Apple ID or
+email address.</p>
+<h2 id="4-rule-classification">4. Rule classification</h2>
+<table>
+<thead>
+<tr>
+<th>Kind</th>
+<th>Meaning</th>
+<th>Rules</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Hard validation</strong></td>
+<td>Invalid data. Rejected, never persisted.</td>
+<td>Everything in the schema file (types, required fields, enums, bounds, patterns, unknown fields) and the cross-field errors in §6.</td>
+</tr>
+<tr>
+<td><strong>Warning / quality</strong></td>
+<td>Unusual but legitimate. Accepted and flagged; never blocks.</td>
+<td><code>timing.disagrees</code>, <code>timing.part_exceeds_total</code>, <code>nutrition.atwater_mismatch</code>, <code>use.exceeds_quantity</code>, <code>timer.not_in_text</code>, <code>timers.multiple_in_chef_step</code>.</td>
+</tr>
+<tr>
+<td><strong>Chef generation guidance</strong></td>
+<td>What Chef <em>normally</em> produces. Never restricts a valid recipe. Enforced in prompts and the backend's own quality gate, and linted by warnings where useful.</td>
+<td>One timer per step; a timer only where the words state a duration; a 2–3 word action-first timer label; description of one or two sentences; one to three tips; nutrition <code>calculated</code> rather than <code>estimated</code>; no ranges in timers; quantities in the UK convention (raw weights for pasta and rice).</td>
+</tr>
+</tbody>
+</table>
+<p>Two timing conflicts are warnings rather than errors on purpose. Prep and
+cook can overlap, and recipes saved before v4 hold breakdowns that cooks typed
+by hand. Treating either as invalid would reject legitimate recipes.</p>
+<h2 id="5-kept-outside-the-recipe">5. Kept outside the recipe</h2>
+<table>
+<thead>
+<tr>
+<th>Data</th>
+<th>Lives in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>favourite, rating, would-cook-again, private notes</td>
+<td><code>SavedRecipe</code></td>
+</tr>
+<tr>
+<td>times cooked, last cooked, minutes cooking</td>
+<td><code>SavedRecipe</code></td>
+</tr>
+<tr>
+<td>created / updated dates</td>
+<td><code>SavedRecipe</code></td>
+</tr>
+<tr>
+<td>photo (<code>imageData</code>, <code>imageAssetName</code>, <code>photoURLString</code>)</td>
+<td><code>SavedRecipe</code></td>
+</tr>
+<tr>
+<td>preferences a recipe was generated under (<code>userPreferencesJSON</code>)</td>
+<td><code>SavedRecipe</code> — it holds allergies and never travels</td>
+</tr>
+<tr>
+<td>variant family, library placement</td>
+<td><code>RecipeVariantRecord</code>, <code>RecipeLibraryPlacementRecord</code></td>
+</tr>
+<tr>
+<td>shopping selections, ticks, merged quantities</td>
+<td><code>ShoppingListStore</code> (UserDefaults)</td>
+</tr>
+<tr>
+<td>unfinished draft / Chef result</td>
+<td><code>PendingWorkStore</code> (local file)</td>
+</tr>
+<tr>
+<td>allergens, free-from status</td>
+<td>computed by <code>AllergenScanner</code>, never stored</td>
+</tr>
+<tr>
+<td>response metadata (<code>photoKind</code>, <code>remaining</code>, <code>nutritionComparison</code>) and backend proof data (<code>planStageId</code>)</td>
+<td>the response envelope; a leaked internal field is a <code>schema.additionalProperties</code> error</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-validation">6. Validation</h2>
+<pre><code>producer output ─► repair (P1–P10) ─► validateRecipe ─► errors? ─► reject, persist nothing
+legacy input    ─► migrate v1→v2→v3→v4 ─► repair ─► validate ─► …
+</code></pre>
+<p><code>RecipeValidator.validate</code> returns <code>isValid</code>, actionable <code>errors</code> (code, JSON
+path, message) and <code>warnings</code>. It is pure. Structure comes from the bundled
+schema file, interpreted at run time rather than restated. Cross-field rules
+are in Swift. Domain checks call the existing helpers: diets use
+<code>DietaryChoice.forbiddenTerms</code> with the shared meat-and-fish list plus
+<code>AllergenScanner</code> for vegan dairy and eggs (the rule Refine already applies),
+and timers use <code>MethodTimerMatcher</code>. Nothing culinary is restated in JSON
+Schema.</p>
+<p>The meat-and-fish list is the same words in both languages
+(<code>MEAT_AND_FISH</code> in <code>canonicalRecipe.ts</code>, <code>RecipeFineTuneService.meatAndFish</code>
+in Swift). On 11 October 2026 it gained guanciale, lardon, veal and venison,
+and both validators read a meat word in context (<code>namesMeat</code>): plurals
+count, "ies" included (anchovies); a word the name marks as plant food is
+not meat ("vegetarian sausages", "meat-free bacon", "Quorn chicken-style
+pieces", "mock duck", "fish-free fingers"), nor is a compound that never was
+("beef tomatoes", "duck eggs", "lamb's lettuce", "crab apples"); and "mince"
+is minced meat unless the name says otherwise (plant-based, vegan, Quorn,
+soya, lentil or meat-free mince, mincemeat and a mince pie are not;
+"minced garlic" is a preparation). These are refinements of how rule R7
+is evaluated, not of what it means — a vegetarian label on a venison
+recipe was always a contradiction the validator failed to see — and they
+change no field, enum, bound or migration, so the version/migration
+process of §16 does not apply (there is no representation for a migration
+to change). A word added to the list tightens R7 only for a recipe that
+declared a diet it does not keep, and every path that takes a recipe in —
+load, receive, the editor's save, a server reply — runs the repairs
+before validating, so P7 drops that label rather than rejecting the
+recipe: no stored, received or server-produced recipe becomes invalid, and
+a build on the older list only accepts what this one would repair. The
+manifest's <code>diets.contradicted</code> and warning cases pin both validators to
+the same answers.</p>
+<h3 id="errors">Errors</h3>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>schema.*</code></td>
+<td>Structure: <code>required</code>, <code>additionalProperties</code>, <code>type</code>, <code>enum</code>, <code>const</code>, <code>minLength</code>, <code>maxLength</code>, <code>pattern</code>, <code>minimum</code>, <code>maximum</code>, <code>exclusiveMinimum</code>, <code>minItems</code>, <code>maxItems</code>, <code>uniqueItems</code>.</td>
+</tr>
+<tr>
+<td><code>version.unsupported</code> / <code>version.not_migrated</code></td>
+<td>Newer than this app / older and not migrated first.</td>
+</tr>
+<tr>
+<td><code>ids.duplicate</code></td>
+<td>Two things share an id.</td>
+</tr>
+<tr>
+<td><code>group.unknown</code> / <code>group.unused</code> / <code>group.not_contiguous</code></td>
+<td>Undeclared group; empty group; members not laid out ungrouped-first then group by group.</td>
+</tr>
+<tr>
+<td><code>unit.conflict</code></td>
+<td>Canonical and custom unit together.</td>
+</tr>
+<tr>
+<td><code>ingredient.unit_without_amount</code> / <code>ingredient.amount_without_quantity</code></td>
+<td>Structure that says more than the words, or an amount without words.</td>
+</tr>
+<tr>
+<td><code>use.unknown_ingredient</code> / <code>use.duplicate</code> / <code>use.unit_without_amount</code></td>
+<td>A step uses a missing ingredient, uses one twice, or gives a unit without an amount.</td>
+</tr>
+<tr>
+<td><code>text.structured_artefact</code></td>
+<td>Tool-call or JSON fragments in any prose field (<code>RecipeImportSanitizer</code>'s rule).</td>
+</tr>
+<tr>
+<td><code>tags.duplicate</code></td>
+<td>Tags repeat ignoring case.</td>
+</tr>
+<tr>
+<td><code>diets.contradicted</code></td>
+<td>A declared diet clashes with an ingredient.</td>
+</tr>
+<tr>
+<td><code>nutrition.empty</code> / <code>nutrition.servings_mismatch</code></td>
+<td>No figures; figures for a different serving count.</td>
+</tr>
+<tr>
+<td><code>provenance.website_without_url</code> / <code>provenance.invalid_url</code> / <code>provenance.inconsistent</code> / <code>provenance.invalid_date</code> / <code>provenance.not_chronological</code></td>
+<td>Source-specific requirements, valid web address, allowed combinations, real dates, date order.</td>
+</tr>
+<tr>
+<td><code>provenance.links_without_author</code></td>
+<td><code>authorLinks</code> without <code>author</code>.</td>
+</tr>
+<tr>
+<td><code>version.newer_minor</code></td>
+<td>A newer minor of this major: read it reduced (§2a), never store it.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="repairs-the-only-changes-allowed-before-failure">Repairs — the only changes allowed before failure</h3>
+<p>Deterministic, idempotent, a no-op on a valid recipe, and never inventing
+culinary content. The tests check all four properties.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Repair</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1</td>
+<td>Trim text; cut tool-call/JSON fragments out of prose; drop <code>""</code>, <code>[]</code>, <code>null</code> and <code>optional: false</code>.</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>Loose values: difficulty case; course synonyms ("Dinner" → <code>main</code>; "Cocktail", "Mocktail", "Smoothie", "Hot drink" → <code>drink</code>; text that isn't a course → tag); unit spellings ("tablespoons" → <code>tbsp</code>, anything else → <code>customUnit</code>); diet case.</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>Tags: split on commas, collapse spaces, drop repeats (first wins).</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>Lowercase the recipe UUID; normalise, fill and de-duplicate local ids (a repeat becomes <code>-2</code>, <code>-3</code>, …), rewriting every <code>ingredientId</code> and <code>groupId</code> that named a changed id so no reference is left dangling. A repeated id's references all resolve to one of its carriers; the other is then an unused ingredient, or an empty group for P6.</td>
+</tr>
+<tr>
+<td>P5</td>
+<td>A unit without an amount moves into the words; an amount without words gets them from amount + unit.</td>
+</tr>
+<tr>
+<td>P6</td>
+<td>Drop empty groups. Ingredients: lay members out contiguously (order inside a group kept). Method: the cooking order is never changed, so groups that are not contiguous are dropped instead (22 October 2026).</td>
+</tr>
+<tr>
+<td>P7</td>
+<td>Drop a declared diet the ingredients contradict.</td>
+</tr>
+<tr>
+<td>P8</td>
+<td>Missing total = prep + cook when above zero.</td>
+</tr>
+<tr>
+<td>P9</td>
+<td>Nutrition worked out for another serving count is restated per serving of this one (same total, divided differently).</td>
+</tr>
+<tr>
+<td>P10</td>
+<td>Transformations into date order.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-migration">7. Migration</h2>
+<p><code>RecipeMigrator.migrateToLatest</code> identifies the version (absent = 1) and steps
+through it. It changes representation only, it is deterministic, and running
+it on v5 returns v5 unchanged.</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v4 → 5.0</td>
+<td>Version number only. Everything 5.0 adds is optional; nothing earlier is changed.</td>
+</tr>
+<tr>
+<td>v1 → v2</td>
+<td>One spelling per field: <code>description</code>, <code>timeMinutes</code>, <code>instructions</code>, <code>item</code>, <code>note</code>, <code>instruction</code>, <code>timerMinutes</code>, comma-string tags, plain-string steps.</td>
+</tr>
+<tr>
+<td>v2 → v3</td>
+<td>Every ingredient gets a stable id from its content (the long-standing rule, so an old file re-imports with the same ids).</td>
+</tr>
+<tr>
+<td>v3 → v4</td>
+<td>The canonical shape. Timer → <code>timers[0]</code>; flat nutrition → <code>nutrition {basis, servings, …}</code>; <code>tips</code> string → list; recipe id and provenance from the importing route.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Documented interpretations</strong> (each leaves a note; nothing else changes):
+- free-text <code>category</code> becomes a course, or a tag when it names none;
+- an unknown difficulty becomes a tag;
+- all-zero nutrition means "not added";
+- a legacy file with no servings gets 4, the app's long-standing default;
+- fields that were never part of a v1–v3 recipe (<code>photoKind</code>, <code>planStageId</code>) are ignored.</p>
+<p><strong>Stored recipes (V8 → V9).</strong> The SwiftData stage is lightweight and rewrites
+nothing. A record without JSON is read by projecting its columns into v4
+(table below) and repairing and validating that projection. On launch,
+<code>CanonicalRecipeStore.backfill</code> stores the JSON. It updates <code>updatedDate</code> on
+no record and touches no user state, and it rebuilds rows only where repair
+changed an id or quantity. A record that still fails is left exactly as it is,
+stays readable, and is fixed by the cook's next save; it is never deleted.</p>
+<table>
+<thead>
+<tr>
+<th>V8 column</th>
+<th>v4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>id</code>, lowercased</td>
+</tr>
+<tr>
+<td><code>category</code> / <code>tagsText</code></td>
+<td><code>course</code> (+ a tag if unmapped) / <code>tags</code></td>
+</tr>
+<tr>
+<td>times (0 = none)</td>
+<td>absent when 0</td>
+</tr>
+<tr>
+<td><code>calories</code>…<code>fat</code> (all 0 = none)</td>
+<td><code>nutrition</code>, with <code>source</code> unknown</td>
+</tr>
+<tr>
+<td><code>tips</code></td>
+<td><code>[tips]</code></td>
+</tr>
+<tr>
+<td><code>source</code> + <code>sourceURLString</code></td>
+<td><code>user_created</code>→manual/cook; <code>imported</code>→website (with a URL) or imported; generated→prompt/chef/engine</td>
+</tr>
+<tr>
+<td>ingredient <code>referenceID</code>, step <code>UUID</code>, <code>timerSeconds</code>/<code>timerLabel</code>, usages</td>
+<td>ids, <code>timers[0]</code>, uses — sorted by <code>order</code></td>
+</tr>
+</tbody>
+</table>
+<p>Also migrated on read: variant snapshots (v3 JSON plus their separate
+prep/cook columns), received files and pasted JSON of any version.
+Unfinished work still opens. The bundled example and two starters are v4
+files (§14 covers the third).</p>
+<h2 id="8-stable-identity">8. Stable identity</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recipe</td>
+<td>Minted once by the first producer (the app today, the backend once it emits v4). Edits keep it. A received file keeps it; if the id is already in the library the cook is offered "open existing" or "save a copy", and a copy gets a new id.</td>
+</tr>
+<tr>
+<td>Ingredient</td>
+<td>Kept by the editor through any edit. Chef edits rejoin by name, then position. New ingredients join the section they were added to.</td>
+</tr>
+<tr>
+<td>Ingredient / method group</td>
+<td>Kept with the recipe. Repair drops a group only when it is empty.</td>
+</tr>
+<tr>
+<td>Step</td>
+<td>Kept by the editor. Chef edits match an unchanged step by its words, then by position. A step's SwiftData row UUID is derived from its id, so Cook Mode's running timers find it again after an edit.</td>
+</tr>
+<tr>
+<td>Timer</td>
+<td>Kept by the editor (extra timers carried untouched). Chef edits keep every timer of an unchanged step and match the rest by duration.</td>
+</tr>
+</tbody>
+</table>
+<p>No edit regenerates nested ids.</p>
+<h2 id="9-storage-d1">9. Storage (D1)</h2>
+<p><code>SavedRecipe.recipeJSON</code> (schema V9) holds the canonical JSON and is the source
+of truth. <code>CanonicalRecipeStore</code> is the only writer of recipe content. Every
+save validates first (an invalid recipe throws and nothing changes), then
+writes the JSON and derives every recipe column and the ingredient/step rows
+from it. Those exist for filters, search, older builds sharing the iCloud
+store and the Live Activity. Two derived columns are new in V9:
+<code>nutritionRecorded</code> (so zero-calorie nutrition counts as nutrition) and, on
+steps, <code>referenceID</code> and <code>timersJSON</code> (every timer, with the first mirrored in
+<code>timerSeconds</code>/<code>timerLabel</code>).</p>
+<p><strong>Devices on older builds.</strong> A device still on a pre-V9 build shares the iCloud
+record. It can edit the columns and rows, but it can't touch the JSON. Each
+JSON write therefore stores <code>derivedColumnsDigest</code> (schema V10), a digest of everything an
+older build can edit. When the columns no longer match, the load path treats
+that edit as the newer one. It merges the edit onto the v4 recipe with the
+same id carry-over a Chef edit uses, so groups, extra timers, equipment,
+custom units, provenance and genuine zeros survive. The launch backfill then
+stores the merge. Changes to favourites, ratings, cooking history and the
+photo don't touch the digest and are never mistaken for an edit.</p>
+<p><strong>CloudKit fields.</strong> Every one is optional or defaulted and additive. Nothing
+existing is renamed, retyped or removed, so deploying to production is
+non-destructive. Record types follow SwiftData's <code>CD_</code> mirroring:</p>
+<table>
+<thead>
+<tr>
+<th>Record type</th>
+<th>Field</th>
+<th>Type</th>
+<th>Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CD_Recipe</code></td>
+<td><code>CD_recipeJSON</code></td>
+<td>String</td>
+<td>V9</td>
+</tr>
+<tr>
+<td><code>CD_Recipe</code></td>
+<td><code>CD_nutritionRecorded</code></td>
+<td>Int(64) (Bool)</td>
+<td>V9</td>
+</tr>
+<tr>
+<td><code>CD_Recipe</code></td>
+<td><code>CD_derivedColumnsDigest</code></td>
+<td>String</td>
+<td>V10</td>
+</tr>
+<tr>
+<td><code>CD_MethodStep</code></td>
+<td><code>CD_referenceID</code></td>
+<td>String</td>
+<td>V9</td>
+</tr>
+<tr>
+<td><code>CD_MethodStep</code></td>
+<td><code>CD_timersJSON</code></td>
+<td>String</td>
+<td>V9</td>
+</tr>
+<tr>
+<td><code>CD_RecipeAcquisitionRecord</code></td>
+<td><code>CD_id</code>, <code>CD_recipeID</code>, <code>CD_kind</code>, <code>CD_date</code></td>
+<td>String/String/String/Date (new record type)</td>
+<td>V11</td>
+</tr>
+</tbody>
+</table>
+<p>V11 adds one record type and touches no recipe field: how a recipe came into
+<em>this</em> library when that is not who wrote it (<code>received</code>, for a recipe someone
+sent). It is user state (§5) — never part of the recipe, never in a shared
+file — and keeps a received hand-written recipe from reading "Your recipe".</p>
+<h2 id="10-sharing-and-export">10. Sharing and export</h2>
+<p>A shared recipe is a <strong>Recipe File v1</strong> (<code>Sunday Lasagne.recipe</code>,
+<a href="/recipe/spec/"><code>recipe-file/RECIPE-FILE-v1.md</code></a>): the
+envelope <code>{"format": "recipe", "version": 1, "recipe": …}</code> around the stored
+canonical JSON, validated — groups, every timer, prep/cook time, nutrition
+with basis and source, provenance, equipment, substitutions and yield. The
+envelope's <code>version</code> and the recipe's <code>schemaVersion</code> are separate. The open
+format adds no recipe fields and no second model; its schema <code>$ref</code>s this
+contract's.</p>
+<p>On the way out (<code>RecipeJSONExporter.portable</code>) provenance keeps where the
+recipe came from but loses one cook's traces: the page address and each
+author link drop any sign-in, fragment and tracking parameters, and
+transformation times are kept to the day. The photo is not part of the recipe:
+it travels beside it in the file's optional <code>image</code> member (Recipe File §2.1),
+metadata stripped, with its own <code>source</code> credit when it came from a website.</p>
+<p><strong>Credit.</strong> Readers credit a recipe from its provenance alone, the same way on
+every surface (<code>RecipeCredit</code>). "Adapted" means someone other than the writer
+changed it (<code>cook_edit</code>); Chef's own part is always said.</p>
+<table>
+<thead>
+<tr>
+<th>Provenance</th>
+<th>Credit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A site, unchanged</td>
+<td>"From RecipeTin Eats"</td>
+</tr>
+<tr>
+<td>A site, changed by the cook</td>
+<td>"Adapted from RecipeTin Eats"</td>
+</tr>
+<tr>
+<td>A site, rewritten or changed by Chef</td>
+<td>"Adapted with Chef from RecipeTin Eats"</td>
+</tr>
+<tr>
+<td>An <code>author</code>, unchanged</td>
+<td>"Recipe by Nathan", with its <code>authorLinks</code></td>
+</tr>
+<tr>
+<td>An <code>author</code>, refined with Chef by its writer</td>
+<td>"Recipe by Nathan, refined with Chef"</td>
+</tr>
+<tr>
+<td>An <code>author</code>, changed by someone else</td>
+<td>"Adapted from a recipe by Nathan" ("Adapted with Chef from…" when Chef helped)</td>
+</tr>
+<tr>
+<td>Written by Chef from a prompt or a dish photo</td>
+<td>"Created with Chef"</td>
+</tr>
+</tbody>
+</table>
+<p>A name is shown on one line, without control or direction-changing
+characters. A link is shown by its platform and handle only for an exact
+platform host, otherwise by its own domain. It must be <code>https</code> with a plain
+ASCII host, and opens only on the reader's tap.</p>
+<h2 id="10a-proof-fingerprints-and-the-attestation">10a. Proof — fingerprints and the attestation</h2>
+<p>A recipe file is text on someone's device; nothing stops a determined person
+changing it. Chef's guarantee is that a change never goes unnoticed: Chef never
+lets credit be altered (SCOPE §2.5), and a recipe Chef has vouched for loses
+that standing the moment its credit is altered.</p>
+<p><strong>Fingerprints</strong> (<code>RecipeFingerprint</code>). SHA-256 over the recipe's bytes in the
+JSON Canonicalization Scheme (RFC 8785: keys sorted by UTF-16 code units, no
+whitespace, ECMAScript number form, minimal string escaping), written
+<code>sha256-</code> + base64url without padding. Used only for fingerprints; how a recipe
+is stored does not change.</p>
+<ul>
+<li><strong>Credit</strong>: <code>{"id", "provenance"}</code> with <code>provenance.transformations</code> and
+  <code>provenance.basedOn</code> left out — what is added after the writing — so a
+  credit means the same on every copy.</li>
+<li><strong>Content</strong>: the recipe without <code>id</code>, <code>schemaVersion</code>, <code>schemaMinor</code>,
+  <code>provenance</code> and <code>attestation</code>.</li>
+</ul>
+<p>Chef signs a recipe in its portable form (§10), so sending it on never
+changes what was signed. A copy with an id of its own (Keep Both, a
+duplicate) is checked against the original it was copied from (<code>basedOn</code>).</p>
+<p><strong>Signed recipes are never changed by Chef itself.</strong> Repair never reaches
+into <code>attestation</code>. The way out never re-cleans an attested recipe's credit.
+Chef adds no step links or timers to it on its own. A signed recipe is never
+"the cook's own", wherever it is, so the cook can't sign it or take its
+credit off. Only a person's edit or Refine changes it, and then it reads as
+adapted. The photo is never signed.</p>
+<p><strong>The attestation</strong> (optional, top level, open — the shape below is Chef's
+first form; a reader keeps whatever else it holds):</p>
+<pre><code class="language-jsonc">&quot;attestation&quot;: {
+  &quot;by&quot;: &quot;chef&quot;,
+  &quot;key&quot;: { &quot;id&quot;: &quot;chef-2027-01&quot;, &quot;publicKey&quot;: &quot;…&quot;, &quot;validFrom&quot;: &quot;…&quot;, &quot;validUntil&quot;: &quot;…&quot;,
+           &quot;certificate&quot;: &quot;…&quot; },          // the root key's Ed25519 signature over the key
+  &quot;signedAt&quot;: &quot;2027-02-01T00:00:00Z&quot;,
+  &quot;credit&quot;: &quot;sha256-…&quot;,
+  &quot;content&quot;: &quot;sha256-…&quot;,
+  &quot;signature&quot;: &quot;…&quot;                        // Ed25519, base64url
+}
+</code></pre>
+<p>The key's certificate signs <code>chef-key/1</code>, its id, public key, <code>validFrom</code> and
+<code>validUntil</code>, one per line. The signature signs <code>chef-attestation/1</code>, the
+recipe <code>id</code>, <code>credit</code>, <code>content</code>, the key id and <code>signedAt</code>, one per line. Chef
+ships only the root keys' public halves; signing keys never need an app update.
+A check (<code>RecipeAttestation.verify</code>) has three answers:</p>
+<table>
+<thead>
+<tr>
+<th>Answer</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Verified original</strong></td>
+<td>Certificate, signature and both fingerprints match, and the key was valid when it signed.</td>
+</tr>
+<tr>
+<td><strong>Adapted from a verified recipe</strong></td>
+<td>All of that, except the content fingerprint: the credit is Chef's, the words have changed since.</td>
+</tr>
+<tr>
+<td><strong>Unverified</strong></td>
+<td>Anything else, including a form this reader doesn't know. Treated as if there were no attestation, and kept.</td>
+</tr>
+</tbody>
+</table>
+<p>Chef keeps an attestation through the cook's edits, never writes or re-signs
+one on a device, and trusts nothing a file merely claims.</p>
+<p><strong>Before anything shows "verified" (with Collections, not in 5.0):</strong>
+- <strong>Verified means the signature <em>and</em> Chef's current catalogue index.</strong>
+  <code>signedAt</code> is the signer's own claim, so a leaked signing key could
+  backdate; the index lists withdrawn recipes and revoked keys.
+- <strong>Only a verified original is marked.</strong> "Adapted from a verified recipe"
+  proves the credit, not the words, so it is shown as an ordinary "Adapted
+  from a recipe by …".
+- <strong>Root keys:</strong> the first build that verifies ships two, a primary and a
+  cold backup.</p>
+<p>In 5.0 nothing signs and nothing shows; the code that checks exists so its
+form is fixed and tested.</p>
+<p>Import (<code>RecipeDocument.read</code>) is bounded to 8 MB and identifies the file by
+its contents, not its name: only an envelope is a recipe file, and a bare
+recipe is never one. Recipes don't arrive by link (SCOPE §2.5: no recipe links
+or codes at launch). Then <code>migrateRecipeToLatest</code>,
+so any version opens and a newer one — envelope or recipe — is refused
+("Chef can't open this recipe yet"). A <code>.recipe</code> that is some other program's
+(calibre, AutoPkg) is told apart from a damaged one. A received recipe saves
+through Review with the sender's id unless the library already holds it, when
+a copy gets a new id. That it was received is recorded beside it (V11), not in
+it, and goes when the recipe is deleted; sending it on sends exactly what
+arrived. User state never travels (§5). <code>ChefRecipeFileTests</code> take every valid
+fixture saved → file → open → Review → Save → reopen and compare the whole
+recipe; <code>RecipeFileFormatTests</code> and the TypeScript reference check the
+published examples.</p>
+<h2 id="11-edge-functions-unchanged-compatible">11. Edge Functions — unchanged, compatible</h2>
+<p><strong>v5 and the backend.</strong> The deployed functions speak v4 and are not changed for
+v5. The app migrates every v4 reply to v5 (the version number only). The one
+request that carries a canonical recipe — the website rewrite sent to
+<code>import-recipe</code> — is written as v4: it cannot contain anything v5 added, since
+nothing has been saved or signed yet. <code>_shared/canonicalRecipe.ts</code> stays v4,
+and the TypeScript reference adds v5 over it, so nothing undeployed reaches
+<code>main</code>.</p>
+<p>No deployed Edge Function was changed. (<code>import-recipe</code>, Make it Chef-ready's
+candidate on <code>codex/website-import-v4</code>, takes and returns v4 directly; see
+<code>QA/website-import-2026-10/README.md</code>. It is not deployed.) The deployed functions still return
+the v1–v3-shaped wire format (<code>RecipeImport</code>). Every such result becomes v4
+through <code>RecipeMigrator</code> before anything is saved. <code>RecipeMigrator.wireProjection</code>
+is the one way back, for the edit endpoint. <code>RecipeMigrator.chefEdit</code> merges
+an edit onto the saved recipe so nothing the wire format can't carry is lost.
+For the next phase:
+1. port <code>docs/canonical-recipe/reference/recipe.ts</code> into <code>_shared</code> (calling
+   <code>allergens.ts</code>/<code>methodDurations.ts</code>, with a parity fixture);
+2. emit v4 from the functions;
+3. switch the edit endpoint to v4, then retire <code>RecipeImport</code>.</p>
+<h2 id="12-pipelines-and-enforcement">12. Pipelines and enforcement</h2>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Ends in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Manual entry, editing a saved recipe</td>
+<td><code>RecipeDraft.makeCanonical</code> → <code>SavedRecipe.make</code> / <code>store</code> (validate)</td>
+</tr>
+<tr>
+<td>Website — Keep as written (page publishes a recipe)</td>
+<td>JSON-LD + the page's section headings → <code>WebRecipeCanonical</code> (v4, validated, on the phone) → Review (<code>RecipeMigrator.reviewed</code>) → <code>RecipeDraft(canonical:)</code> → same</td>
+</tr>
+<tr>
+<td>Website — Make it Chef-ready (candidate, not deployed)</td>
+<td>that v4 recipe → <code>import-recipe</code> (method rewritten, everything else copied, checked, v4-validated, then charged) → phone re-validates → Review → same</td>
+</tr>
+<tr>
+<td>Create with Chef, website read as text, photo, Dinner, Ask</td>
+<td>wire result → <code>RecipeDraft(importedRecipe:provenance:)</code> → same</td>
+</tr>
+<tr>
+<td>Refine / change ingredients / change method on a saved recipe</td>
+<td><code>RecipeMigrator.chefEdit</code> → <code>RecipeVariantStore.replace</code> → <code>store</code></td>
+</tr>
+<tr>
+<td>Restore / undo a version</td>
+<td>snapshot → <code>migrateToLatest</code> → <code>store</code></td>
+</tr>
+<tr>
+<td>Received file, pasted v4 JSON</td>
+<td><code>migrateToLatest</code> → <code>RecipeDraft(canonical:)</code> → same</td>
+</tr>
+<tr>
+<td>Starter recipes</td>
+<td>bundled JSON → <code>migrateToLatest</code> → enrichment → <code>SavedRecipe.make</code></td>
+</tr>
+<tr>
+<td>Launch, and the app coming to the front</td>
+<td><code>CanonicalRecipeStore.backfill</code> (v4 JSON for records saved before V9), then <code>enrichStepsIfNeeded</code> (links for a recipe with none, timers for a recipe with none — <code>RecipeEnrichmentService</code>; each recipe read once per save date, so one arriving through iCloud is read on the next pass) → <code>store</code>, <code>updatedDate</code> kept</td>
+</tr>
+<tr>
+<td>Server timers (Create's v4, a photo reading, Chef's edit before the merge)</td>
+<td><code>RecipeMigrator.droppingOffsetTimers</code> — a timer read from an offset ("1 minute before al dente") is dropped; saved and received recipes are never touched</td>
+</tr>
+</tbody>
+</table>
+<p>Development gate: a recipe feature is complete only when its output
+validates and survives save → load → encode and export → import unchanged.</p>
+<h2 id="13-evidence">13. Evidence</h2>
+<ul>
+<li><strong>Swift: 885/885 tests pass</strong> (<code>-parallel-testing-enabled NO</code>, iPhone 17e,
+  iOS 27), including 30 new ones:</li>
+<li>every valid fixture validates with exactly its expected warnings, and
+    repair leaves it unchanged;</li>
+<li>all 53 malformed cases fail with exactly their expected code; repair
+    rescues the 25 repairable ones idempotently and none of the 28 others;</li>
+<li>all 6 warning cases stay valid;</li>
+<li>v1, v2 and v3 files match hand-checked expectations and are idempotent;</li>
+<li>a real V8 SwiftData store, and a V9 one, open under the current plan and
+    backfill;</li>
+<li>a V8 record migrates to its expected recipe with its user state kept;</li>
+<li>an edit made by an older build is merged rather than ignored, and user
+    state or photo changes are never mistaken for one;</li>
+<li>every fixture survives <strong>save → load → encode</strong> and <strong>export → import</strong>
+    byte-for-byte, and survives opening and saving in the editor;</li>
+<li>Chef edits keep ids, groups and extra timers and record <code>chef_edit</code>;</li>
+<li>replace → undo restores a recipe exactly;</li>
+<li>every writing path ends in a valid v4 recipe;</li>
+<li><strong>real backend output</strong> (<code>bbc-easy-chocolate-cake-chef-ready-response.json</code>)
+    validates;</li>
+<li>malformed backend output is rejected;</li>
+<li>multiple timers on a step render as separate links and run independently
+    in Cook Mode;</li>
+<li>zero values survive; nothing invalid is persisted; user state never
+    leaves the record;</li>
+<li>the unit vocabulary equals the parser's.</li>
+<li><strong>TypeScript reference: 99/99 checks</strong> on the same manifest, the same
+  verdicts and the same migration outputs.</li>
+<li><strong>On the simulator, with real data saved by the previous build:</strong></li>
+<li>all 7 existing recipes migrated, and each passes both validators;</li>
+<li>a v4 <code>chef://recipe</code> link imports losslessly;</li>
+<li>Cook Mode runs two labelled timers on one step side by side;</li>
+<li>editing and saving a recipe leaves its canonical JSON byte-identical.</li>
+<li>The fixtures cover all 19 cases in the acceptance brief
+  (<code>manifest.json</code> › <code>cases</code>).</li>
+</ul>
+<h2 id="14-known-limits-not-contract-gaps">14. Known limits (not contract gaps)</h2>
+<ul>
+<li><strong>Display.</strong> Recipe Detail shows ingredient and method group titles,
+  substitutions, equipment and diets; Cook Mode shows the method group on each
+  step and groups and substitutions in its ingredient sheet
+  (<code>Views/RecipeDisplayDetails.swift</code>). <code>yieldText</code> and <code>optional</code> are stored,
+  kept and shared but not yet shown on Review, which every received and AI
+  recipe goes through.</li>
+<li><strong>Dinner "Edit details first"</strong> (hidden in v1) does not carry an in-review
+  Chef refinement into provenance; every other route does.</li>
+<li><strong><code>starter-sausage-ragu.json</code></strong> is read-only on disk (0400), so it was left
+  as v3. It seeds correctly through migration; convert it once the permission
+  is intended to change.</li>
+<li><strong><code>AllergenScanner</code></strong> treats "oat cream" as milk, so a vegan oat-cream recipe
+  loses its vegan label (P7). This is an existing false positive in domain
+  logic, tracked separately.</li>
+<li><strong>CloudKit</strong>: the fields in §9 must be deployed to production before the
+  next TestFlight build (tracked under <em>Open</em> in <code>RELEASE-MANIFEST.md</code>).</li>
+</ul>
+<h2 id="15-not-in-50">15. Not in 5.0</h2>
+<p>Quantity or timer ranges (the words keep them), per-step notes, locale,
+stored allergens or free-from claims, remote image URLs, more nutrients and
+edit history beyond transformations (what changed, or who changed it). Each is
+a later version bump if needed.</p>
+<h2 id="16-changing-the-contract">16. Changing the contract</h2>
+<p>5.0 is the launch format. After launch:</p>
+<ul>
+<li><strong>A minor change</strong> (5.1, 5.2…) only adds something optional that a 5.0
+  reader can leave out without misreading the rest: a field, an enum value, a
+  looser bound. It adds a rule to <code>requiredMinor</code> (so recipes that don't use it
+  stay at the lower minor), a schema file, the validator's rules, fixtures and
+  this document. Older 5.x apps open the new recipes read-only (§2a).</li>
+<li><strong>A major change</strong> (6.0) is anything else: a removed or renamed field, a
+  meaning that changes, a tighter bound. It needs a migration step, and the
+  previous major must still open in the current app. Only make one when a
+  minor can't do the job.</li>
+<li><strong>Always:</strong> update the schema file and <code>RecipeValidator</code> (and the TypeScript
+  reference) → the fixtures and tests → this document and SCOPE. The frozen
+  launch set (<code>MyRecipesTests/Fixtures/LaunchFormat/</code>) must still open
+  unchanged, and the "from the future" set (<code>FromTheFuture/</code>) must still be
+  read safely. No feature defines its own recipe structure or bypasses
+  validation. The fingerprint form (§10a) never changes; a new form needs a
+  new attestation version.</li>
+</ul>
+    </div>
+  </div>
+</article>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-brand">
+      <span class="wordmark wordmark-small" aria-hidden="true">aubergen<span class="wm-i">ı<svg viewBox="0 0 100 100"><path d="M50 2C78 20 92 48 84 78 78 96 56 100 40 90 14 74 10 36 50 2Z"/></svg></span>e</span><span class="sr-only">Aubergenie</span>
+      <span class="footer-tag">Your recipes, your next idea, and dinner on the table.</span>
+    </div>
+    <nav class="footer-nav" aria-label="Legal and support">
+      <a href="/support/">Support</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/privacy/choices/">Privacy choices</a>
+      <a href="/recipe/">Recipe File</a>
+      <a href="mailto:hello@aubergenieapp.com">hello@aubergenieapp.com</a>
+    </nav>
+    <p class="footer-legal">© 2026 <span class="brgndy">BRGNDY</span> LTD · Registered in England and Wales, company number 17537333 · Registered office: 71-75 Shelton Street, London WC2H 9JQ</p>
+  </div>
+</footer>
+<script src="/static/js/site.js?v=1d1b9aba96" defer></script>
+</body>
+</html>

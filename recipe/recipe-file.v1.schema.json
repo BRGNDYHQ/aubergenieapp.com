@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chef.app/schemas/recipe-file.v1.json",
+  "title": "Recipe File v1",
+  "description": "The envelope of a .recipe file (RECIPE-FILE-v1.md, revision 1.1). The recipe itself is a Canonical Recipe 5.0, defined by its own schema (MyRecipes/Resources/CanonicalRecipe.v5.schema.json, $id https://chef.app/schemas/recipe.v5.json) plus the cross-field rules in docs/CANONICAL-RECIPE.md section 6; it is referenced here, never restated. The optional image is one photograph of the dish (section 2.1); a reader may ignore it and must still open the recipe, so this schema describes what a writer produces, not what a reader must reject. $id values are identifiers, not addresses to fetch. Unknown top-level members are allowed so a reader ignores them; writers add none in v1.",
+  "type": "object",
+  "required": ["format", "version", "recipe"],
+  "properties": {
+    "format": { "const": "recipe" },
+    "version": { "const": 1 },
+    "recipe": { "$ref": "https://chef.app/schemas/recipe.v5.json" },
+    "image": { "$ref": "#/$defs/image" }
+  },
+  "$defs": {
+    "image": {
+      "type": "object",
+      "required": ["mediaType", "encoding", "data"],
+      "additionalProperties": false,
+      "properties": {
+        "mediaType": { "enum": ["image/jpeg", "image/png"] },
+        "encoding": { "const": "base64" },
+        "width": { "type": "integer", "minimum": 1, "maximum": 8192 },
+        "height": { "type": "integer", "minimum": 1, "maximum": 8192 },
+        "source": {
+          "type": "object",
+          "required": ["kind"],
+          "additionalProperties": false,
+          "properties": {
+            "kind": { "type": "string", "minLength": 1, "maxLength": 40, "description": "\"website\": published on a web page. Readers keep or ignore other values." },
+            "credit": { "type": "string", "minLength": 1, "maxLength": 200 },
+            "url": { "type": "string", "pattern": "^https?://", "maxLength": 2048 }
+          }
+        },
+        "data": {
+          "type": "string",
+          "contentEncoding": "base64",
+          "minLength": 4,
+          "maxLength": 6990508,
+          "pattern": "^[A-Za-z0-9+/]+={0,2}$",
+          "description": "The image file, RFC 4648 base64, standard alphabet, padded, no line breaks. Writers keep it under 3 MiB decoded; readers may ignore anything over 5 MiB (6990508 characters encoded)."
+        }
+      }
+    }
+  }
+}

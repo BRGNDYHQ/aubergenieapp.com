@@ -1,0 +1,256 @@
+{
+  "format" : "recipe",
+  "version" : 1,
+  "recipe" : {
+    "cookTimeMinutes" : 35,
+    "course" : "main",
+    "cuisine" : "Middle Eastern",
+    "diets" : [
+      "vegetarian"
+    ],
+    "difficulty" : "easy",
+    "equipment" : [
+      {
+        "appliance" : "oven",
+        "name" : "Oven"
+      },
+      {
+        "name" : "Large roasting tin"
+      }
+    ],
+    "id" : "9e8d7c6b-5a49-4382-a716-05f4e3d2c1b0",
+    "ingredientGroups" : [
+      {
+        "id" : "traybake",
+        "title" : "For the traybake"
+      },
+      {
+        "id" : "yoghurt",
+        "title" : "For the herby yoghurt"
+      }
+    ],
+    "ingredients" : [
+      {
+        "amount" : 800,
+        "groupId" : "traybake",
+        "id" : "chickpeas",
+        "name" : "chickpeas",
+        "preparation" : "drained",
+        "quantity" : "2 × 400g tins",
+        "unit" : "g"
+      },
+      {
+        "amount" : 2,
+        "groupId" : "traybake",
+        "id" : "red-onions",
+        "name" : "red onions",
+        "preparation" : "cut into wedges",
+        "quantity" : "2"
+      },
+      {
+        "amount" : 250,
+        "groupId" : "traybake",
+        "id" : "cherry-tomatoes",
+        "name" : "cherry tomatoes",
+        "quantity" : "250g",
+        "unit" : "g"
+      },
+      {
+        "amount" : 2,
+        "groupId" : "traybake",
+        "id" : "olive-oil",
+        "name" : "olive oil",
+        "quantity" : "2 tbsp",
+        "unit" : "tbsp"
+      },
+      {
+        "amount" : 2,
+        "groupId" : "traybake",
+        "id" : "smoked-paprika",
+        "name" : "smoked paprika",
+        "quantity" : "2 tsp",
+        "unit" : "tsp"
+      },
+      {
+        "amount" : 225,
+        "groupId" : "traybake",
+        "id" : "halloumi",
+        "name" : "halloumi",
+        "preparation" : "sliced",
+        "quantity" : "225g",
+        "substitutions" : [
+          "225g paneer, for a milder flavour"
+        ],
+        "unit" : "g"
+      },
+      {
+        "amount" : 2,
+        "groupId" : "traybake",
+        "id" : "lemon-juice",
+        "name" : "lemon juice",
+        "quantity" : "2 tbsp",
+        "unit" : "tbsp"
+      },
+      {
+        "amount" : 150,
+        "groupId" : "yoghurt",
+        "id" : "greek-yoghurt",
+        "name" : "Greek yoghurt",
+        "quantity" : "150g",
+        "unit" : "g"
+      },
+      {
+        "groupId" : "yoghurt",
+        "id" : "mint",
+        "name" : "fresh mint",
+        "optional" : true,
+        "preparation" : "chopped",
+        "quantity" : "a small bunch"
+      },
+      {
+        "amount" : 1,
+        "groupId" : "yoghurt",
+        "id" : "garlic",
+        "name" : "garlic",
+        "preparation" : "crushed",
+        "quantity" : "1 clove",
+        "unit" : "clove"
+      }
+    ],
+    "method" : [
+      {
+        "groupId" : "make-traybake",
+        "id" : "step-1",
+        "ingredients" : [
+          {
+            "ingredientId" : "chickpeas"
+          },
+          {
+            "ingredientId" : "red-onions"
+          },
+          {
+            "ingredientId" : "cherry-tomatoes"
+          },
+          {
+            "ingredientId" : "olive-oil"
+          },
+          {
+            "ingredientId" : "smoked-paprika"
+          },
+          {
+            "amount" : 1,
+            "ingredientId" : "lemon-juice",
+            "unit" : "tbsp"
+          }
+        ],
+        "text" : "Heat the oven to 220°C (200°C fan). Toss the chickpeas, onions and tomatoes with the oil, paprika and 1 tbsp lemon juice in the tin."
+      },
+      {
+        "groupId" : "make-traybake",
+        "id" : "step-2",
+        "ingredients" : [
+          {
+            "ingredientId" : "halloumi"
+          }
+        ],
+        "text" : "Roast for 20 minutes, then lay the halloumi on top and roast for 10 minutes more until golden.",
+        "timers" : [
+          {
+            "durationSeconds" : 1200,
+            "id" : "step-2-timer-1",
+            "label" : "Roast chickpeas"
+          },
+          {
+            "durationSeconds" : 600,
+            "id" : "step-2-timer-2",
+            "label" : "Roast halloumi"
+          }
+        ]
+      },
+      {
+        "groupId" : "make-yoghurt",
+        "id" : "step-3",
+        "ingredients" : [
+          {
+            "ingredientId" : "greek-yoghurt"
+          },
+          {
+            "ingredientId" : "mint"
+          },
+          {
+            "ingredientId" : "garlic"
+          },
+          {
+            "amount" : 1,
+            "ingredientId" : "lemon-juice",
+            "unit" : "tbsp"
+          }
+        ],
+        "text" : "Stir the yoghurt, mint, garlic and remaining lemon juice together and season."
+      },
+      {
+        "groupId" : "serve",
+        "id" : "step-4",
+        "text" : "Spoon the yoghurt over the traybake and serve straight from the tin."
+      }
+    ],
+    "methodGroups" : [
+      {
+        "id" : "make-traybake",
+        "title" : "Traybake"
+      },
+      {
+        "id" : "make-yoghurt",
+        "title" : "Herby yoghurt"
+      },
+      {
+        "id" : "serve",
+        "title" : "To serve"
+      }
+    ],
+    "nutrition" : {
+      "basis" : "per_serving",
+      "calories" : 470,
+      "carbsG" : 36,
+      "fatG" : 25,
+      "proteinG" : 24,
+      "servings" : 4,
+      "source" : "calculated"
+    },
+    "prepTimeMinutes" : 10,
+    "provenance" : {
+      "author" : "Example Kitchen",
+      "generator" : "cloud",
+      "origin" : "website",
+      "siteName" : "example.com",
+      "transformations" : [
+        {
+          "at" : "2026-10-01T00:00:00Z",
+          "kind" : "servings_rescale"
+        },
+        {
+          "at" : "2026-10-05T00:00:00Z",
+          "engine" : "cloud",
+          "kind" : "chef_edit"
+        }
+      ],
+      "url" : "https://www.example.com/recipes/halloumi-chickpea-traybake",
+      "writtenBy" : "chef"
+    },
+    "recipeDescription" : "Smoky roast chickpeas, sticky red onions and golden halloumi with a cool mint yoghurt.",
+    "schemaVersion" : 5,
+    "servings" : 4,
+    "tags" : [
+      "Traybake",
+      "Halloumi",
+      "Midweek"
+    ],
+    "tips" : [
+      "Pat the chickpeas dry before roasting so they crisp rather than steam.",
+      "The yoghurt keeps for two days in the fridge."
+    ],
+    "title" : "Halloumi & Chickpea Traybake with Herby Yoghurt",
+    "totalTimeMinutes" : 45,
+    "yieldText" : "Serves 4"
+  }
+}

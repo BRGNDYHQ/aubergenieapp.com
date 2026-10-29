@@ -1,0 +1,66 @@
+{
+  "format" : "recipe",
+  "version" : 1,
+  "recipe" : {
+    "id" : "b7c6d5e4-f3a2-4b1c-8d0e-9f8a7b6c5d4e",
+    "ingredients" : [
+      {
+        "amount" : 2,
+        "id" : "bread",
+        "name" : "thick white bread",
+        "quantity" : "2 slices",
+        "unit" : "slice"
+      },
+      {
+        "amount" : 80,
+        "id" : "cheddar",
+        "name" : "mature Cheddar",
+        "preparation" : "grated",
+        "quantity" : "80g",
+        "unit" : "g"
+      },
+      {
+        "id" : "worcestershire",
+        "name" : "Worcestershire sauce",
+        "quantity" : "a few drops"
+      }
+    ],
+    "method" : [
+      {
+        "id" : "step-1",
+        "text" : "Toast the bread on one side under the grill."
+      },
+      {
+        "id" : "step-2",
+        "text" : "Pile the cheese on the untoasted side and shake over the Worcestershire sauce."
+      },
+      {
+        "id" : "step-3",
+        "text" : "Grill for 3 minutes until bubbling.",
+        "timers" : [
+          {
+            "durationSeconds" : 180,
+            "id" : "step-3-timer-1"
+          }
+        ]
+      }
+    ],
+    "nutrition" : {
+      "basis" : "per_serving",
+      "calories" : 380,
+      "servings" : 2,
+      "source" : "cook"
+    },
+    "provenance" : {
+      "origin" : "manual",
+      "writtenBy" : "cook"
+    },
+    "schemaVersion" : 5,
+    "servings" : 2,
+    "tags" : [
+      "Comfort food"
+    ],
+    "title" : "Dad's Cheese on Toast",
+    "totalTimeMinutes" : 10
+  }
+}

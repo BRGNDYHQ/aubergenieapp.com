@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Recipe File, version 1 · Aubergenie</title>
+<meta name="description" content="Recipe File v1 specification.">
+<link rel="canonical" href="https://aubergenieapp.com/recipe/spec/">
+
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#FFF8EE" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16101A" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Aubergenie">
+<meta property="og:title" content="Recipe File, version 1 · Aubergenie">
+<meta property="og:description" content="Recipe File v1 specification.">
+<meta property="og:url" content="https://aubergenieapp.com/recipe/spec/">
+<meta property="og:image" content="https://aubergenieapp.com/static/images/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Aubergenie: Every recipe you love, ready to cook.">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/static/icons/icon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/static/icons/icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/static/icons/icon-180.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preload" href="/static/fonts/archivo-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/static/css/site.css?v=0541bfc63a">
+<script>(function(d){d.classList.add('js');try{d.classList.add(matchMedia('(prefers-reduced-motion: reduce)').matches?'still':'motion')}catch(e){d.classList.add('still')}})(document.documentElement)</script>
+</head>
+<body class="page-document">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header" data-header>
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="Aubergenie home">
+      <span class="wordmark" aria-hidden="true">aubergen<span class="wm-i">ı<svg viewBox="0 0 100 100"><path d="M50 2C78 20 92 48 84 78 78 96 56 100 40 90 14 74 10 36 50 2Z"/></svg></span>e</span>
+    </a>
+    <nav class="site-nav" aria-label="Site">
+      <a href="/support/">Support</a>
+      <a class="btn btn-small header-cta" href="/#join" data-header-cta>Ask to try it</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<article class="document wrap">
+  <header class="page-head">
+    <p class="eyebrow">Recipe File · developer documentation</p>
+    <h1>Recipe File, version 1</h1>
+    <p class="lede">The complete specification of the <code>.recipe</code> envelope, rendered from the repository's own document. The recipe inside it is a Canonical Recipe.</p>
+    <p class="meta"></p>
+  </header>
+  <div class="document-grid">
+    <aside class="document-aside">
+      <div class="callout">
+  <p class="callout-title">Recipe File</p>
+  <ul>
+    <li><a href="/recipe/">Introduction</a></li>
+    <li><a href="/recipe/spec/">Recipe File specification</a></li>
+    <li><a href="/recipe/canonical-recipe/">Canonical Recipe</a></li>
+    <li><a href="/recipe/recipe-file.v1.schema.json">Envelope schema</a></li>
+    <li><a href="/recipe/canonical-recipe.v5.schema.json">Recipe schema 5.0</a> · <a href="/recipe/canonical-recipe.v4.schema.json">v4</a></li>
+    <li><a href="/recipe/#examples">Example files</a></li>
+  </ul>
+</div>
+
+      <nav class="contents" aria-label="Contents">
+        <p class="contents-title">On this page</p>
+        <div class="toc">
+<ul>
+<li><a href="#1-the-file">1. The file</a></li>
+<li><a href="#2-the-envelope">2. The envelope</a></li>
+<li><a href="#3-two-versions-kept-apart">3. Two versions, kept apart</a></li>
+<li><a href="#4-the-recipe">4. The recipe</a></li>
+<li><a href="#5-reading-a-file">5. Reading a file</a></li>
+<li><a href="#6-privacy-what-must-never-be-in-the-file">6. Privacy: what must never be in the file</a></li>
+<li><a href="#7-on-a-device">7. On a device</a></li>
+<li><a href="#8-minimal-reader">8. Minimal reader</a></li>
+<li><a href="#9-changing-this-format">9. Changing this format</a></li>
+</ul>
+</div>
+
+      </nav>
+    </aside>
+    <div class="prose">
+      <p><strong>Status:</strong> v1.1, 2026-10-09. Stable. Maintained alongside Chef. Changes follow §9.
+Since 2026-10-18 the recipe inside is Canonical Recipe 5.0, the launch format (optional additions, §4); the envelope is unchanged.
+v1.1 adds one optional member, <code>image</code> (§2.1): every v1.0 file is a v1.1
+file, and a v1.0 reader opens a v1.1 file by ignoring it.</p>
+<p>A Recipe File holds one recipe as one JSON document that a person can send
+to another person, and that any app can read or write with an ordinary JSON
+parser. The recipe inside is <strong>Canonical Recipe 5.0</strong>, defined by:</p>
+<ul>
+<li><a href="/recipe/canonical-recipe/"><code>../CANONICAL-RECIPE.md</code></a> §2–§6, the shape, bounds and cross-field rules;</li>
+<li>its JSON Schema, <a href="/recipe/canonical-recipe.v5.schema.json"><code>CanonicalRecipe.v5.schema.json</code></a>.</li>
+</ul>
+<p>Both are normative for the payload and are not restated here. This document, with those two, is everything needed to implement the format.</p>
+<p>Files in this folder:</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RECIPE-FILE-v1.md</code></td>
+<td>This specification.</td>
+</tr>
+<tr>
+<td><code>recipe-file.v1.schema.json</code></td>
+<td>JSON Schema (2020-12) for the envelope. <code>recipe</code> refers to the Canonical Recipe 5.0 schema by its <code>$id</code>.</td>
+</tr>
+<tr>
+<td><code>examples/*.recipe</code></td>
+<td>Valid files. Without a photo: <code>simple</code>, <code>grouped</code>, <code>timers</code>, <code>provenance</code>, <code>complex</code>. With one: <code>photo</code> (the cook's own), <code>website-photo</code> (credited to the site), <code>reshared</code> (received, then sent on), <code>adapted</code> (a signed recipe with two author links, changed by hand after it arrived). They contain no personal data; the photos are test images made for the purpose.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-the-file">1. The file</h2>
+<ul>
+<li><strong>One recipe per file</strong>, and at most one photograph of it, inside the same JSON (§2.1). No archives, folders, manifests or attachments, and nothing after the JSON.</li>
+<li><strong>Encoding:</strong> UTF-8 JSON (<a href="https://www.rfc-editor.org/rfc/rfc8259">RFC 8259</a>). The top level is an object. Writers write no byte-order mark; readers ignore one.</li>
+<li><strong>Name:</strong> the recipe's title made safe for file systems, plus <code>.recipe</code>. Example: <code>Sunday Lasagne.recipe</code>. Use <code>Recipe.recipe</code> if nothing usable is left.</li>
+<li><strong>Size:</strong> a recipe alone is tens of kilobytes; with a photo, typically 0.5–1.5 MB. Writers should stay under 4 MiB. Readers may refuse a file over 8 MiB.</li>
+</ul>
+<h2 id="2-the-envelope">2. The envelope</h2>
+<pre><code class="language-json">{
+  &quot;format&quot; : &quot;recipe&quot;,
+  &quot;version&quot; : 1,
+  &quot;recipe&quot; : { &quot;schemaVersion&quot; : 4, &quot;id&quot; : &quot;…&quot;, &quot;title&quot; : &quot;…&quot;, … }
+}
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Required</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>format</code></td>
+<td>string</td>
+<td>yes</td>
+<td>Always <code>"recipe"</code>. This is what makes the bytes a Recipe File, whatever the file is called.</td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td>integer</td>
+<td>yes</td>
+<td>The envelope's version: <code>1</code>.</td>
+</tr>
+<tr>
+<td><code>recipe</code></td>
+<td>object</td>
+<td>yes</td>
+<td>One Canonical Recipe (§4).</td>
+</tr>
+<tr>
+<td><code>image</code></td>
+<td>object</td>
+<td>no</td>
+<td>One photograph of the dish (§2.1).</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Writers put <code>format</code> and <code>version</code> first, so the opening line says what the file is, and <code>image</code> last, so the recipe reads from the top. Readers must not depend on member order.</li>
+<li>Writers add no other top-level members in v1. Readers ignore unknown top-level members.</li>
+</ul>
+<h3 id="21-the-photograph-v11">2.1 The photograph (v1.1)</h3>
+<pre><code class="language-json">&quot;image&quot; : {
+  &quot;mediaType&quot; : &quot;image/jpeg&quot;,
+  &quot;encoding&quot; : &quot;base64&quot;,
+  &quot;width&quot; : 2560,
+  &quot;height&quot; : 1920,
+  &quot;source&quot; : { &quot;kind&quot; : &quot;website&quot;, &quot;credit&quot; : &quot;RecipeTin Eats&quot;, &quot;url&quot; : &quot;https://www.recipetineats.com/lasagna/&quot; },
+  &quot;data&quot; : &quot;/9j/4AAQSkZJRgABAQAAAQABAAD…&quot;
+}
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Required</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>mediaType</code></td>
+<td>string</td>
+<td>yes</td>
+<td><code>image/jpeg</code> (writers), or <code>image/png</code>.</td>
+</tr>
+<tr>
+<td><code>encoding</code></td>
+<td>string</td>
+<td>yes</td>
+<td><code>base64</code> (<a href="https://www.rfc-editor.org/rfc/rfc4648#section-4">RFC 4648 §4</a>, standard alphabet, padded, no line breaks). The only encoding v1 defines.</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td>string</td>
+<td>yes</td>
+<td>The encoded image file.</td>
+</tr>
+<tr>
+<td><code>width</code>, <code>height</code></td>
+<td>integer</td>
+<td>no</td>
+<td>The image's pixel size: a hint for layout before decoding. Readers trust the decoded image over these.</td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td>object</td>
+<td>no</td>
+<td>Where the photograph was published, when it was not by the person sharing it.</td>
+</tr>
+<tr>
+<td><code>source.kind</code></td>
+<td>string</td>
+<td>yes, in <code>source</code></td>
+<td><code>website</code>: it came from a web page. Other values may appear; readers keep or ignore them.</td>
+</tr>
+<tr>
+<td><code>source.credit</code></td>
+<td>string</td>
+<td>no</td>
+<td>The name to credit, as a person would read it.</td>
+</tr>
+<tr>
+<td><code>source.url</code></td>
+<td>string</td>
+<td>no</td>
+<td>The page it was published on (<code>http</code> or <code>https</code>), not the image file.</td>
+</tr>
+</tbody>
+</table>
+<p>The image is an enhancement; the recipe is the contract.</p>
+<ul>
+<li><strong>Optional to read.</strong> A reader may ignore <code>image</code> entirely and must still open the recipe.</li>
+<li><strong>Never fatal.</strong> A reader that does read it, and finds it unusable — another media type or encoding, not base64, not decodable, too large — ignores it and opens the recipe without it.</li>
+<li><strong>Writers:</strong></li>
+<li>include it only when the recipe has a photograph to show;</li>
+<li>write a JPEG no larger than 2560 pixels on its longest side, upright (no orientation flag), in sRGB or with its colour profile embedded;</li>
+<li>keep it under 3 MiB decoded (a photo is typically 0.3–1 MB);</li>
+<li>strip everything but the picture: no EXIF, GPS, TIFF, IPTC, XMP or maker data (§6).</li>
+<li><strong>Readers:</strong></li>
+<li>may refuse to decode an image over 5 MiB decoded, or wider or taller than 8192 pixels, and ignore it;</li>
+<li>should keep <code>source</code> with the photo, and show its credit where they show the photo's origin.</li>
+</ul>
+<h2 id="3-two-versions-kept-apart">3. Two versions, kept apart</h2>
+<ul>
+<li><code>version</code> is the <strong>envelope</strong>: how the file wraps a recipe.</li>
+<li><code>recipe.schemaVersion</code> is the <strong>recipe</strong>: the Canonical Recipe contract.</li>
+</ul>
+<p>Each changes on its own schedule. In envelope v1, <code>recipe.schemaVersion</code> is 5 (it was 4 until 2026-10-18), and <code>recipe.schemaMinor</code> (absent = 0) is the recipe's minor version (Canonical Recipe §2a).</p>
+<ul>
+<li><strong>Writers</strong> write <code>version</code> 1, <code>schemaVersion</code> 5 and the lowest <code>schemaMinor</code> the recipe's content needs (none, for 5.0).</li>
+<li><strong>Readers:</strong></li>
+<li>refuse a <code>version</code> greater than they support, and say it needs a newer app;</li>
+<li>treat a <code>version</code> that is not an integer ≥ 1 as damaged;</li>
+<li>refuse a <code>schemaVersion</code> greater than they support, rather than guessing;</li>
+<li>open a newer <code>schemaMinor</code> of a <code>schemaVersion</code> they support by leaving out what they don't know (Canonical Recipe §2a), show it read-only, and keep or pass on the file's recipe exactly as it arrived;</li>
+<li>should accept <code>schemaVersion</code> 4, which migrates to 5 by its version number alone (Canonical Recipe §7);</li>
+<li>may also accept <code>schemaVersion</code> 1–3 inside an envelope, as a leniency, if they can migrate them. No conforming writer produces them.</li>
+</ul>
+<h2 id="4-the-recipe">4. The recipe</h2>
+<p>The payload must validate against Canonical Recipe 5.0 (a reader may also accept v4, which migrates to 5.0 unchanged): its JSON Schema, plus the cross-field rules in Canonical Recipe §6.</p>
+<p>In outline:</p>
+<ul>
+<li><strong>Required:</strong> <code>schemaVersion</code> (5), <code>id</code> (lowercase UUID), <code>title</code>, <code>servings</code> (integer ≥ 1), <code>ingredients</code> (each with a local <code>id</code> and a <code>name</code>), <code>method</code> (steps, each with a local <code>id</code> and <code>text</code>) and <code>provenance</code> (<code>origin</code>: <code>manual</code>, <code>website</code>, <code>photo</code>, <code>prompt</code> or <code>imported</code>).</li>
+<li><strong>Optional:</strong></li>
+<li><code>recipeDescription</code>, <code>yieldText</code>;</li>
+<li>times: <code>totalTimeMinutes</code>, <code>prepTimeMinutes</code>, <code>cookTimeMinutes</code>;</li>
+<li><code>difficulty</code>, <code>cuisine</code>, <code>course</code>, <code>diets</code>, <code>tags</code>;</li>
+<li><code>equipment</code>;</li>
+<li>groups: <code>ingredientGroups</code> and <code>methodGroups</code>, which ingredients and steps join through <code>groupId</code>;</li>
+<li>step <code>timers</code> (<code>durationSeconds</code>) and step <code>ingredients</code> (uses, by ingredient <code>id</code>);</li>
+<li><code>tips</code>;</li>
+<li><code>nutrition</code>, with its basis, serving count and source;</li>
+<li><code>language</code> (BCP 47), and <code>schemaMinor</code>;</li>
+<li>in <code>provenance</code>, a signed recipe's <code>author</code> and up to three <code>authorLinks</code>, <code>basedOn</code> (the original a copy came from — the first in the chain), and <code>cook_edit</code> among its <code>transformations</code>;</li>
+<li><code>attestation</code>, Chef's signature vouching for the credit and content (Canonical Recipe §10a).</li>
+</ul>
+<p>Rules a writer must not skip:</p>
+<ul>
+<li><strong>Absent means unknown.</strong> Leave a value out rather than writing <code>""</code>, <code>[]</code> or <code>null</code>.</li>
+<li><strong>Unknown members are invalid.</strong> The schema has <code>additionalProperties: false</code> at every level. A field Canonical Recipe 5.0 does not define cannot be added to 5.0; it needs a new <code>schemaMinor</code> (or, for anything that is not an optional addition, a new <code>schemaVersion</code>).</li>
+<li><strong>No repair needed.</strong> Write a recipe that validates as it is. Readers may repair small slips (Canonical Recipe §6, Repairs), but a file that only opens after repair does not conform.</li>
+<li><strong>Ids stay put.</strong> <code>recipe.id</code> identifies the recipe across copies. A reader may use it to notice that it already holds this recipe, but must not assume it is unique in its own library. Local ids (ingredients, steps, groups, timers) are unique within the recipe, and references must resolve.</li>
+</ul>
+<h2 id="5-reading-a-file">5. Reading a file</h2>
+<ol>
+<li>Refuse a file larger than you are willing to read.</li>
+<li>An empty file, or only whitespace, is <strong>damaged</strong>.</li>
+<li>Parse it as UTF-8 JSON, ignoring a leading byte-order mark.
+   - If parsing fails and the text began with <code>{</code>, treat it as <strong>damaged</strong>.
+   - If parsing fails otherwise, or the top level is not an object, it is <strong>not a Recipe File</strong>.</li>
+<li>If <code>format</code> is absent or is not <code>"recipe"</code>, it is <strong>not a Recipe File</strong>. Another program may use the <code>.recipe</code> extension (§7).</li>
+<li>Check <code>version</code> as in §3. If <code>recipe</code> is not an object, the file is <strong>damaged</strong>.</li>
+<li>Check <code>recipe.schemaVersion</code> as in §3, then validate the recipe as in §4. If it is invalid, the file is <strong>damaged</strong>.</li>
+<li>Optionally, read <code>image</code> as in §2.1. Whatever it holds, the outcome of steps 1–6 stands.</li>
+<li>Show the recipe to the person before keeping it. Opening a file never saves anything by itself.</li>
+</ol>
+<p>Report the outcome in plain words, using three outcomes: not a recipe this app recognises, damaged, or needs a newer app. Never show JSON, schema or parser vocabulary.</p>
+<h2 id="6-privacy-what-must-never-be-in-the-file">6. Privacy: what must never be in the file</h2>
+<p>A Recipe File carries the recipe and where the recipe came from, and nothing about the person sending it, except, in <code>provenance.author</code> and <code>provenance.authorLinks</code>, the name and links of a writer who chose to sign the recipe.</p>
+<p>Writers must not include:</p>
+<ul>
+<li>account or user identifiers, including an account name, Apple ID or email address used as <code>author</code> or in <code>authorLinks</code> (a signature is only ever what its writer chose to sign with);</li>
+<li>entitlements or billing;</li>
+<li>the prompts or preferences a recipe was generated from;</li>
+<li>notes, ratings, favourites or cooking history;</li>
+<li>shopping state;</li>
+<li>how the sender came to have the recipe (for example "someone shared it with me");</li>
+<li>app or navigation state;</li>
+<li>anything inside the photograph's file other than the picture: location, camera, lens, capture time, software, maker notes, or any other EXIF, GPS, TIFF, IPTC or XMP data.</li>
+</ul>
+<p>The recipe's photograph may travel (§2.1). It is the picture the sender sees on the recipe. A photo published on a website may travel too, with its <code>source</code> saying where it came from; whether a writer offers that is the writer's policy, and a reader shows the credit.</p>
+<p>Portable provenance may travel: <code>origin</code>, <code>writtenBy</code>, <code>generator</code>, <code>url</code>, <code>siteName</code>, <code>author</code>, <code>authorLinks</code>, <code>basedOn</code>, <code>transformations</code>. The recipe's <code>id</code> is the same on every copy. Writers should, before writing (and never for a recipe carrying an <code>attestation</code>, whose credit travels exactly as signed):</p>
+<ul>
+<li>remove credentials, tracking parameters (<code>utm_*</code>, <code>fbclid</code>, <code>gclid</code>, …) and an in-page anchor from <code>provenance.url</code> and each of <code>provenance.authorLinks</code>, without re-encoding the rest; keep a fragment the site routes on (<code>#/…</code>, <code>#!…</code>);</li>
+<li>reduce each <code>transformations[].at</code> to the day (<code>YYYY-MM-DDT00:00:00Z</code>).</li>
+</ul>
+<p>Readers must open an author link only on the person's tap, and show its host first.</p>
+<p>An <code>attestation</code> travels with the recipe, exactly as it arrived: it is an open object (only <code>by</code> and <code>signature</code> are required), and a reader keeps every member of it, known or not. A writer never adds, changes or removes one it did not receive, and never changes an attested recipe's credit. A reader shows a recipe as verified only when the attestation checks (Canonical Recipe §10a); one that doesn't, or whose form it doesn't know, is treated as absent, never as proof.</p>
+<h2 id="7-on-a-device">7. On a device</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Extension</td>
+<td><code>.recipe</code></td>
+</tr>
+<tr>
+<td>Apple type identifier</td>
+<td><code>com.nathan.chef.recipe</code>. Exported by Chef; another app imports it. It conforms to <code>public.data</code> and <code>public.content</code>, and deliberately not to <code>public.json</code>, so systems open it in an app rather than previewing raw text.</td>
+</tr>
+<tr>
+<td>Media type</td>
+<td><code>application/x.recipe+json</code>. This is unregistered and is used as such (RFC 6838 §3.4); a registered type would replace it.</td>
+</tr>
+<tr>
+<td>Schema <code>$id</code>s</td>
+<td>Identifiers only; nothing is served at them.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Collisions.</strong> Other programs have used <code>.recipe</code> for unrelated files, including calibre's news recipes (Python) and AutoPkg recipes (property lists). Identify a Recipe File by its contents (§5), never by its name alone. A reader must not treat arbitrary JSON as a recipe.</p>
+<p>There is one extension and one media type. A bare Canonical Recipe with no envelope is not a Recipe File, whatever it is called.</p>
+<h2 id="8-minimal-reader">8. Minimal reader</h2>
+<pre><code>read(bytes):
+  if size(bytes) &gt; 8 MiB: return DAMAGED
+  text = trim(dropLeadingBOM(bytes))
+  if text is empty: return DAMAGED
+  doc = parseJSON(text) or return (startsWith(text, &quot;{&quot;) ? DAMAGED : NOT_A_RECIPE_FILE)
+  if doc is not object or doc.format != &quot;recipe&quot;: return NOT_A_RECIPE_FILE
+  if doc.version is not integer or doc.version &lt; 1: return DAMAGED
+  if doc.version &gt; 1: return NEEDS_NEWER_APP
+  r = doc.recipe; if r is not object: return DAMAGED
+  if r.schemaVersion &gt; 5: return NEEDS_NEWER_APP
+  if r.schemaVersion == 5 and r.schemaMinor &gt; knownMinor:
+    r = reduceToKnown(r); readOnly = true      # Canonical Recipe §2a
+  if not validCanonicalRecipe5(migrate(r)): return DAMAGED
+  photo = readImage(doc.image)        # optional; null on any problem
+  return (r, photo)
+
+readImage(i):
+  if i is not object: return null
+  if i.encoding != &quot;base64&quot; or i.mediaType not in {&quot;image/jpeg&quot;, &quot;image/png&quot;}: return null
+  bytes = base64Decode(i.data) or return null
+  if size(bytes) &gt; 5 MiB or not decodable(bytes) or pixelSize(bytes) &gt; 8192: return null
+  return (bytes, i.source)
+</code></pre>
+<p>A writer is the envelope in §2 around a valid recipe, with §6 applied, and the photograph — if any — as §2.1.</p>
+<h2 id="9-changing-this-format">9. Changing this format</h2>
+<ul>
+<li><strong>Additions to the recipe</strong> go through Canonical Recipe's own change process (§16): an optional addition is a new <code>schemaMinor</code>, anything else a new <code>schemaVersion</code>. The envelope does not change.</li>
+<li><strong>Optional additions to the envelope</strong> that a reader can safely ignore — like <code>image</code> in v1.1 — are minor revisions: <code>version</code> stays 1, and the new member is documented here with the revision that added it.</li>
+<li><strong>Any other change to the envelope</strong> needs <code>version</code> 2 and a new section here. A v1 reader refuses v2 files rather than misreading them.</li>
+<li><strong>Registration.</strong> If the format is registered (a media type with IANA, a type identifier under a domain that hosts this specification), that changes the identifiers in §7, not the bytes.</li>
+</ul>
+    </div>
+  </div>
+</article>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-brand">
+      <span class="wordmark wordmark-small" aria-hidden="true">aubergen<span class="wm-i">ı<svg viewBox="0 0 100 100"><path d="M50 2C78 20 92 48 84 78 78 96 56 100 40 90 14 74 10 36 50 2Z"/></svg></span>e</span><span class="sr-only">Aubergenie</span>
+      <span class="footer-tag">Your recipes, your next idea, and dinner on the table.</span>
+    </div>
+    <nav class="footer-nav" aria-label="Legal and support">
+      <a href="/support/">Support</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/privacy/choices/">Privacy choices</a>
+      <a href="/recipe/">Recipe File</a>
+      <a href="mailto:hello@aubergenieapp.com">hello@aubergenieapp.com</a>
+    </nav>
+    <p class="footer-legal">© 2026 <span class="brgndy">BRGNDY</span> LTD · Registered in England and Wales, company number 17537333 · Registered office: 71-75 Shelton Street, London WC2H 9JQ</p>
+  </div>
+</footer>
+<script src="/static/js/site.js?v=1d1b9aba96" defer></script>
+</body>
+</html>
