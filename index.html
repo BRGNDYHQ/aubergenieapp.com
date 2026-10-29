@@ -4,16 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Aubergenie — Every recipe you love, ready to cook.</title>
-<meta name="description" content="Aubergenie keeps every recipe you love together, writes a new one when you say what you fancy, plans the week, makes the shopping list and cooks beside you. For iPhone, iPad and Mac.">
+<meta name="description" content="Aubergenie keeps every recipe you love together, writes a new one when you say what you fancy, plans the week, makes the shopping list and cooks beside you. For iPhone, iPad and Mac. Now in beta on TestFlight, by invitation.">
 <link rel="canonical" href="https://aubergenieapp.com/">
 
+<meta name="referrer" content="no-referrer">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#FFF8EE" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#16101A" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Aubergenie">
 <meta property="og:title" content="Aubergenie — Every recipe you love, ready to cook.">
-<meta property="og:description" content="Aubergenie keeps every recipe you love together, writes a new one when you say what you fancy, plans the week, makes the shopping list and cooks beside you. For iPhone, iPad and Mac.">
+<meta property="og:description" content="Aubergenie keeps every recipe you love together, writes a new one when you say what you fancy, plans the week, makes the shopping list and cooks beside you. For iPhone, iPad and Mac. Now in beta on TestFlight, by invitation.">
 <meta property="og:url" content="https://aubergenieapp.com/">
 <meta property="og:image" content="https://aubergenieapp.com/static/images/og.jpg">
 <meta property="og:image:width" content="1200">
@@ -26,8 +27,8 @@
 <link rel="apple-touch-icon" href="/static/icons/icon-180.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/static/fonts/archivo-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/static/css/site.css?v=0541bfc63a">
-<script>(function(d){d.classList.add('js');try{d.classList.add(matchMedia('(prefers-reduced-motion: reduce)').matches?'still':'motion')}catch(e){d.classList.add('still')}})(document.documentElement)</script>
+<link rel="stylesheet" href="/static/css/site.css?v=465cbb53c3">
+<script>(function(d){d.classList.add('js');try{d.classList.add(matchMedia('(prefers-reduced-motion: reduce)').matches?'still':'motion')}catch(e){d.classList.add('still')}setTimeout(function(){if(!d.classList.contains('js-ready')){d.classList.remove('motion');d.classList.add('still')}},4000)})(document.documentElement)</script>
 </head>
 <body class="page-home">
 <a class="skip" href="#main">Skip to content</a>
@@ -38,18 +39,25 @@
     </a>
     <nav class="site-nav" aria-label="Site">
       <a href="/support/">Support</a>
-      <a class="btn btn-small header-cta" href="/#join" data-header-cta>Ask to try it</a>
+      <a class="btn btn-small header-cta" href="/#join" data-header-cta>Try the beta</a>
     </nav>
   </div>
 </header>
 
 <main id="main">
-<!-- One kitchen, one red plate, one dish followed from the link it was found on to the
-     friend it is sent to. Every name, time, serving and ingredient below is read from the
-     app's own example recipes at build time (MyRecipes/Data); every screen is a real capture. -->
-
 <section class="hero" id="top" data-hero>
   <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="hero-eyebrow">Aubergenie · a recipe app for iPhone, iPad and Mac</p>
+      <h1>Every recipe you love, ready to cook.</h1>
+      <p class="lede">Photograph a card, paste a link or say what you fancy. Each one becomes a recipe you can cook tonight.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="mailto:hello@aubergenieapp.com?subject=Can%20I%20try%20Aubergenie%3F&amp;body=I%27d%20like%20to%20try%20the%20Aubergenie%20beta%20on%20TestFlight.%0A%0AA%20line%20about%20what%20I%20cook%2C%20if%20I%20like%3A%0A%0A%0AI%27d%20use%20it%20on%20%28keep%20any%20that%20apply%29%3A%20iPhone%2C%20iPad%2C%20Mac%0A%0AThanks%0A" data-hero-cta data-cta="beta-request">Ask to try the beta</a>
+      </div>
+      <p class="cta-note">Free to try, in Apple's TestFlight app. Places are few, so this opens an email to hello@aubergenieapp.com: a line about what you cook helps, and we reply either way.</p>
+      <p class="cta-secondary"><a class="link-quiet" href="mailto:hello@aubergenieapp.com?subject=Tell%20me%20when%20Aubergenie%20is%20out&amp;body=Please%20email%20me%20once%2C%20when%20Aubergenie%20is%20on%20the%20App%20Store.%0A%0AI%27d%20use%20it%20on%20%28keep%20any%20that%20apply%29%3A%20iPhone%2C%20iPad%2C%20Mac%0A%0AThanks%0A">Rather wait? Tell me when it's out.</a></p>
+    </div>
+
     <div class="hero-stage">
       <figure class="plate plate-hero" data-hero-plate>
         <picture>
@@ -71,38 +79,27 @@
         <p class="dish" data-plate-title>Satay Chicken</p>
         <p class="facts" data-plate-facts>35 min · Serves 4 · Thai</p>
       </div>
-      <button class="btn btn-round" type="button" data-next-dish aria-label="Show another dish" hidden>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v5h-5"/></svg>
+      <button class="btn btn-small btn-next" type="button" data-next-dish hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v5h-5"/></svg>Next dish
       </button>
     </div>
-
-    <div class="hero-copy">
-      <p class="hero-eyebrow">Aubergenie · a recipe app for iPhone, iPad and Mac</p>
-      <h1>Every recipe you love, ready to cook.</h1>
-      <p class="lede">Photograph a card, paste a link or say what you fancy. Each one becomes a recipe you can cook tonight.</p>
-      <div class="actions">
-        <a class="btn btn-primary" href="mailto:hello@aubergenieapp.com?subject=Can%20I%20try%20Aubergenie%3F&amp;body=I%27d%20like%20to%20try%20the%20Aubergenie%20beta%20on%20TestFlight.%0A%0AWhat%20I%20cook%2C%20and%20what%20I%27d%20use%20it%20for%3A%0A%0A%0AI%27d%20use%20it%20on%20%28keep%20any%20that%20apply%29%3A%20iPhone%2C%20iPad%2C%20Mac%0A%0AThanks%0A" data-hero-cta data-cta="beta-request">Ask to try the beta</a>
-      </div>
-      <p class="cta-note">It's on TestFlight and places are limited, so this opens an email to hello@aubergenieapp.com: tell us what you cook, and we choose a few testers at a time.</p>
-      <p class="cta-secondary"><a class="link-quiet" href="mailto:hello@aubergenieapp.com?subject=Tell%20me%20when%20Aubergenie%20is%20out&amp;body=Please%20email%20me%20once%2C%20when%20Aubergenie%20is%20on%20the%20App%20Store.%0A%0AI%27d%20use%20it%20on%20%28keep%20any%20that%20apply%29%3A%20iPhone%2C%20iPad%2C%20Mac%0A%0AThanks%0A">Rather wait? Tell me when it's out.</a></p>
-    </div>
   </div>
-  <script type="application/json" data-dishes>[{"stem": "satay", "title": "Satay Chicken", "facts": "35 min \u00b7 Serves 4 \u00b7 Thai", "alt": "Satay chicken on jasmine rice with chopped peanuts, coriander and a lime wedge, on a red plate."}, {"stem": "chicken-tikka-masala", "title": "Chicken Tikka Masala", "facts": "50 min \u00b7 Serves 4 \u00b7 Indian", "alt": "Chicken tikka masala on rice with coriander, on a red plate."}, {"stem": "spaghetti-carbonara", "title": "Spaghetti Carbonara", "facts": "25 min \u00b7 Serves 4 \u00b7 Italian", "alt": "Spaghetti carbonara with grated cheese, on a red plate."}, {"stem": "bibimbap", "title": "Pork Bibimbap", "facts": "25 min \u00b7 Serves 4 \u00b7 Korean", "alt": "A Korean rice bowl with pork, vegetables and a fried egg with chilli sauce, on a red plate."}, {"stem": "butter-chicken", "title": "Butter chicken", "facts": "40 min \u00b7 Serves 4 \u00b7 Indian", "alt": "Butter chicken on basmati rice, on a red plate."}, {"stem": "ragu", "title": "Sausage Ragu", "facts": "45 min \u00b7 Serves 4 \u00b7 Italian", "alt": "Rigatoni in a sausage ragu with parsley and grated Parmesan, on a red plate."}, {"stem": "lemon-drizzle-cake", "title": "Lemon Drizzle Cake", "facts": "100 min \u00b7 Serves 10 \u00b7 British", "alt": "A lemon drizzle loaf with a slice cut, on a wooden board."}]</script>
+  <script type="application/json" data-dishes>[{"stem": "satay", "title": "Satay Chicken", "facts": "35 min \u00b7 Serves 4 \u00b7 Thai", "alt": "Satay chicken on jasmine rice with chopped peanuts, coriander and a lime wedge, on a red plate."}, {"stem": "chicken-tikka-masala", "title": "Chicken Tikka Masala", "facts": "50 min \u00b7 Serves 4 \u00b7 Indian", "alt": "Chicken tikka masala on rice with coriander, on a red plate."}, {"stem": "spaghetti-carbonara", "title": "Spaghetti Carbonara", "facts": "25 min \u00b7 Serves 4 \u00b7 Italian", "alt": "Spaghetti carbonara with grated cheese, on a red plate."}, {"stem": "bibimbap", "title": "Pork Bibimbap", "facts": "25 min \u00b7 Serves 4 \u00b7 Korean", "alt": "A Korean rice bowl with pork, vegetables and a fried egg with chilli sauce, on a red plate."}, {"stem": "butter-chicken", "title": "Butter Chicken", "facts": "40 min \u00b7 Serves 4 \u00b7 Indian", "alt": "Butter chicken on basmati rice, on a red plate."}, {"stem": "ragu", "title": "Sausage Ragu", "facts": "45 min \u00b7 Serves 4 \u00b7 Italian", "alt": "Rigatoni in a sausage ragu with parsley and grated Parmesan, on a red plate."}, {"stem": "lemon-drizzle-cake", "title": "Lemon Drizzle Cake", "facts": "1 hr 40 min \u00b7 Serves 10 \u00b7 British", "alt": "A lemon drizzle loaf with a slice cut, on a wooden board."}]</script>
 </section>
 
 <section class="scene scene-find" id="find" data-reveal data-find>
   <div class="wrap find-grid">
     <div class="find-words">
-      <h2 class="verbs"><span data-verb="find">Find it.</span><span data-verb="save">Save it.</span><span data-verb="make">Make it.</span></h2>
+      <h2 class="verbs"><span data-verb="find">Find it.</span> <span data-verb="save">Save it.</span> <span data-verb="make">Make it.</span></h2>
       <p class="scene-lede">However a recipe reaches you, it lands as one clean page: amounts, steps and timers, ready to cook.</p>
       <div class="chips" role="group" aria-label="Where a recipe comes from">
         <button class="chip" type="button" data-source="link" aria-pressed="true">A Link</button>
         <button class="chip" type="button" data-source="photo" aria-pressed="false">A Photo</button>
         <button class="chip" type="button" data-source="hand" aria-pressed="false">By Hand</button>
       </div>
-      <p class="truth" data-truth>
-        <span data-truth-for="link">Paste a link. Websites that publish their recipe are copied on your phone, exactly as written. No account needed.</span>
-        <span data-truth-for="photo" hidden>Photograph a recipe card or a cookbook page and it is typed up for you. Photograph the dish and you get Aubergenie's take on how to make it. You'll sign in first.</span>
+      <p class="truth" data-truth aria-live="polite">
+        <span data-truth-for="link">Paste a link. Most recipe sites publish their recipe in a form the app can read, so it is copied on your device exactly as written. No account, no AI.</span>
+        <span data-truth-for="photo" hidden>Photograph a handwritten card or a cookbook page and Aubergenie AI copies it out as written, for you to check before you save. Photograph the dish and it suggests how to make it. You'll sign in with Apple first.</span>
         <span data-truth-for="hand" hidden>Write your own. No account, no AI, and it works offline.</span>
       </p>
     </div>
@@ -114,7 +111,7 @@
           <span class="typed" data-typed data-text="…/recipes/satay-chicken">…/recipes/satay-chicken</span>
         </div>
         <div class="input-photo" data-input="photo" hidden>
-          <img src="/static/images/plate-satay-720.avif" width="720" height="720" loading="lazy" decoding="async" alt="">
+          <picture><source type="image/avif" srcset="/static/images/plate-satay-720.avif"><img src="/static/images/plate-satay-720.jpg" width="720" height="720" loading="lazy" decoding="async" alt=""></picture>
           <i></i><i></i><i></i><i></i>
         </div>
         <div class="input-hand" data-input="hand" hidden>
@@ -122,18 +119,19 @@
         </div>
       </div>
 
-      <div class="sheet" data-sheet role="group" aria-label="The recipe as it appears in the app">
+      <div class="sheet" data-sheet role="group" aria-label="Example: the recipe as it appears in the app">
         <p class="sheet-title dish">Satay Chicken</p>
         <p class="facts">35 min · Serves 4 · Thai · 690 kcal</p>
         <p class="sheet-sub">11 ingredients · for 4 servings</p>
         <ul class="sheet-rows">
-<li><span class="qty">600g</span><span class="name">boneless skinless chicken thighs</span></li>
-<li><span class="qty">400ml</span><span class="name">full-fat coconut milk</span></li>
-<li><span class="qty">1 tbsp</span><span class="name">curry powder</span></li>
-<li><span class="qty">2 tbsp</span><span class="name">Thai red curry paste</span></li>
-<li><span class="qty">2 tbsp</span><span class="name">soy sauce</span></li>
-<li><span class="qty">1 tbsp</span><span class="name">honey</span></li>
+<li><span class="qty">600g</span><span class="sr-only">, </span><span class="name">boneless skinless chicken thighs</span></li>
+<li><span class="qty">400ml</span><span class="sr-only">, </span><span class="name">full-fat coconut milk</span></li>
+<li><span class="qty">1 tbsp</span><span class="sr-only">, </span><span class="name">curry powder</span></li>
+<li><span class="qty">2 tbsp</span><span class="sr-only">, </span><span class="name">Thai red curry paste</span></li>
+<li><span class="qty">2 tbsp</span><span class="sr-only">, </span><span class="name">soy sauce</span></li>
+<li><span class="qty">1 tbsp</span><span class="sr-only">, </span><span class="name">honey</span></li>
         </ul>
+        <p class="sheet-more">and 5 more</p>
         <div class="sheet-actions">
           <a class="btn btn-small" href="#cook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16l-1.5 6h-13z"/><path d="M12 12V6"/></svg>Start cooking</a>
           <a class="btn btn-small" href="#shop"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.5 10h10l2-7H6.5"/><circle cx="9" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/></svg>Shop</a>
@@ -154,17 +152,17 @@
     <div class="tonight-grid">
       <div class="answer answer-new reveal">
         <h3>Say what you fancy.</h3>
-        <p>Type a dinner and Aubergenie writes the whole recipe, around the allergies, diet and servings you've saved. Check labels as you always would.</p>
+        <p>Type a dinner and Aubergenie AI writes the whole recipe, around the allergies, diet and servings you've saved. It can get this wrong, so if you have an allergy, check every ingredient and label yourself.</p>
         <figure class="screen screen-create screen-crop">
-          <img src="/static/images/screen-05b-create-no-keyboard.jpg" width="600" height="1212" loading="lazy" decoding="async"
-               alt="Create a Recipe: 'What are you in the mood for?' with 'Something warming and spicy, ready in 30 minutes' typed, For 4, and a Make this button.">
+          <picture><source srcset="/static/images/screen-05b-create-no-keyboard-dark.jpg" media="(prefers-color-scheme: dark)"><img src="/static/images/screen-05b-create-no-keyboard.jpg" width="600" height="1212" loading="lazy" decoding="async"
+               alt="Create a Recipe: 'What are you in the mood for?' with 'Something warming and spicy, ready in 30 minutes' typed, For 4, and a Make this button."></picture>
         </figure>
-        <p class="quiet">Aubergenie AI only when you ask. Switch it off in Settings and everything else still works. Recipes it writes use an allowance you can see in the app.</p>
+        <p class="quiet">Aubergenie's cloud AI runs only when you ask, with Sign in with Apple; the recipes are written by Anthropic's Claude on Aubergenie's server. Switch it off in Settings and everything else still works. Recipes it writes use an allowance you can see in the app.</p>
       </div>
 
       <div class="answer answer-saved reveal">
         <h3>Or pick from your own.</h3>
-        <p>Your saved recipes, with the app's own filters. One tap narrows it to what you can face tonight.</p>
+        <p>Your own library, with the app's filters. One tap narrows it to what you can face tonight. These nine are from ours.</p>
         <div class="chips" role="group" aria-label="Filter the recipes">
           <button class="chip" type="button" data-filter="all" aria-pressed="true">All</button>
           <button class="chip" type="button" data-filter="quick" aria-pressed="false">Quick</button>
@@ -176,10 +174,10 @@
 <figure class="plate plate-small" data-plate data-minutes="25" data-quick="true" data-favourite="false"><picture><source type="image/avif" srcset="/static/images/plate-bibimbap-720.avif"><img src="/static/images/plate-bibimbap-720.jpg" width="720" height="720" loading="lazy" decoding="async" alt="A Korean rice bowl with pork, vegetables and a fried egg with chilli sauce, on a red plate."></picture><figcaption><span class="dish">Pork Bibimbap</span><span class="facts">25 min · Korean</span></figcaption></figure>
 <figure class="plate plate-small" data-plate data-minutes="50" data-quick="false" data-favourite="true"><picture><source type="image/avif" srcset="/static/images/plate-chicken-tikka-masala-720.avif"><img src="/static/images/plate-chicken-tikka-masala-720.jpg" width="720" height="720" loading="lazy" decoding="async" alt="Chicken tikka masala on rice with coriander, on a red plate."></picture><figcaption><span class="dish">Chicken Tikka Masala</span><span class="facts">50 min · Indian</span></figcaption></figure>
 <figure class="plate plate-small" data-plate data-minutes="25" data-quick="true" data-favourite="false"><picture><source type="image/avif" srcset="/static/images/plate-spaghetti-carbonara-720.avif"><img src="/static/images/plate-spaghetti-carbonara-720.jpg" width="720" height="720" loading="lazy" decoding="async" alt="Spaghetti carbonara with grated cheese, on a red plate."></picture><figcaption><span class="dish">Spaghetti Carbonara</span><span class="facts">25 min · Italian</span></figcaption></figure>
-<figure class="plate plate-small" data-plate data-minutes="40" data-quick="false" data-favourite="false"><picture><source type="image/avif" srcset="/static/images/plate-butter-chicken-720.avif"><img src="/static/images/plate-butter-chicken-720.jpg" width="720" height="720" loading="lazy" decoding="async" alt="Butter chicken on basmati rice, on a red plate."></picture><figcaption><span class="dish">Butter chicken</span><span class="facts">40 min · Indian</span></figcaption></figure>
+<figure class="plate plate-small" data-plate data-minutes="40" data-quick="false" data-favourite="false"><picture><source type="image/avif" srcset="/static/images/plate-butter-chicken-720.avif"><img src="/static/images/plate-butter-chicken-720.jpg" width="720" height="720" loading="lazy" decoding="async" alt="Butter chicken on basmati rice, on a red plate."></picture><figcaption><span class="dish">Butter Chicken</span><span class="facts">40 min · Indian</span></figcaption></figure>
 <figure class="plate plate-small" data-plate data-minutes="33" data-quick="false" data-favourite="false"><picture><source type="image/avif" srcset="/static/images/plate-chinese-takeaway-chicken-curry-720.avif"><img src="/static/images/plate-chinese-takeaway-chicken-curry-720.jpg" width="720" height="720" loading="lazy" decoding="async" alt="Chinese takeaway-style chicken curry on egg-fried rice with peas, on a red plate."></picture><figcaption><span class="dish">Chinese Takeaway Chicken Curry</span><span class="facts">33 min · British Chinese</span></figcaption></figure>
-<figure class="plate plate-small" data-plate data-minutes="100" data-quick="false" data-favourite="true"><picture><source type="image/avif" srcset="/static/images/plate-lemon-drizzle-cake-720.avif"><img src="/static/images/plate-lemon-drizzle-cake-720.jpg" width="720" height="720" loading="lazy" decoding="async" alt="A lemon drizzle loaf with a slice cut, on a wooden board."></picture><figcaption><span class="dish">Lemon Drizzle Cake</span><span class="facts">100 min · British</span></figcaption></figure>
-<figure class="plate plate-small" data-plate data-minutes="133" data-quick="false" data-favourite="false"><picture><source type="image/avif" srcset="/static/images/plate-raspberry-white-chocolate-loaf-720.avif"><img src="/static/images/plate-raspberry-white-chocolate-loaf-720.jpg" width="720" height="720" loading="lazy" decoding="async" alt="A raspberry and white chocolate loaf with a slice cut, on a wooden board."></picture><figcaption><span class="dish">Raspberry and white chocolate loaf</span><span class="facts">133 min · British</span></figcaption></figure>
+<figure class="plate plate-small" data-plate data-minutes="100" data-quick="false" data-favourite="true"><picture><source type="image/avif" srcset="/static/images/plate-lemon-drizzle-cake-720.avif"><img src="/static/images/plate-lemon-drizzle-cake-720.jpg" width="720" height="720" loading="lazy" decoding="async" alt="A lemon drizzle loaf with a slice cut, on a wooden board."></picture><figcaption><span class="dish">Lemon Drizzle Cake</span><span class="facts">1 hr 40 min · British</span></figcaption></figure>
+<figure class="plate plate-small" data-plate data-minutes="133" data-quick="false" data-favourite="false"><picture><source type="image/avif" srcset="/static/images/plate-raspberry-white-chocolate-loaf-720.avif"><img src="/static/images/plate-raspberry-white-chocolate-loaf-720.jpg" width="720" height="720" loading="lazy" decoding="async" alt="A raspberry and white chocolate loaf with a slice cut, on a wooden board."></picture><figcaption><span class="dish">Raspberry and White Chocolate Loaf</span><span class="facts">2 hr 13 min · British</span></figcaption></figure>
         </div>
         <p class="count" data-count aria-live="polite">9 recipes</p>
       </div>
@@ -201,19 +199,18 @@
           <p>Put meals on days, or let Plan My Week suggest them from the recipes you've saved. Leftovers land on the days they'll be eaten, and Today shows what's next.</p>
         </div>
         <figure class="screen screen-week">
-          <img src="/static/images/screen-09-plan-today.jpg" width="600" height="1212" loading="lazy" decoding="async"
-               alt="The Plan tab's Today page: the week along the top, and under Dinner a Cook tonight card for Satay Chicken with a Start Cooking button.">
+          <picture><source srcset="/static/images/screen-09-plan-today-dark.jpg" media="(prefers-color-scheme: dark)"><img src="/static/images/screen-09-plan-today.jpg" width="600" height="1212" loading="lazy" decoding="async"
+               alt="The Plan tab's Today page: the week along the top, and under Dinner a Cook tonight card for Satay Chicken with a Start Cooking button."></picture>
         </figure>
       </li>
 
       <li class="rail-step reveal" id="shop">
         <div class="rail-words">
           <h3>Shop one list.</h3>
-          <p>Everything for the week, merged and in aisle order. Tick things off in the shop; the list follows you between your own devices.</p>
+          <p>Everything for the week, merged and in aisle order. Tick things off in the shop; with iCloud on, the list follows you between your own Apple devices.</p>
         </div>
-        <!-- The rows are the real list the app built for Satay Chicken and Pork Bibimbap
-             (the capture 11-shopping.png); the ticks are yours. -->
-        <div class="list" data-list role="group" aria-label="Shopping list">
+        <div class="list" data-list role="group" aria-label="Example shopping list, live: tap a row to tick it">
+          <p class="demo-tag" aria-hidden="true">Example · tap to tick</p>
           <p class="list-head"><strong data-list-remaining>17 items remaining</strong><span data-list-collected>3 of 20 collected</span></p>
           <p class="aisle">Fruit &amp; vegetables</p>
           <ul>
@@ -239,9 +236,10 @@
       <li class="rail-step reveal" id="cook" data-cook>
         <div class="rail-words">
           <h3>Cook in big type.</h3>
-          <p>One step at a time, and a timer wherever the recipe says so. With alarms allowed it rings even when your phone is locked, and shows in the Dynamic Island.</p>
+          <p>One step at a time, and a timer wherever the recipe says so. With alarms allowed it rings even when your iPhone is locked, and shows in the Dynamic Island on iPhones that have one. On a Mac, timers arrive as notifications.</p>
         </div>
-        <div class="cookpanel" role="group" aria-label="Cook Mode, step 1 of 6">
+        <div class="cookpanel" role="group" aria-label="Example Cook Mode, step 1 of 6">
+          <p class="demo-tag" aria-hidden="true">Example · the timer runs</p>
           <div class="cook-bar"><span class="cook-recipe">Satay Chicken</span><span class="cook-stepcount">Step 1 of 6</span></div>
           <div class="cook-progress" aria-hidden="true"><i class="is-on"></i><i></i><i></i><i></i><i></i><i></i></div>
           <p class="cook-step">Mix the chicken with 100ml coconut milk, the curry powder, 1 tbsp red curry paste and 1 tbsp soy sauce. Leave to marinate for <span class="nowrap"><span class="cook-time"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="8.5"/><path d="M12 8.5V13l3 2"/><path d="M9 3h6"/></svg>10 minutes</span>.</span></p>
@@ -271,17 +269,17 @@
     <header class="scene-head scene-head-centre">
       <h2>Send recipes, not screenshots.</h2>
       <p class="scene-lede">Photo, amounts, method and timers, in one file. A friend with Aubergenie saves it in a tap. Anyone else gets a picture or the text.</p>
-      <p class="quiet quiet-centre">Your recipes live in your own iCloud: no ads, no tracking. Your name goes with a recipe only if you say so.</p>
+      <p class="quiet quiet-centre">Your recipes stay on your devices and in your own iCloud. No ads, no tracking. Your name travels with a recipe only when you switch that on.</p>
     </header>
     <div class="send-stage reveal">
       <figure class="screen send-from">
-        <img src="/static/images/screen-08-share-menu.jpg" width="600" height="1212" loading="lazy" decoding="async"
-             alt="Sharing Satay Chicken from the app: Send Recipe, for someone with Aubergenie; Share as Image; Copy as Text.">
+        <picture><source srcset="/static/images/screen-08-share-menu-dark.jpg" media="(prefers-color-scheme: dark)"><img src="/static/images/screen-08-share-menu.jpg" width="600" height="1212" loading="lazy" decoding="async"
+             alt="Sharing Satay Chicken from the app: Send Recipe, for someone with Aubergenie; Share as Image; Copy as Text."></picture>
         <figcaption>You</figcaption>
       </figure>
       <div class="send-path" aria-hidden="true">
         <div class="recipe-file">
-          <img src="/static/images/plate-satay-720.avif" width="720" height="720" loading="lazy" decoding="async" alt="">
+          <picture><source type="image/avif" srcset="/static/images/plate-satay-720.avif"><img src="/static/images/plate-satay-720.jpg" width="720" height="720" loading="lazy" decoding="async" alt=""></picture>
           <span class="recipe-file-title">Satay Chicken</span>
           <span class="recipe-file-ext">.recipe</span>
         </div>
@@ -305,15 +303,19 @@
         <i class="float-shadow"></i>
       </div>
     </div>
-    <p class="invite-says">Glad to help.</p>
-    <h2>Pull up a chair.</h2>
-    <p class="scene-lede invite-lede">Aubergenie is in beta on Apple's TestFlight. Every tester's recipes cost us real money to write, so places are few and we choose them: tell us what you cook and why you'd use it, and we'll reply either way.</p>
+    <p class="invite-says">Glad to help. Pull up a chair.</p>
+    <h2>Try the beta.</h2>
+    <p class="scene-lede invite-lede">Aubergenie is in beta, free to try through TestFlight, Apple's app for trying apps before they reach the App Store. We're letting people in a few at a time, because each tester's AI recipes cost us to write, so tell us a little about what you cook. Bringing your own recipes with the AI switched off is just as welcome.</p>
     <div class="actions actions-centre">
-      <a class="btn btn-primary" href="mailto:hello@aubergenieapp.com?subject=Can%20I%20try%20Aubergenie%3F&amp;body=I%27d%20like%20to%20try%20the%20Aubergenie%20beta%20on%20TestFlight.%0A%0AWhat%20I%20cook%2C%20and%20what%20I%27d%20use%20it%20for%3A%0A%0A%0AI%27d%20use%20it%20on%20%28keep%20any%20that%20apply%29%3A%20iPhone%2C%20iPad%2C%20Mac%0A%0AThanks%0A" data-cta="beta-request">Ask to try the beta</a>
+      <a class="btn btn-primary" href="mailto:hello@aubergenieapp.com?subject=Can%20I%20try%20Aubergenie%3F&amp;body=I%27d%20like%20to%20try%20the%20Aubergenie%20beta%20on%20TestFlight.%0A%0AA%20line%20about%20what%20I%20cook%2C%20if%20I%20like%3A%0A%0A%0AI%27d%20use%20it%20on%20%28keep%20any%20that%20apply%29%3A%20iPhone%2C%20iPad%2C%20Mac%0A%0AThanks%0A" data-cta="beta-request">Ask to try the beta</a>
     </div>
-    <p class="cta-note">It's on TestFlight and places are limited, so this opens an email to hello@aubergenieapp.com: tell us what you cook, and we choose a few testers at a time.</p>
     <p class="cta-secondary"><a class="link-quiet" href="mailto:hello@aubergenieapp.com?subject=Tell%20me%20when%20Aubergenie%20is%20out&amp;body=Please%20email%20me%20once%2C%20when%20Aubergenie%20is%20on%20the%20App%20Store.%0A%0AI%27d%20use%20it%20on%20%28keep%20any%20that%20apply%29%3A%20iPhone%2C%20iPad%2C%20Mac%0A%0AThanks%0A">Rather wait? Tell me when it's out.</a></p>
-    <p class="cta-note">For iPhone, iPad and Mac · iOS, iPadOS and macOS 26.4 or later</p>
+    <ol class="next-steps" aria-label="What happens next">
+      <li><strong>Your email reaches a person</strong>, who reads it and replies within a few days either way. Please leave health details out.</li>
+      <li><strong>If there's a place, Apple emails you a TestFlight invitation.</strong> Install the free TestFlight app, open the link, tap Install.</li>
+      <li><strong>Free to try.</strong> App Store prices aren't set yet. Your recipes stay in your own iCloud whatever happens to the beta.</li>
+    </ol>
+    <p class="cta-note">For iPhone, iPad and Mac · needs iOS, iPadOS or macOS 26.4 or later (Settings › General › About shows your version; on a Mac, About This Mac)</p>
     <p class="invite-address" data-copy-address>
       <span>Or write to</span> <a href="mailto:hello@aubergenieapp.com">hello@aubergenieapp.com</a>
       <button type="button" class="copy-btn" data-copy="hello@aubergenieapp.com">Copy address</button>
@@ -333,12 +335,12 @@
       <a href="/support/">Support</a>
       <a href="/privacy/">Privacy</a>
       <a href="/privacy/choices/">Privacy choices</a>
-      <a href="/recipe/">Recipe File</a>
+      <a href="/recipe/">Recipe file format</a>
       <a href="mailto:hello@aubergenieapp.com">hello@aubergenieapp.com</a>
     </nav>
-    <p class="footer-legal">© 2026 <span class="brgndy">BRGNDY</span> LTD · Registered in England and Wales, company number 17537333 · Registered office: 71-75 Shelton Street, London WC2H 9JQ</p>
+    <p class="footer-legal">© 2026 <span class="brgndy">BRGNDY</span> LTD · Registered in England and Wales, company number 17537333 · Registered office: 71-75 Shelton Street, London WC2H 9JQ · Aubergenie is a trading name of BRGNDY LTD</p>
   </div>
 </footer>
-<script src="/static/js/site.js?v=1d1b9aba96" defer></script>
+<script src="/static/js/site.js?v=ee5eac671b" defer></script>
 </body>
 </html>

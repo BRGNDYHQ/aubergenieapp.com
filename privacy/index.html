@@ -7,6 +7,7 @@
 <meta name="description" content="How the Aubergenie app for iPhone, iPad and Mac handles your information.">
 <link rel="canonical" href="https://aubergenieapp.com/privacy/">
 
+<meta name="referrer" content="no-referrer">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#FFF8EE" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#16101A" media="(prefers-color-scheme: dark)">
@@ -26,8 +27,8 @@
 <link rel="apple-touch-icon" href="/static/icons/icon-180.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/static/fonts/archivo-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/static/css/site.css?v=0541bfc63a">
-<script>(function(d){d.classList.add('js');try{d.classList.add(matchMedia('(prefers-reduced-motion: reduce)').matches?'still':'motion')}catch(e){d.classList.add('still')}})(document.documentElement)</script>
+<link rel="stylesheet" href="/static/css/site.css?v=465cbb53c3">
+<script>(function(d){d.classList.add('js');try{d.classList.add(matchMedia('(prefers-reduced-motion: reduce)').matches?'still':'motion')}catch(e){d.classList.add('still')}setTimeout(function(){if(!d.classList.contains('js-ready')){d.classList.remove('motion');d.classList.add('still')}},4000)})(document.documentElement)</script>
 </head>
 <body class="page-document">
 <a class="skip" href="#main">Skip to content</a>
@@ -38,7 +39,7 @@
     </a>
     <nav class="site-nav" aria-label="Site">
       <a href="/support/">Support</a>
-      <a class="btn btn-small header-cta" href="/#join" data-header-cta>Ask to try it</a>
+      <a class="btn btn-small header-cta" href="/#join" data-header-cta>Try the beta</a>
     </nav>
   </div>
 </header>
@@ -49,7 +50,7 @@
     <p class="eyebrow">Privacy Policy</p>
     <h1>How Aubergenie handles your information</h1>
     <p class="lede">Your recipes stay on your devices and in your own iCloud. Our server is involved only when you ask Aubergenie to write or change a recipe, and this page explains exactly what that means.</p>
-    <p class="meta">Last updated 29 October 2026. This is the same policy shown inside the app.</p>
+    <p class="meta">Last updated 29 October 2026. The app's next update carries this policy; test builds from before the rename show it under the old name, Chef.</p>
   </header>
   <div class="document-grid">
     <aside class="document-aside">
@@ -95,8 +96,10 @@ BRGNDY LTD is the data controller for the information described here. This
 policy explains what the app does with your information, in plain terms. It is
 the policy referenced from the App Store listing and from Settings inside the
 app.</p>
-<p>Aubergenie was called Chef until October 2026. Only the name changed: your
-account, your recipes and everything described below carried over as they were.</p>
+<p>Aubergenie was called Chef until October 2026, and until then it was published
+by Nathan Thomas, who made it; BRGNDY LTD, his company, became its publisher and
+the data controller in October 2026. Your account, your recipes and everything
+described below carried over as they were.</p>
 <h2 id="the-short-version">The short version</h2>
 <p>Your recipes are yours and they stay on your devices. They sync between your
 own devices through your private iCloud account, which we cannot read, and so do
@@ -104,8 +107,9 @@ your shopping list and your meal plan. Your cooking preferences and any
 unfinished recipe stay on the device you set them on.</p>
 <p>You can use Aubergenie without an account: adding recipes yourself, importing
 recipes that websites publish, planning, shopping and cooking all happen on your
-device. Our server is involved only when you use one of the AI features — and
-you can turn those off entirely with the <strong>Aubergenie AI</strong> switch in Settings.
+device. Our server is involved when you sign in and when you use one of the AI
+features — and you can turn those off entirely with the <strong>Aubergenie AI</strong> switch
+in Settings.
 Our server holds an account and usage record so it knows whose allowance is
 being used, and temporarily holds a completed recipe response when recovery is
 available, as explained below. While you are signed in, the app also checks
@@ -219,7 +223,8 @@ the same account back.</p>
 <p>The second is your <strong>email address</strong>, and only on the very first time you
 authorise the app. If you chose Hide My Email, what we receive is Apple's relay
 address, not your real one. Either way it sits on your account record and is
-not used to contact you. Aubergenie sends no email.</p>
+not used to contact you. The app sends no email; the one launch email described
+under "If you email us" goes only to people who asked for it.</p>
 <p>The server also generates its own account number for you. That number, rather
 than anything Apple issued, is what the rest of the system refers to.</p>
 <p>Signing in creates a session that lasts 90 days. The server stores only a
@@ -346,10 +351,17 @@ terms and may not use it for their own purposes. Apple is responsible for your
 Apple Account, iCloud and TestFlight under its own privacy policy.</p>
 <h2 id="if-you-email-us">If you email us</h2>
 <p>Messages to support@, hello@ or privacy@aubergenieapp.com are kept in our
-mailbox, hosted by Apple's iCloud Mail, so that we can answer them. If you
-write to hello@ asking to hear when Aubergenie launches, we use your address
-once, for that one email, and then delete it; you can ask us to forget it
-sooner. Nothing you email is added to your account or shared with anyone else.</p>
+mailbox, hosted by Apple's iCloud Mail, so that we can answer them, and are
+deleted once the matter is closed. If you ask to try the beta, we read what
+you tell us about your cooking to choose testers, and we reply either way;
+please don't include health details. If we offer you a place, we give your
+email address to Apple in App Store Connect so that TestFlight can send your
+invitation, and from then on Apple handles it under its own privacy policy. A
+request we decline is deleted once we have replied, unless you ask to hear
+when Aubergenie launches. If you ask to hear when it launches, we use your
+address once, for that one email, and then delete it; you can ask us to forget
+it sooner. Nothing else you email is added to your account or shared with
+anyone.</p>
 <h2 id="data-leaving-the-uk">Data leaving the UK</h2>
 <p>Your account record and usage counts are held in the database in London. The
 server code that handles a request runs on Supabase's network and may run
@@ -366,6 +378,9 @@ without it. The usage and AI performance records rely on <strong>legitimate
 interests</strong>: preventing one account from consuming an unlimited amount of a
 paid API, understanding whether the beta is reliable and responsive, and
 reducing paid generation that is rejected or never used.</p>
+<p>Emails you send us, including requests to try the beta, are handled on the
+basis of our <strong>legitimate interest</strong> in answering you and choosing testers; a
+launch email is sent only because you asked for it.</p>
 <p>We do not rely on consent for the processing described above, because we do
 nothing optional with your data. Your cooking preferences, including any
 allergies, are sent only with a request you make yourself, and you can clear
@@ -449,12 +464,12 @@ Wales. Registered office: 71-75 Shelton Street, London WC2H 9JQ, United Kingdom.
       <a href="/support/">Support</a>
       <a href="/privacy/">Privacy</a>
       <a href="/privacy/choices/">Privacy choices</a>
-      <a href="/recipe/">Recipe File</a>
+      <a href="/recipe/">Recipe file format</a>
       <a href="mailto:hello@aubergenieapp.com">hello@aubergenieapp.com</a>
     </nav>
-    <p class="footer-legal">© 2026 <span class="brgndy">BRGNDY</span> LTD · Registered in England and Wales, company number 17537333 · Registered office: 71-75 Shelton Street, London WC2H 9JQ</p>
+    <p class="footer-legal">© 2026 <span class="brgndy">BRGNDY</span> LTD · Registered in England and Wales, company number 17537333 · Registered office: 71-75 Shelton Street, London WC2H 9JQ · Aubergenie is a trading name of BRGNDY LTD</p>
   </div>
 </footer>
-<script src="/static/js/site.js?v=1d1b9aba96" defer></script>
+<script src="/static/js/site.js?v=ee5eac671b" defer></script>
 </body>
 </html>

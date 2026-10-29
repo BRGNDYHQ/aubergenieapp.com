@@ -1,0 +1,5 @@
+Contact: mailto:privacy@aubergenieapp.com
+Expires: 2027-10-29T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://aubergenieapp.com/.well-known/security.txt
+Policy: https://aubergenieapp.com/privacy/

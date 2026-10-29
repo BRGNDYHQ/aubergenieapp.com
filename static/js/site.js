@@ -9,6 +9,7 @@
   var still = reduce || root.classList.contains('still');
   root.classList.add(still ? 'still' : 'motion');
   if (still) root.classList.remove('motion');
+  root.classList.add('js-ready');
   var $ = function (s, el) { return (el || document).querySelector(s); };
   var $$ = function (s, el) { return Array.prototype.slice.call((el || document).querySelectorAll(s)); };
 
@@ -28,6 +29,7 @@
   // ---- "Tell me when it launches" is an email. On a desk without a mail app the address
   // is shown with a copy button, so the invitation is never a dead end.
   $$('[data-copy]').forEach(function (btn) {
+    btn.setAttribute('aria-live', 'polite');
     btn.addEventListener('click', function () {
       var text = btn.getAttribute('data-copy'), label = btn.textContent;
       var done = function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = label; }, 1800); };
@@ -46,8 +48,9 @@
     var plate = $('[data-hero-plate]', hero), img = $('[data-plate-img]', hero), avif = $('[data-plate-avif]', hero);
     var title = $('[data-plate-title]', hero), facts = $('[data-plate-facts]', hero);
     var next = $('[data-next-dish]', hero), current = 0, busy = false;
-    var avifOk = avif && document.createElement('canvas').toDataURL && 'HTMLPictureElement' in window;
-    var url = function (d, w) { return '/static/images/plate-' + d.stem + '-' + w + (avifOk ? '.avif' : '.jpg'); };
+    // The browser has already chosen AVIF or JPEG for the first plate; the warm-up follows that choice.
+    var avifOk = function () { return !!(avif && img.currentSrc && /\.avif/.test(img.currentSrc)); };
+    var url = function (d, w) { return '/static/images/plate-' + d.stem + '-' + w + (avifOk() ? '.avif' : '.jpg'); };
     var wanted = function () { return img.currentSrc && img.currentSrc.indexOf('1440') > -1 ? 1440 : 720; };
     // The next dish is decoded off screen and only then swapped in, so the old plate never shows under a new name.
     var ready = {};
@@ -142,7 +145,7 @@
         var n = 0;
         items.forEach(function (p) {
           var keep = f === 'all' || p.getAttribute('data-' + f) === 'true';
-          p.classList.toggle('is-dim', !keep); if (keep) n += 1;
+          p.classList.toggle('is-dim', !keep); if (keep) { n += 1; p.removeAttribute('aria-hidden'); } else { p.setAttribute('aria-hidden', 'true'); }
         });
         count.textContent = f === 'all' ? n + ' recipes' : n + (f === 'quick' ? ' quick ' : ' favourite ') + (n === 1 ? 'recipe' : 'recipes');
       });
@@ -154,12 +157,12 @@
   if (list) {
     // The list is the app's real one for two recipes (20 rows); eight are shown.
     var rows = $$('[role="checkbox"]', list), remaining = $('[data-list-remaining]', list), collected = $('[data-list-collected]', list);
-    var total = 20;
+    var listTotal = 20;
     var recount = function () {
       var done = rows.filter(function (r) { return r.getAttribute('aria-checked') === 'true'; }).length;
-      var left = total - done;
+      var left = listTotal - done;
       remaining.textContent = left === 0 ? 'All collected' : left + (left === 1 ? ' item' : ' items') + ' remaining';
-      collected.textContent = done + ' of ' + total + ' collected';
+      collected.textContent = done + ' of ' + listTotal + ' collected';
     };
     rows.forEach(function (r) { r.addEventListener('click', function () { r.setAttribute('aria-checked', String(r.getAttribute('aria-checked') !== 'true')); recount(); }); });
     recount();
@@ -181,7 +184,8 @@
     }, 1000); };
     // The step's "10 minutes" chip is the timer's own control in the app: tapping it starts the timer again.
     var chip = $('.cook-time', cook);
-    if (chip) { chip.setAttribute('role', 'button'); chip.setAttribute('tabindex', '0'); chip.setAttribute('aria-label', 'Restart the 10 minute timer');
+    if (chip) { chip.setAttribute('role', 'button'); chip.setAttribute('tabindex', '0');
+      var help = document.createElement('span'); help.className = 'sr-only'; help.id = 'cook-chip-help'; help.textContent = 'Starts the timer again.'; cook.appendChild(help); chip.setAttribute('aria-describedby', 'cook-chip-help');
       var restart = function () { left = total; paused = false; ring.classList.add('no-transition'); paint(); setTimeout(function () { ring.classList.remove('no-transition'); }, 50); if (!still) { stop(); start(); } };
       chip.addEventListener('click', restart); chip.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); restart(); } }); }
     var stop = function () { clearInterval(ticking); ticking = null; };
