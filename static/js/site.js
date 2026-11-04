@@ -15,8 +15,8 @@
     var heroCta = $('[data-hero-cta]');
     if (heroCta && 'IntersectionObserver' in window) {
       new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) { header.classList.toggle('cta-away', !e.isIntersecting); });
-      }, { threshold: 0 }).observe(heroCta);
+        entries.forEach(function (e) { header.classList.toggle('cta-away', e.intersectionRatio < 0.99); });
+      }, { threshold: [0, 0.99, 1] }).observe(heroCta);
     } else { header.classList.add('cta-away'); }
   }
   $$('[data-copy]').forEach(function (btn) {

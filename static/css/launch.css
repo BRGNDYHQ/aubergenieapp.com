@@ -214,3 +214,25 @@
 @media (max-width: 899px) {
   .page-home .plate-hero { width: min(74vw, 340px); justify-self: end; margin-right: calc(-1 * var(--gutter) - 13vw); }
 }
+
+/* Phone hero v3: one beautiful plate, the genie peeking in, a single dish tag */
+@media (max-width: 899px) {
+  .page-home .hero-stage { display: block; position: relative; order: -1; height: min(80vw, 380px); margin: 0 calc(-1 * var(--gutter)) 1.1rem; }
+  .page-home .plate-hero { position: absolute; top: 0; right: -16vw; width: min(90vw, 430px); margin: 0; }
+  .page-home .hero-float { position: absolute; left: var(--gutter); top: 18%; width: 54px; margin: 0; }
+  .page-home .hero-float .float-shadow { display: block; }
+  .page-home .hero-caption { position: absolute; left: var(--gutter); bottom: 6%; display: flex; align-items: baseline; gap: .45rem; padding: .5rem .95rem; border-radius: 999px;
+    background: var(--glass); border: 1px solid var(--glass-edge); box-shadow: inset 0 1px 0 var(--glass-lip), 0 10px 24px -14px rgba(var(--shadow-ink), .5);
+    -webkit-backdrop-filter: blur(16px) saturate(1.3); backdrop-filter: blur(16px) saturate(1.3); max-width: calc(100% - 2 * var(--gutter) - 60px); }
+  .page-home .hero-caption .dish { font-size: .98rem; line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .page-home .hero-caption .facts { margin: 0; font-size: .8rem; white-space: nowrap; }
+  .page-home .hero-stage [data-next-dish] { position: absolute; right: var(--gutter); bottom: 6%; margin: 0; width: 46px; min-height: 46px; padding: 0; border-radius: 50%; font-size: 0; gap: 0; }
+  .page-home .hero-stage [data-next-dish] svg { width: 20px; height: 20px; }
+}
+@media (max-width: 899px) { .page-home .hero-float { top: auto; bottom: calc(6% + 58px); left: calc(var(--gutter) + 6px); width: 50px; } }
+@media (max-width: 899px) {
+  .page-home .hero-caption { display: grid; gap: .1rem; padding: .55rem 1rem .6rem; border-radius: 18px; max-width: min(62vw, 260px); }
+  .page-home .hero-caption .dish { white-space: normal; overflow: visible; font-size: 1rem; }
+  .page-home .hero-float { bottom: calc(6% + 74px); }
+}
+@media (max-width: 899px) { .page-home .hero-float { bottom: calc(6% + 96px); } }
