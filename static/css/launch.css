@@ -295,3 +295,22 @@
 /* Homepage: one clear link to the features page, under the gallery */
 .plates-more { margin-top: 1.8rem; }
 @media (min-width: 760px) { .plates-more { text-align: center; margin-top: 2.6rem; } }
+
+/* ---- From the 100 visitor reviews: readability and clarity ---- */
+/* Darker secondary text in light mode */
+@media (prefers-color-scheme: light) { .page-launch, .page-thanks { --ink-2: #574C54; } }
+/* Chosen options show a tick, not just a tint */
+.page-launch .chip[aria-pressed="true"]::before, .page-launch .chip[aria-checked="true"]::before,
+.choice input:checked + span::before { content: "✓"; margin-right: .35em; font-weight: 800; }
+.choice input:checked + span, .page-launch .chip[aria-pressed="true"], .page-launch .chip[aria-checked="true"] { border-width: 2px; }
+/* Dark mode: an unticked checkbox needs a visible edge */
+@media (prefers-color-scheme: dark) {
+  .signup-check input:not(:checked) { outline: 2px solid #CFC3CB; outline-offset: -2px; border-radius: 5px; }
+  .beta-note-more a, .beta-note .link-quiet { color: var(--accent-strong); }
+}
+/* How it works: the verb heading never looks switched off */
+.page-how .verbs span { color: var(--ink); }
+.page-how .verbs span.is-on { color: var(--accent); }
+/* Homepage desktop: no floating genie beside the plate */
+.page-index .hero-float { display: none; }
+.gallery-hint { color: var(--ink); }

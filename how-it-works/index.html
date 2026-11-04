@@ -28,7 +28,7 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/static/fonts/archivo-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/static/css/site.css?v=f1d834fdd0">
-<link rel="stylesheet" href="/static/css/launch.css?v=27">
+<link rel="stylesheet" href="/static/css/launch.css?v=28">
 <script>(function(d){d.classList.add('js');try{d.classList.add(matchMedia('(prefers-reduced-motion: reduce)').matches?'still':'motion')}catch(e){d.classList.add('still')}setTimeout(function(){if(!d.classList.contains('js-ready')){d.classList.remove('motion');d.classList.add('still')}},4000)})(document.documentElement)</script>
 </head>
 <body class="page-home page-launch page-how">
@@ -50,7 +50,7 @@
   <div class="wrap">
     <p class="hero-eyebrow">How Aubergenie works</p>
     <h1>From "what's for dinner?" to an empty plate.</h1>
-    <p class="lede">Here's what it does, in the order you'd use it. Tap the examples to try them.</p>
+    <p class="lede">Here's what it does, in the order you'd use it. Try the examples as you go.</p>
     <nav class="how-jump" aria-label="On this page">
       <a href="#find">Save any recipe</a>
       <a href="#once">Say it once</a>
@@ -68,24 +68,25 @@
       <h2 class="verbs"><span data-verb="find">Find it.</span> <span data-verb="save">Save it.</span> <span data-verb="make">Make it.</span></h2>
       <p class="scene-lede">However it arrives, it lands as one page: amounts, steps and timers, ready to cook.</p>
       <div class="chips" role="group" aria-label="Where a recipe comes from">
-        <button class="chip" type="button" data-source="words" aria-pressed="true">Your Words</button>
+        <button class="chip" type="button" data-source="photo" aria-pressed="true">A Photo</button>
         <button class="chip" type="button" data-source="link" aria-pressed="false">A Link</button>
-        <button class="chip" type="button" data-source="photo" aria-pressed="false">A Photo</button>
+        <button class="chip" type="button" data-source="words" aria-pressed="false">Your Words</button>
         <button class="chip" type="button" data-source="friend" aria-pressed="false">A Friend</button>
-        <button class="chip" type="button" data-source="hand" aria-pressed="false">By Hand</button>
+        <button class="chip" type="button" data-source="hand" aria-pressed="false">Type it in</button>
       </div>
       <p class="truth" data-truth aria-live="polite">
-        <span data-truth-for="words">Say what you fancy. Aubergenie AI writes it around how you eat.<b class="truth-tag">Uses the AI · needs Sign in with Apple</b></span>
+        <span data-truth-for="words" hidden>Say what you fancy. Aubergenie AI writes it around how you eat.<b class="truth-tag">Uses the AI · needs Sign in with Apple</b></span>
         <span data-truth-for="link" hidden>Paste a link. Most sites copy across exactly as written.<b class="truth-tag">No account · no AI</b></span>
-        <span data-truth-for="photo" hidden>A card or cookbook page, copied as written. A dish gets Aubergenie's own take.<b class="truth-tag">Uses the AI · needs Sign in with Apple</b></span>
+        <span data-truth-for="photo">A card or cookbook page, copied as written. A dish gets Aubergenie's own take.<b class="truth-tag">Uses the AI · needs Sign in with Apple</b></span>
         <span data-truth-for="friend" hidden>Sam sends the recipe itself. One tap saves it.<b class="truth-tag">No account · no AI</b></span>
         <span data-truth-for="hand" hidden>Write your own, even offline.<b class="truth-tag">No account · no AI</b></span>
       </p>
+      <p class="quiet">Already got a collection? Bring it with you: links, photos of pages and cards, or files friends send. The AI is optional for all of it.</p>
     </div>
 
     <div class="find-stage reveal">
       <div class="find-input" data-find-input>
-        <div class="input-words" data-input="words">
+        <div class="input-words" data-input="words" hidden>
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 15l.7 2.3L22 18l-2.3.7L19 21l-.7-2.3L16 18l2.3-.7z"/></svg>
           <span class="typed" data-typed data-text="Thai chicken with peanut sauce, for four">Thai chicken with peanut sauce, for four</span>
         </div>
@@ -93,7 +94,7 @@
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>
           <span class="typed" data-typed data-text="…/recipes/satay-chicken">…/recipes/satay-chicken</span>
         </div>
-        <div class="input-photo" data-input="photo" hidden>
+        <div class="input-photo" data-input="photo">
           <picture><source type="image/avif" srcset="/static/images/plate-satay-720.avif"><img src="/static/images/plate-satay-720.jpg" width="720" height="720" loading="lazy" decoding="async" alt=""></picture>
           <i></i><i></i><i></i><i></i>
         </div>
@@ -333,7 +334,7 @@
       <figure class="screen send-from screen-framed">
         <picture><source srcset="/static/images/screen-08-share-menu-dark-framed.jpg" media="(prefers-color-scheme: dark)"><img src="/static/images/screen-08-share-menu-framed.jpg" width="600" height="1256" loading="lazy" decoding="async"
              alt="Sharing Satay Chicken from the app: Send Recipe, for someone with Aubergenie; Share as Image; Copy as Text."></picture>
-        <figcaption>You</figcaption>
+        <figcaption>You tap Share</figcaption>
       </figure>
       <div class="send-path" aria-hidden="true">
         <div class="recipe-file">
@@ -354,11 +355,13 @@
   <div class="wrap">
     <h2>Good to know.</h2>
     <ul class="facts-list">
-      <li><strong>Free during the beta.</strong> I'll tell everyone on the list about pricing before launch, so there are no surprises.</li>
+      <li><strong>Free during the beta.</strong> I haven't set a price yet. You'll hear it from me before launch, and nothing will ever charge you unless you choose it.</li>
       <li><strong>iPhone, iPad and Mac.</strong> Your recipes sync through your own iCloud.</li>
       <li><strong>No account needed</strong> to save, plan, shop and cook. Sign in with Apple only to use the AI.</li>
       <li><strong>Your recipes are yours.</strong> Export them whenever you like.</li>
-      <li><strong>No ads, no tracking.</strong> Nothing is ever sold.</li>
+      <li><strong>The AI is optional.</strong> It only helps when you ask, and you can switch it off. Your own recipes work without it.</li>
+      <li><strong>No ads, no tracking.</strong> Your recipes live in your own iCloud and only leave it when you ask the AI for help. Nothing is ever sold.</li>
+      <li><strong>Not on Android,</strong> sorry. It's built for Apple devices.</li>
     </ul>
   </div>
 </section>
@@ -391,7 +394,7 @@
           <div class="choices" role="radiogroup" aria-labelledby="how-q1">
             <label class="choice"><input type="radio" name="cooks" value="most-days"><span>Most days</span></label>
             <label class="choice"><input type="radio" name="cooks" value="few-times-a-week"><span>A few times a week</span></label>
-            <label class="choice"><input type="radio" name="cooks" value="now-and-then"><span>Now and then</span></label>
+            <label class="choice"><input type="radio" name="cooks" value="now-and-then"><span>Now and then, or hardly ever</span></label>
           </div>
           <p class="q-label" id="how-q2">Where do most of your recipes live now?</p>
           <div class="choices" role="radiogroup" aria-labelledby="how-q2">
@@ -399,19 +402,17 @@
             <label class="choice"><input type="radio" name="recipes_from" value="cookbooks"><span>Cookbooks</span></label>
             <label class="choice"><input type="radio" name="recipes_from" value="social"><span>Screenshots and social</span></label>
             <label class="choice"><input type="radio" name="recipes_from" value="family"><span>Family recipes and cards</span></label>
-            <label class="choice"><input type="radio" name="recipes_from" value="in-my-head"><span>In my head</span></label>
+            <label class="choice"><input type="radio" name="recipes_from" value="in-my-head"><span>In my head, or nowhere yet</span></label>
           </div>
           <label class="q-label" for="how-q3">What gets in the way of cooking more?</label>
-          <input class="signup-email q-text" id="how-q3" type="text" name="wish" maxlength="200" autocomplete="off" placeholder="Ideas, time, the shopping…" aria-describedby="how-q3-hint">
-          <p class="signup-note" id="how-q3-hint">No health or allergy details, please. The beta needs iOS 26.4 or later (Settings › General › About).</p>
+          <input class="signup-email q-text" id="how-q3" type="text" name="wish" maxlength="200" autocomplete="off" placeholder="Ideas, time, the shopping… anything" aria-describedby="how-q3-hint">
+          <p class="signup-note" id="how-q3-hint">No medical details, please: "dietary needs" is plenty. The beta needs an iPhone 11 or newer on iOS 26.4 or later. Not sure? Tick anyway, and TestFlight will tell you.</p>
         </fieldset>
         <div class="signup-submit"><button class="btn btn-primary btn-fill" type="submit">Keep me posted</button></div>
-        <p class="signup-note">Just launch news and beta invites. No spam, and you can leave whenever you like. <a href="/privacy/#email-list">Privacy</a></p>
+        <p class="signup-note">Just launch news and beta invites. No spam. Want off the list? Email privacy@aubergenieapp.com. <a href="/privacy/#email-list">Privacy</a></p>
         <p class="signup-status" data-signup-status role="status" aria-live="polite"></p>
       </form>
 
-    <p class="invite-trust">No ads, no tracking. Your recipes stay in your own iCloud.</p>
-    <p class="price-note">Free during the beta. I'll tell everyone on the list about pricing before launch, so there are no surprises.</p>
     <p class="founder">Questions, or just want to talk food? Email <a href="mailto:hello@aubergenieapp.com">hello@aubergenieapp.com</a>. I post what I'm cooking on Instagram at <a href="https://www.instagram.com/ndtthomas/" rel="me">@ndtthomas</a>.<span class="founder-sign">Nathan</span></p>
   </div>
 </section>
@@ -425,7 +426,7 @@
       <span class="footer-tag">Rediscover the joy of cooking.</span>
     </div>
     <nav class="footer-nav" aria-label="Legal and support">
-      <a href="/">About the app</a>
+      <a href="/">Home</a>
       <a href="/beta/">iPhone beta</a>
       <a href="/support/">Support</a>
       <a href="/privacy/">Privacy</a>
