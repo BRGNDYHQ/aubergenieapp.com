@@ -9,6 +9,8 @@
  *
  * The beta-tester checkbox is sent as `tag=beta-tester` only when it is ticked.
  * Adding ?test (or #test) to the address ticks it, for links from tester videos.
+ * Ticking it reveals three optional questions (metadata__cooks, metadata__recipes_from,
+ * metadata__wish); while it is unticked they are disabled, so nothing extra is sent.
  */
 (function () {
   var forms = Array.prototype.slice.call(document.querySelectorAll('form[data-signup]'));
@@ -21,7 +23,18 @@
     var check = form.querySelector('input[name="tag"][value="beta-tester"]');
     var status = form.querySelector('[data-signup-status]');
     var button = form.querySelector('button[type="submit"]');
+    var qs = form.querySelector('[data-tester-qs]');
     if (check && wantsTest) check.checked = true;
+    // The tester questions only show (and only send) when the testing box is ticked.
+    var syncQs = function () { if (!qs) return; var on = !!(check && check.checked); qs.hidden = !on; qs.disabled = !on; };
+    if (check) check.addEventListener('change', syncQs);
+    syncQs();
+    var answer = function (name) {
+      var el = form.querySelector('[name="' + name + '"]:checked') || form.querySelector('input[type="text"][name="' + name + '"]');
+      if (!el || !el.value) return '';
+      var label = el.type === 'radio' && el.nextElementSibling ? el.nextElementSibling.textContent : el.value;
+      return label.trim();
+    };
 
     form.addEventListener('submit', function (e) {
       var action = form.getAttribute('action') || '';
@@ -35,6 +48,11 @@
         var body = 'Please keep me posted about Aubergenie.\n\n' +
           'Email: ' + (email ? email.value : '') + '\n' +
           "I'd be interested in testing an early version on iPhone: " + (tester ? 'Yes' : 'No') + '\n';
+        if (tester) {
+          body += '\nHow often I cook: ' + (answer('metadata__cooks') || '-') +
+            '\nWhere most of my recipes live: ' + (answer('metadata__recipes_from') || '-') +
+            '\nWhat would make cooking more fun: ' + (answer('metadata__wish') || '-') + '\n';
+        }
         window.location.href = action.split('?')[0] + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
         if (status) status.textContent = 'Your email app should open with a note ready to send. Press send and you’re on the list.';
         return;

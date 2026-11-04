@@ -28,7 +28,7 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/static/fonts/archivo-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/static/css/site.css?v=f1d834fdd0">
-<link rel="stylesheet" href="/static/css/launch.css?v=1">
+<link rel="stylesheet" href="/static/css/launch.css?v=3">
 <script>(function(d){d.classList.add('js');try{d.classList.add(matchMedia('(prefers-reduced-motion: reduce)').matches?'still':'motion')}catch(e){d.classList.add('still')}setTimeout(function(){if(!d.classList.contains('js-ready')){d.classList.remove('motion');d.classList.add('still')}},4000)})(document.documentElement)</script>
 </head>
 <body class="page-home page-launch page-beta">
@@ -58,12 +58,32 @@
         <label class="signup-label" for="beta-email">Your email</label>
         <div class="signup-row">
           <input class="signup-email" id="beta-email" type="email" name="email" autocomplete="email" autocapitalize="off" spellcheck="false" placeholder="you@example.com" required>
-          <button class="btn btn-primary btn-fill" type="submit" data-hero-cta>Keep me posted</button>
         </div>
         <label class="signup-check">
           <input type="checkbox" name="tag" value="beta-tester" checked aria-describedby="beta-check-hint">
           <span>I'd be interested in testing an early version on iPhone.</span>
         </label>
+        <fieldset class="tester-qs" data-tester-qs>
+          <legend>Three quick questions <span>(optional, to help me pick a varied first group)</span></legend>
+          <p class="q-label" id="beta-q1">How often do you cook?</p>
+          <div class="choices" role="radiogroup" aria-labelledby="beta-q1">
+            <label class="choice"><input type="radio" name="metadata__cooks" value="most-days"><span>Most days</span></label>
+            <label class="choice"><input type="radio" name="metadata__cooks" value="few-times-a-week"><span>A few times a week</span></label>
+            <label class="choice"><input type="radio" name="metadata__cooks" value="now-and-then"><span>Now and then</span></label>
+          </div>
+          <p class="q-label" id="beta-q2">Where do most of your recipes live now?</p>
+          <div class="choices" role="radiogroup" aria-labelledby="beta-q2">
+            <label class="choice"><input type="radio" name="metadata__recipes_from" value="websites"><span>Websites and apps</span></label>
+            <label class="choice"><input type="radio" name="metadata__recipes_from" value="cookbooks"><span>Cookbooks</span></label>
+            <label class="choice"><input type="radio" name="metadata__recipes_from" value="social"><span>Screenshots and social</span></label>
+            <label class="choice"><input type="radio" name="metadata__recipes_from" value="family"><span>Family recipes and cards</span></label>
+            <label class="choice"><input type="radio" name="metadata__recipes_from" value="in-my-head"><span>In my head</span></label>
+          </div>
+          <label class="q-label" for="beta-q3">What would make cooking more fun for you?</label>
+          <input class="signup-email q-text" id="beta-q3" type="text" name="metadata__wish" maxlength="200" autocomplete="off" placeholder="One line is plenty" aria-describedby="beta-q3-hint">
+          <p class="signup-note" id="beta-q3-hint">Please leave out health or allergy details. The beta needs an iPhone on iOS 26.4 or later.</p>
+        </fieldset>
+        <div class="signup-submit"><button class="btn btn-primary btn-fill" type="submit" data-hero-cta>Keep me posted</button></div>
         <p class="signup-note" id="beta-check-hint">Testing places are limited; I'll contact you if one becomes available. You'll also hear when Aubergenie launches. Untick the box if launch news is all you'd like. <a href="/privacy/#email-list">Privacy</a></p>
         <p class="signup-status" data-signup-status role="status" aria-live="polite"></p>
       </form>
@@ -72,9 +92,9 @@
     <div class="hero-stage">
       <figure class="screen screen-glimpse beta-glimpse">
         <picture>
-          <source type="image/avif" srcset="/static/images/screen-create-tonight-600.avif 600w, /static/images/screen-create-tonight-1200.avif 1200w" sizes="(min-width: 900px) 320px, min(60vw, 260px)">
-          <img src="/static/images/screen-create-tonight-600.jpg" srcset="/static/images/screen-create-tonight-600.jpg 600w, /static/images/screen-create-tonight-1200.jpg 1200w" sizes="(min-width: 900px) 320px, min(60vw, 260px)" width="600" height="1303" fetchpriority="high" decoding="async"
-               alt="Aubergenie's Create screen on iPhone: 'Hello again, Nathan. Tonight's still open.' above a box reading 'Anything you'd like to make…', with a camera button, Pick up your photo and Paste.">
+          <source type="image/avif" srcset="/static/images/screen-create-ideas-600.avif 600w, /static/images/screen-create-ideas-1200.avif 1200w" sizes="(min-width: 900px) 320px, min(60vw, 260px)">
+          <img src="/static/images/screen-create-ideas-600.jpg" srcset="/static/images/screen-create-ideas-600.jpg 600w, /static/images/screen-create-ideas-1200.jpg 1200w" sizes="(min-width: 900px) 320px, min(60vw, 260px)" width="600" height="1303" fetchpriority="high" decoding="async"
+               alt="Aubergenie's Create screen on iPhone: 'Hello again, Nathan. Tonight's still open.' above a box reading 'Anything you'd like to make…', with a camera button and two ideas to start from: Frittata, 35g protein, and Stew &amp; dumplings.">
         </picture>
       </figure>
     </div>
@@ -131,6 +151,6 @@
   </div>
 </footer>
 <script src="/static/js/site.js?v=95c656e06f" defer></script>
-<script src="/static/js/signup.js?v=1" defer></script>
+<script src="/static/js/signup.js?v=2" defer></script>
 </body>
 </html>

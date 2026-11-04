@@ -28,7 +28,7 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/static/fonts/archivo-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/static/css/site.css?v=f1d834fdd0">
-<link rel="stylesheet" href="/static/css/launch.css?v=1">
+<link rel="stylesheet" href="/static/css/launch.css?v=3">
 <script>(function(d){d.classList.add('js');try{d.classList.add(matchMedia('(prefers-reduced-motion: reduce)').matches?'still':'motion')}catch(e){d.classList.add('still')}setTimeout(function(){if(!d.classList.contains('js-ready')){d.classList.remove('motion');d.classList.add('still')}},4000)})(document.documentElement)</script>
 </head>
 <body class="page-home page-launch">
@@ -58,12 +58,32 @@
         <label class="signup-label" for="top-email">Your email</label>
         <div class="signup-row">
           <input class="signup-email" id="top-email" type="email" name="email" autocomplete="email" autocapitalize="off" spellcheck="false" placeholder="you@example.com" required>
-          <button class="btn btn-primary btn-fill" type="submit" data-hero-cta>Keep me posted</button>
         </div>
         <label class="signup-check">
           <input type="checkbox" name="tag" value="beta-tester" aria-describedby="top-check-hint">
           <span>I'd be interested in testing an early version on iPhone.</span>
         </label>
+        <fieldset class="tester-qs" data-tester-qs>
+          <legend>Three quick questions <span>(optional, to help me pick a varied first group)</span></legend>
+          <p class="q-label" id="top-q1">How often do you cook?</p>
+          <div class="choices" role="radiogroup" aria-labelledby="top-q1">
+            <label class="choice"><input type="radio" name="metadata__cooks" value="most-days"><span>Most days</span></label>
+            <label class="choice"><input type="radio" name="metadata__cooks" value="few-times-a-week"><span>A few times a week</span></label>
+            <label class="choice"><input type="radio" name="metadata__cooks" value="now-and-then"><span>Now and then</span></label>
+          </div>
+          <p class="q-label" id="top-q2">Where do most of your recipes live now?</p>
+          <div class="choices" role="radiogroup" aria-labelledby="top-q2">
+            <label class="choice"><input type="radio" name="metadata__recipes_from" value="websites"><span>Websites and apps</span></label>
+            <label class="choice"><input type="radio" name="metadata__recipes_from" value="cookbooks"><span>Cookbooks</span></label>
+            <label class="choice"><input type="radio" name="metadata__recipes_from" value="social"><span>Screenshots and social</span></label>
+            <label class="choice"><input type="radio" name="metadata__recipes_from" value="family"><span>Family recipes and cards</span></label>
+            <label class="choice"><input type="radio" name="metadata__recipes_from" value="in-my-head"><span>In my head</span></label>
+          </div>
+          <label class="q-label" for="top-q3">What would make cooking more fun for you?</label>
+          <input class="signup-email q-text" id="top-q3" type="text" name="metadata__wish" maxlength="200" autocomplete="off" placeholder="One line is plenty" aria-describedby="top-q3-hint">
+          <p class="signup-note" id="top-q3-hint">Please leave out health or allergy details. The beta needs an iPhone on iOS 26.4 or later.</p>
+        </fieldset>
+        <div class="signup-submit"><button class="btn btn-primary btn-fill" type="submit" data-hero-cta>Keep me posted</button></div>
         <p class="signup-note" id="top-check-hint">I'll email you about the launch and early access. Testing places are limited; I'll contact you if one becomes available. <a href="/privacy/#email-list">Privacy</a></p>
         <p class="signup-status" data-signup-status role="status" aria-live="polite"></p>
       </form>
@@ -129,16 +149,16 @@
   <div class="wrap glimpse-grid">
     <figure class="screen screen-glimpse reveal">
       <picture>
-        <source type="image/avif" srcset="/static/images/screen-create-tonight-600.avif 600w, /static/images/screen-create-tonight-1200.avif 1200w" sizes="(min-width: 900px) 320px, min(72vw, 300px)">
-        <img src="/static/images/screen-create-tonight-600.jpg" srcset="/static/images/screen-create-tonight-600.jpg 600w, /static/images/screen-create-tonight-1200.jpg 1200w" sizes="(min-width: 900px) 320px, min(72vw, 300px)" width="600" height="1303" loading="lazy" decoding="async"
-             alt="Aubergenie's Create screen on iPhone: 'Hello again, Nathan. Tonight's still open.' above a box reading 'Anything you'd like to make…', with a camera button, Pick up your photo and Paste. Tabs along the bottom: Create, Recipes, Plan and Shopping.">
+        <source type="image/avif" srcset="/static/images/screen-create-ideas-600.avif 600w, /static/images/screen-create-ideas-1200.avif 1200w" sizes="(min-width: 900px) 320px, min(72vw, 300px)">
+        <img src="/static/images/screen-create-ideas-600.jpg" srcset="/static/images/screen-create-ideas-600.jpg 600w, /static/images/screen-create-ideas-1200.jpg 1200w" sizes="(min-width: 900px) 320px, min(72vw, 300px)" width="600" height="1303" loading="lazy" decoding="async"
+             alt="Aubergenie's Create screen on iPhone: 'Hello again, Nathan. Tonight's still open.' above a box reading 'Anything you'd like to make…', with a camera button and two ideas to start from: Frittata, 35g protein, and Stew &amp; dumplings. Tabs along the bottom: Create, Recipes, Plan and Shopping.">
       </picture>
     </figure>
     <div class="glimpse-words">
       <p class="eyebrow">A glimpse of the app</p>
       <h2>Tonight's still open.</h2>
       <p class="scene-lede">That's how Aubergenie greets you. No feed to scroll, no adverts, no life story before the ingredients. Just one question: what would you like to make?</p>
-      <p class="scene-lede">Type it, photograph it or paste a link, and a recipe appears, ready to cook.</p>
+      <p class="scene-lede">Type it, photograph it or paste a link, and a recipe appears, ready to cook. Stuck for ideas? A couple are waiting to get you started.</p>
       <p class="quiet">The AI only runs when you ask, and you can switch it off in Settings. Bringing your own recipes works without it. <a href="/support/#first-recipe">How it works</a></p>
     </div>
   </div>
@@ -194,12 +214,32 @@
       <label class="signup-label" for="join-email">Your email</label>
       <div class="signup-row">
         <input class="signup-email" id="join-email" type="email" name="email" autocomplete="email" autocapitalize="off" spellcheck="false" placeholder="you@example.com" required>
-        <button class="btn btn-primary btn-fill" type="submit">Keep me posted</button>
       </div>
       <label class="signup-check">
         <input type="checkbox" name="tag" value="beta-tester" aria-describedby="join-check-hint">
         <span>I'd be interested in testing an early version on iPhone.</span>
       </label>
+      <fieldset class="tester-qs" data-tester-qs>
+        <legend>Three quick questions <span>(optional, to help me pick a varied first group)</span></legend>
+        <p class="q-label" id="join-q1">How often do you cook?</p>
+        <div class="choices" role="radiogroup" aria-labelledby="join-q1">
+          <label class="choice"><input type="radio" name="metadata__cooks" value="most-days"><span>Most days</span></label>
+          <label class="choice"><input type="radio" name="metadata__cooks" value="few-times-a-week"><span>A few times a week</span></label>
+          <label class="choice"><input type="radio" name="metadata__cooks" value="now-and-then"><span>Now and then</span></label>
+        </div>
+        <p class="q-label" id="join-q2">Where do most of your recipes live now?</p>
+        <div class="choices" role="radiogroup" aria-labelledby="join-q2">
+          <label class="choice"><input type="radio" name="metadata__recipes_from" value="websites"><span>Websites and apps</span></label>
+          <label class="choice"><input type="radio" name="metadata__recipes_from" value="cookbooks"><span>Cookbooks</span></label>
+          <label class="choice"><input type="radio" name="metadata__recipes_from" value="social"><span>Screenshots and social</span></label>
+          <label class="choice"><input type="radio" name="metadata__recipes_from" value="family"><span>Family recipes and cards</span></label>
+          <label class="choice"><input type="radio" name="metadata__recipes_from" value="in-my-head"><span>In my head</span></label>
+        </div>
+        <label class="q-label" for="join-q3">What would make cooking more fun for you?</label>
+        <input class="signup-email q-text" id="join-q3" type="text" name="metadata__wish" maxlength="200" autocomplete="off" placeholder="One line is plenty" aria-describedby="join-q3-hint">
+        <p class="signup-note" id="join-q3-hint">Please leave out health or allergy details. The beta needs an iPhone on iOS 26.4 or later.</p>
+      </fieldset>
+      <div class="signup-submit"><button class="btn btn-primary btn-fill" type="submit">Keep me posted</button></div>
       <p class="signup-note" id="join-check-hint">I'll email you about the launch and early access, and nothing else. Testing places are limited; I'll contact you if one becomes available. Unsubscribe any time. <a href="/privacy/#email-list">Privacy</a></p>
       <p class="signup-status" data-signup-status role="status" aria-live="polite"></p>
     </form>
@@ -230,6 +270,6 @@
   </div>
 </footer>
 <script src="/static/js/site.js?v=95c656e06f" defer></script>
-<script src="/static/js/signup.js?v=1" defer></script>
+<script src="/static/js/signup.js?v=2" defer></script>
 </body>
 </html>
