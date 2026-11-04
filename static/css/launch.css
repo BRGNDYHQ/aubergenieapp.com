@@ -1,0 +1,120 @@
+/* Launch page: signup, spark, glimpse, plates, beta expectations. Builds on site.css tokens. */
+
+/* Filled button for the one main action */
+.btn-fill { color: #FFFFFF; background: var(--accent); border-color: transparent; -webkit-backdrop-filter: none; backdrop-filter: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .18), 0 14px 30px -16px rgba(var(--shadow-ink), .6); }
+.btn-fill:hover { box-shadow: inset 0 1px 0 rgba(255, 255, 255, .18), 0 18px 34px -16px rgba(var(--shadow-ink), .65); }
+.btn-fill[disabled] { opacity: .7; cursor: progress; }
+@media (prefers-color-scheme: dark) { .btn-fill { color: #16101A; } }
+
+/* Signup form */
+.signup { margin-top: 1.5rem; max-width: 34rem; }
+.signup-label { display: block; font-size: .92rem; font-weight: 600; color: var(--ink-2); margin: 0 0 .4rem .2rem; }
+.signup-row { display: flex; flex-wrap: wrap; gap: .6rem; }
+.signup-email {
+  flex: 1 1 15rem; min-width: 0; min-height: 54px; padding: 0 1.2rem; border-radius: 999px;
+  font: 500 1.0625rem/1.2 var(--font); color: var(--ink); background: var(--raised);
+  border: 1px solid var(--hair-strong); box-shadow: inset 0 1px 2px rgba(var(--shadow-ink), .06);
+  -webkit-appearance: none; appearance: none;
+}
+.signup-email::placeholder { color: color-mix(in srgb, var(--ink-2) 75%, transparent); }
+.signup-email:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent); }
+.signup-row .btn { flex: 0 0 auto; }
+@media (max-width: 459px) { .signup-row .btn { flex: 1 1 100%; } }
+.signup-check { display: flex; gap: .7rem; align-items: flex-start; margin-top: 1rem; font-weight: 600; line-height: 1.4; cursor: pointer; text-wrap: pretty; }
+.signup-check input { flex: 0 0 auto; width: 22px; height: 22px; margin: .05rem 0 0; accent-color: var(--accent); cursor: pointer; }
+.signup-note { margin-top: .6rem; font-size: .9rem; line-height: 1.45; color: var(--ink-2); text-wrap: pretty; }
+.signup-status { margin-top: .6rem; font-weight: 600; color: var(--success); }
+.signup-status:empty { display: none; }
+.signup-centre { margin-inline: auto; width: 100%; text-align: left; }
+.signup-feature { padding: 1.2rem 1.2rem 1.1rem; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--hair); box-shadow: var(--shadow-soft); }
+.signup-feature .signup-check { padding: .8rem .9rem; margin-top: .9rem; border-radius: var(--radius-s); background: var(--accent-soft); }
+
+/* Hero: a smaller plate on phones keeps the signup close */
+.page-launch .hero-copy .lede { max-width: 38ch; }
+@media (max-width: 599px) {
+  .page-launch .plate-hero { width: min(58vw, 240px); }
+}
+
+/* Spark */
+.beats { list-style: none; margin: 2.4rem 0 0; padding: 0; display: grid; gap: 1rem; }
+.beat { padding: 1.5rem 1.4rem 1.6rem; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--hair); }
+.beat h3 { margin-top: .9rem; }
+.beat p { margin-top: .5rem; color: var(--ink-2); text-wrap: pretty; }
+.beat-icon { display: inline-grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; color: var(--accent); background: var(--accent-soft); }
+.beat-icon svg { width: 24px; height: 24px; }
+@media (min-width: 760px) { .beats { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+/* Glimpse of the app */
+.glimpse-grid { display: grid; gap: 2.4rem; align-items: center; }
+.screen-glimpse { width: min(72vw, 300px); justify-self: center; border-radius: 13% / 6%; }
+.glimpse-words h2 { max-width: 12ch; }
+.glimpse-words .scene-lede + .scene-lede { margin-top: .8rem; }
+@media (min-width: 900px) {
+  .glimpse-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 4rem; }
+  .screen-glimpse { width: 320px; }
+}
+
+/* Plates */
+.scene-plates { margin-top: 6rem; }
+.plates-grid { display: grid; gap: 1rem; align-items: center; }
+.gallery { margin-top: 1.4rem; }
+@media (min-width: 900px) {
+  .plates-grid { grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: 4rem; }
+  .gallery { gap: 2rem 1.6rem; margin-top: 0; }
+  .gallery .plate-small .dish { font-size: 1.05rem; }
+}
+
+/* What to expect */
+.expect { list-style: none; margin: 2.2rem 0 0; padding: 0; display: grid; gap: 1.2rem 2rem; }
+.expect li { padding-top: 1.1rem; border-top: 2px solid var(--accent-soft); }
+.expect h3 { font-size: 1.25rem; }
+.expect p { margin-top: .4rem; color: var(--ink-2); text-wrap: pretty; }
+@media (min-width: 700px) { .expect { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1000px) { .expect { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+/* Join */
+.scene-join .signup { margin-top: .6rem; }
+.founder { margin-top: 1rem; font-size: .98rem; color: var(--ink-2); max-width: 40ch; text-wrap: pretty; }
+.founder-sign { display: block; margin-top: .3rem; font-weight: 600; color: var(--ink); }
+.founder-sign::before { content: "— "; }
+
+/* Beta page */
+.page-beta .hero-copy h1 { max-width: 12ch; }
+.how-steps { margin: 2rem 0 0; padding: 0; list-style: none; counter-reset: how; display: grid; gap: 1.2rem; max-width: 44rem; }
+.how-steps li { counter-increment: how; display: grid; grid-template-columns: 2.4rem minmax(0, 1fr); gap: .9rem; align-items: start; }
+.how-steps li::before { content: counter(how); display: grid; place-items: center; width: 2.4rem; height: 2.4rem; border-radius: 50%; font-weight: 700; color: var(--accent); background: var(--accent-soft); }
+.how-steps strong { display: block; color: var(--ink); }
+.how-steps p { margin-top: .2rem; color: var(--ink-2); }
+.beta-glimpse { justify-self: center; }
+@media (max-width: 899px) { .page-beta .hero-stage { order: 1; display: block; } .page-beta .beta-glimpse { width: min(64vw, 260px); margin: 1rem auto 0; } }
+@media (min-width: 900px) { .page-beta .hero-stage { justify-items: center; } }
+
+/* Thanks page */
+.page-thanks .page-head { border-bottom: 0; }
+@media (min-width: 900px) { .page-beta .hero-copy h1 { font-size: clamp(2.75rem, 1.4rem + 3vw, 4.25rem); } }
+
+/* Tester questions: shown only when the testing box is ticked */
+.tester-qs { margin: 1rem 0 0; padding: 1rem 1rem 1.1rem; border: 1px solid var(--hair); border-radius: var(--radius-s); background: var(--surface); min-width: 0; }
+.tester-qs[hidden] { display: none !important; }
+.tester-qs legend { padding: 0 .3rem; font-weight: 700; }
+.tester-qs legend span { font-weight: 500; color: var(--ink-2); font-size: .9rem; }
+.q-label { display: block; margin: .9rem 0 .45rem; font-size: .95rem; font-weight: 600; }
+.tester-qs .q-label:first-of-type { margin-top: .3rem; }
+.choices { display: flex; flex-wrap: wrap; gap: .45rem; }
+.choice { position: relative; display: inline-flex; }
+.choice input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.choice span { display: inline-flex; align-items: center; min-height: 40px; padding: 0 .9rem; border-radius: 999px; font-size: .92rem; font-weight: 600;
+  color: var(--ink); background: var(--raised); border: 1px solid var(--hair-strong); transition: background .15s ease, color .15s ease, border-color .15s ease; }
+.choice input:checked + span { color: var(--accent); background: var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
+.choice input:focus-visible + span { outline: 3px solid var(--accent); outline-offset: 2px; }
+.q-text { width: 100%; min-height: 48px; font-size: 1rem; }
+.motion .tester-qs { animation: fade .3s ease; }
+.signup-submit { margin-top: 1rem; }
+@media (max-width: 459px) { .signup-submit .btn { width: 100%; } }
+.signup-feature .tester-qs { padding: 0; border: 0; background: none; border-radius: 0; }
+.signup-feature .tester-qs legend { padding: 0; margin-top: .2rem; }
+.choices { gap: .4rem; }
+.choice span { padding: 0 .8rem; font-size: .9rem; }
+@media (max-width: 459px) { .signup-feature { padding: 1rem .9rem 1rem; } .tester-qs { padding: .9rem .8rem 1rem; } }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
