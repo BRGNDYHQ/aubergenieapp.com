@@ -292,3 +292,6 @@
 .facts-list li { padding: 1rem 1.2rem; border-radius: var(--radius-s); background: var(--surface); border: 1px solid var(--hair); color: var(--ink-2); text-wrap: pretty; }
 .facts-list strong { color: var(--ink); }
 .price-note { margin-top: .2rem; font-size: .98rem; color: var(--ink-2); max-width: 40ch; text-wrap: pretty; }
+/* Homepage: one clear link to the features page, under the gallery */
+.plates-more { margin-top: 1.8rem; }
+@media (min-width: 760px) { .plates-more { text-align: center; margin-top: 2.6rem; } }
