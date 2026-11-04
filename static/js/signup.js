@@ -2,7 +2,7 @@
  * "Keep me posted" signup.
  *
  * Each form's `action` decides where a signup goes:
- *   - https://… (e.g. Buttondown's embed-subscribe URL): the browser submits the form
+ *   - https://… (the EmailOctopus form endpoint): the browser submits the form
  *     normally, and the list provider shows its own confirmation (or redirects to /thanks/).
  *   - mailto:…: no list provider yet. We open the visitor's email app with a ready-to-send
  *     note instead, so a signup still reaches us.
