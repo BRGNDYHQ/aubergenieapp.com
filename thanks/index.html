@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Nearly there · Aubergenie</title>
+<title>You're on the list · Aubergenie</title>
 <meta name="robots" content="noindex">
 <link rel="canonical" href="https://aubergenieapp.com/thanks/">
 <meta name="referrer" content="no-referrer">
@@ -15,7 +15,7 @@
 <link rel="apple-touch-icon" href="/static/icons/icon-180.png">
 <link rel="preload" href="/static/fonts/archivo-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/static/css/site.css?v=f1d834fdd0">
-<link rel="stylesheet" href="/static/css/launch.css?v=3">
+<link rel="stylesheet" href="/static/css/launch.css?v=4">
 <script>(function(d){d.classList.add('js');try{d.classList.add(matchMedia('(prefers-reduced-motion: reduce)').matches?'still':'motion')}catch(e){d.classList.add('still')}setTimeout(function(){if(!d.classList.contains('js-ready')){d.classList.remove('motion');d.classList.add('still')}},4000)})(document.documentElement)</script>
 </head>
 <body class="page-document page-thanks">
@@ -35,10 +35,11 @@
 <article class="document wrap">
   <header class="page-head">
     <img class="mascot-tile" src="/static/icons/icon-256.png?v=845df502" width="96" height="96" alt="">
-    <p class="eyebrow">Nearly there</p>
-    <h1>Check your inbox.</h1>
-    <p class="lede">I've sent you a short email. Tap the link inside to confirm, and you're on the list.</p>
-    <p class="quiet">Nothing there after a few minutes? Have a look in spam or promotions. If you said you'd like to test, I'll contact you if a place becomes available.</p>
+    <p class="eyebrow">Thank you</p>
+    <h1>You're on the list.</h1>
+    <p class="lede">I'll email you when Aubergenie launches and when early access opens. Nothing else.</p>
+    <p class="quiet" data-tester-thanks hidden>Thanks for offering to test, too. Places are limited, so I'm starting small; I'll email you personally if one becomes available.</p>
+    <p class="quiet">Changed your mind? Email <a href="mailto:privacy@aubergenieapp.com">privacy@aubergenieapp.com</a> and I'll take you off the list.</p>
     <div class="actions">
       <a class="btn btn-primary" href="/">Back to Aubergenie</a>
     </div>
@@ -61,5 +62,6 @@
   </div>
 </footer>
 <script src="/static/js/site.js?v=95c656e06f" defer></script>
+<script>if (/[?&]tester\b/.test(location.search)) document.querySelector('[data-tester-thanks]').hidden = false;</script>
 </body>
 </html>

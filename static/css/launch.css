@@ -117,3 +117,4 @@
 .choices { gap: .4rem; }
 .choice span { padding: 0 .8rem; font-size: .9rem; }
 @media (max-width: 459px) { .signup-feature { padding: 1rem .9rem 1rem; } .tester-qs { padding: .9rem .8rem 1rem; } }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
