@@ -118,3 +118,83 @@
 .choice span { padding: 0 .8rem; font-size: .9rem; }
 @media (max-width: 459px) { .signup-feature { padding: 1rem .9rem 1rem; } .tester-qs { padding: .9rem .8rem 1rem; } }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+/* Review fixes */
+/* Phone header: when the button appears, drop the text link so the logo has room */
+@media (max-width: 459px) { .page-launch .site-header.cta-away .site-nav > a:not(.btn) { display: none; } }
+/* Phone: crop the app screenshot to the part with something on it */
+@media (max-width: 899px) {
+  .screen-glimpse { aspect-ratio: 600 / 830; }
+  .screen-glimpse img { height: 100%; object-fit: cover; object-position: bottom; }
+}
+@media (prefers-color-scheme: dark) { .screen-glimpse img { filter: brightness(.9); } }
+/* Phone: shorter spark cards, icon beside the heading */
+@media (max-width: 759px) {
+  .beat { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 1rem; align-items: center; padding: 1.2rem 1.2rem 1.3rem; }
+  .beat h3 { margin-top: 0; }
+  .beat p { grid-column: 1 / -1; margin-top: .7rem; }
+  .scene-join .yolk { width: min(46vw, 180px); }
+}
+/* Desktop beta page: centre the screenshot in its column */
+@media (min-width: 900px) { .page-beta .hero-stage { display: flex; justify-content: center; align-items: center; } }
+
+/* ---- Rewrite (copy-first hero, gallery, what-it-does, beta note, share) ---- */
+/* Phone: promise and sign-up first, then the plate */
+@media (max-width: 899px) {
+  .page-launch .hero-stage { order: 0; margin-top: 2.2rem; }
+  .page-home .plate-hero { width: min(78vw, 320px); }
+}
+.hero-proof { margin-top: .35rem; font-size: .85rem; font-weight: 600; color: var(--accent); }
+.page-launch .hero-copy h1 { max-width: 12ch; }
+
+/* Cooked at home: swipeable on phones, a grid on bigger screens */
+.scene-plates { margin-top: 4rem; }
+.gallery { list-style: none; margin: 2rem 0 0; padding: 0; display: grid; gap: 2rem 1.4rem; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.gallery .plate-small { margin: 0; }
+.plate-name { margin-top: .7rem; display: grid; gap: .15rem; }
+.plate-name .dish { font-size: 1.05rem; color: var(--ink); line-height: 1.1; }
+.plate-name .facts { font-size: .85rem; }
+.gallery-hint { display: none; }
+.gallery:focus-visible { outline: 3px solid var(--accent); outline-offset: 6px; border-radius: 12px; }
+@media (max-width: 759px) {
+  .gallery { display: flex; gap: 1.1rem; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter);
+    margin-inline: calc(-1 * var(--gutter)); padding: .4rem var(--gutter) 1.2rem; scrollbar-width: none; }
+  .gallery::-webkit-scrollbar { display: none; }
+  .gallery .plate-small { flex: 0 0 68vw; max-width: 280px; scroll-snap-align: start; }
+  .gallery-hint { display: block; margin-top: .2rem; font-size: .9rem; font-weight: 600; color: var(--ink-2); }
+  .gallery-hint::after { content: " \2192"; }
+}
+
+/* What it does: words beside the app screen */
+.does-grid { display: grid; gap: 2.6rem; align-items: center; }
+.does-words h2 { max-width: 15ch; }
+.does-words .beats { margin-top: 2rem; grid-template-columns: 1fr; }
+.does-words .beat { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 1rem; align-items: center; padding: 1.2rem 1.3rem 1.3rem; }
+.does-words .beat h3 { margin-top: 0; }
+.does-words .beat p { grid-column: 1 / -1; margin-top: .6rem; }
+.does-screen { justify-self: center; display: grid; justify-items: center; }
+.screen-caption { margin-top: 1rem; font-size: .92rem; font-weight: 600; color: var(--ink-2); text-align: center; }
+.screen-glimpse { aspect-ratio: 600 / 830; }
+.screen-glimpse img { height: 100%; object-fit: cover; object-position: bottom; }
+@media (min-width: 900px) { .does-grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 4.5rem; } }
+
+/* Beta note */
+.beta-note { max-width: 44rem; padding: 2rem 1.6rem; border-radius: var(--radius); background: var(--accent-soft); }
+.beta-note .scene-lede { margin-top: .8rem; color: var(--ink); }
+.beta-note-more { margin-top: 1rem; font-size: 1.02rem; }
+@media (min-width: 900px) { .beta-note { padding: 2.6rem 3rem; } }
+
+/* Thanks: share */
+.share-box { margin-top: 1.6rem; padding: 1.3rem 1.3rem 1.2rem; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--hair); max-width: 34rem; }
+.share-box .actions { margin-top: .9rem; }
+.share-status { margin-top: .6rem; font-weight: 600; color: var(--success); }
+.share-status:empty { display: none; }
+.page-thanks .page-head > .quiet:last-child { margin-top: 1.4rem; }
+.h-line { display: block; }
+.does-words h2 { max-width: none; }
+@media (min-width: 900px) { .page-home .hero-copy h1 { max-width: none; } }
+@media (min-width: 900px) {
+  .page-home .hero-grid { grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); }
+  .page-home .hero-copy h1 { font-size: clamp(2.9rem, 1.2rem + 3vw, 4.2rem); }
+}
+@media (min-width: 900px) { .page-home .plate-hero { width: min(38vw, 560px); } }
