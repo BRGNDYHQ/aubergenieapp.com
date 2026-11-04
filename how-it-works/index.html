@@ -28,7 +28,7 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/static/fonts/archivo-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/static/css/site.css?v=f1d834fdd0">
-<link rel="stylesheet" href="/static/css/launch.css?v=24">
+<link rel="stylesheet" href="/static/css/launch.css?v=25">
 <script>(function(d){d.classList.add('js');try{d.classList.add(matchMedia('(prefers-reduced-motion: reduce)').matches?'still':'motion')}catch(e){d.classList.add('still')}setTimeout(function(){if(!d.classList.contains('js-ready')){d.classList.remove('motion');d.classList.add('still')}},4000)})(document.documentElement)</script>
 </head>
 <body class="page-home page-launch page-how">
@@ -50,7 +50,7 @@
   <div class="wrap">
     <p class="hero-eyebrow">How Aubergenie works</p>
     <h1>From "what's for dinner?" to an empty plate.</h1>
-    <p class="lede">Here's what it does, in the order you'd use it. The examples below work like the app, so have a tap.</p>
+    <p class="lede">Here's what it does, in the order you'd use it. Tap the examples to try them.</p>
     <nav class="how-jump" aria-label="On this page">
       <a href="#find">Save any recipe</a>
       <a href="#once">Say it once</a>
@@ -75,9 +75,9 @@
         <button class="chip" type="button" data-source="hand" aria-pressed="false">By Hand</button>
       </div>
       <p class="truth" data-truth aria-live="polite">
-        <span data-truth-for="words">Say what you fancy. Aubergenie AI writes it around how you eat.<b class="truth-tag">Sign in with Apple · uses 1 from your allowance</b></span>
+        <span data-truth-for="words">Say what you fancy. Aubergenie AI writes it around how you eat.<b class="truth-tag">Uses the AI · needs Sign in with Apple</b></span>
         <span data-truth-for="link" hidden>Paste a link. Most sites copy across exactly as written.<b class="truth-tag">No account · no AI</b></span>
-        <span data-truth-for="photo" hidden>A card or cookbook page, copied as written. A dish gets Aubergenie's own take.<b class="truth-tag">Sign in with Apple · uses 1 from your allowance</b></span>
+        <span data-truth-for="photo" hidden>A card or cookbook page, copied as written. A dish gets Aubergenie's own take.<b class="truth-tag">Uses the AI · needs Sign in with Apple</b></span>
         <span data-truth-for="friend" hidden>Sam sends the recipe itself. One tap saves it.<b class="truth-tag">No account · no AI</b></span>
         <span data-truth-for="hand" hidden>Write your own, even offline.<b class="truth-tag">No account · no AI</b></span>
       </p>
@@ -182,7 +182,7 @@
         </div>
       </div>
       <p class="once-sentence" data-once-sentence aria-live="polite">Aubergenie will leave out mushrooms, make use of your air fryer and size recipes for four.</p>
-      <p class="once-caveat">It matches words, so it never calls a dish safe. Always check labels.</p>
+      <p class="once-caveat">It checks ingredients by name, so it can't promise a dish is safe. Always check labels.</p>
     </div>
   </div>
 </section>
@@ -208,7 +208,7 @@
                  alt="Aubergenie's Create screen: 'Good afternoon, Nathan. Tonight's still open.' above a box reading 'Anything you'd like to make…', with a camera button and two ideas: Banana bread, 1 hour, and Chilli, 35g protein.">
           </picture>
         </figure>
-        <p class="quiet ai-facts">Only when you ask · Sign in with Apple · written by Anthropic's Claude · off in Settings · <a href="/support/#first-recipe">How the AI works</a></p>
+        <p class="quiet ai-facts">Only when you ask · needs Sign in with Apple · AI from Anthropic · switch it off in Settings · <a href="/support/#first-recipe">How the AI works</a></p>
       </div>
 
       <div class="answer answer-saved reveal">
@@ -227,7 +227,7 @@
 <figure class="plate plate-small" data-plate data-minutes="25" data-quick="true" data-favourite="false"><picture><source type="image/avif" srcset="/static/images/plate-spaghetti-carbonara-720.avif"><img src="/static/images/plate-spaghetti-carbonara-720.jpg" width="720" height="720" loading="lazy" decoding="async" alt="Spaghetti carbonara with grated cheese, on a red plate."></picture><figcaption><span class="dish">Spaghetti Carbonara</span><span class="facts">25 min · Italian</span></figcaption></figure>
 <figure class="plate plate-small" data-plate data-minutes="40" data-quick="false" data-favourite="false"><picture><source type="image/avif" srcset="/static/images/plate-butter-chicken-720.avif"><img src="/static/images/plate-butter-chicken-720.jpg" width="720" height="720" loading="lazy" decoding="async" alt="Butter chicken on basmati rice, on a red plate."></picture><figcaption><span class="dish">Butter Chicken</span><span class="facts">40 min · Indian</span></figcaption></figure>
 <figure class="plate plate-small" data-plate data-minutes="100" data-quick="false" data-favourite="true"><picture><source type="image/avif" srcset="/static/images/plate-lemon-drizzle-cake-720.avif"><img src="/static/images/plate-lemon-drizzle-cake-720.jpg" width="720" height="720" loading="lazy" decoding="async" alt="A lemon drizzle loaf with a slice cut, on a wooden board."></picture><figcaption><span class="dish">Lemon Drizzle Cake</span><span class="facts">1 hr 40 min · British</span></figcaption></figure>
-<figure class="plate plate-small" data-plate data-minutes="135" data-quick="false" data-favourite="false"><picture><source type="image/avif" srcset="/static/images/plate-raspberry-white-chocolate-loaf-720.avif"><img src="/static/images/plate-raspberry-white-chocolate-loaf-720.jpg" width="720" height="720" loading="lazy" decoding="async" alt="A raspberry and white chocolate loaf with a slice cut, on a wooden board."></picture><figcaption><span class="dish">Raspberry and White Chocolate Loaf</span><span class="facts">2 hr 15 min · British</span></figcaption></figure>
+<figure class="plate plate-small" data-plate data-minutes="135" data-quick="false" data-favourite="false"><picture><source type="image/avif" srcset="/static/images/plate-raspberry-white-chocolate-loaf-720.avif"><img src="/static/images/plate-raspberry-white-chocolate-loaf-720.jpg" width="720" height="720" loading="lazy" decoding="async" alt="A raspberry and white chocolate loaf with a slice cut, on a wooden board."></picture><figcaption><span class="dish">Raspberry &amp; White Chocolate Loaf</span><span class="facts">2 hr 15 min · British</span></figcaption></figure>
         </div>
         <p class="count" data-count aria-live="polite">8 recipes</p>
       </div>
@@ -357,6 +357,19 @@
   </div>
 </section>
 
+<section class="scene scene-facts" id="good-to-know" data-reveal>
+  <div class="wrap">
+    <h2>Good to know.</h2>
+    <ul class="facts-list">
+      <li><strong>Free during the beta.</strong> Testing costs nothing.</li>
+      <li><strong>iPhone, iPad and Mac.</strong> Your recipes sync through your own iCloud.</li>
+      <li><strong>No account needed</strong> to save, plan, shop and cook. Sign in with Apple only to use the AI.</li>
+      <li><strong>Your recipes are yours.</strong> Export them whenever you like.</li>
+      <li><strong>No ads, no tracking.</strong> Nothing is ever sold.</li>
+    </ul>
+  </div>
+</section>
+
 <section class="scene scene-invite scene-join" id="join" data-reveal>
   <div class="wrap invite-grid reveal">
     <div class="yolk">
@@ -397,10 +410,10 @@
           </div>
           <label class="q-label" for="how-q3">What gets in the way of cooking more?</label>
           <input class="signup-email q-text" id="how-q3" type="text" name="wish" maxlength="200" autocomplete="off" placeholder="Ideas, time, the shopping…" aria-describedby="how-q3-hint">
-          <p class="signup-note" id="how-q3-hint">No health or allergy details, please. The beta needs iOS 26.4 or later.</p>
+          <p class="signup-note" id="how-q3-hint">No health or allergy details, please. The beta needs iOS 26.4 or later (Settings › General › About).</p>
         </fieldset>
         <div class="signup-submit"><button class="btn btn-primary btn-fill" type="submit">Keep me posted</button></div>
-        <p class="signup-note">Just launch news and beta invites. Leave whenever you like. <a href="/privacy/#email-list">Privacy</a></p>
+        <p class="signup-note">Just launch news and beta invites. No spam, and you can leave whenever you like. <a href="/privacy/#email-list">Privacy</a></p>
         <p class="signup-status" data-signup-status role="status" aria-live="polite"></p>
       </form>
 
@@ -419,6 +432,7 @@
     </div>
     <nav class="footer-nav" aria-label="Legal and support">
       <a href="/">About the app</a>
+      <a href="/beta/">iPhone beta</a>
       <a href="/support/">Support</a>
       <a href="/privacy/">Privacy</a>
       <a href="/privacy/choices/">Privacy choices</a>
