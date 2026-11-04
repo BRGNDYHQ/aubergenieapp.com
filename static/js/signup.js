@@ -13,7 +13,7 @@
 (function () {
   var LIST = {
     url: 'https://koalshgnvjyyiiyvvlrl.supabase.co',  // Supabase Project URL (BRGNDY LTD › Aubergenie App, London)
-    key: ''   // Supabase publishable (anon) key. Public by design; never the service-role key.
+    key: 'sb_publishable_DVoTUQO-e3Vp8PPdwamHHQ_-Q7oY12a'  // Publishable key: public by design. Never put the secret key here.
   };
 
   var forms = Array.prototype.slice.call(document.querySelectorAll('form[data-signup]'));
