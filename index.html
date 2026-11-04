@@ -28,7 +28,7 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/static/fonts/archivo-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/static/css/site.css?v=f1d834fdd0">
-<link rel="stylesheet" href="/static/css/launch.css?v=23">
+<link rel="stylesheet" href="/static/css/launch.css?v=26">
 <script>(function(d){d.classList.add('js');try{d.classList.add(matchMedia('(prefers-reduced-motion: reduce)').matches?'still':'motion')}catch(e){d.classList.add('still')}setTimeout(function(){if(!d.classList.contains('js-ready')){d.classList.remove('motion');d.classList.add('still')}},4000)})(document.documentElement)</script>
 </head>
 <body class="page-home page-launch page-index">
@@ -39,7 +39,7 @@
       <span class="wordmark" aria-hidden="true">aubergen<span class="wm-i">ı<svg viewBox="0 0 100 100"><path d="M50 2C78 20 92 48 84 78 78 96 56 100 40 90 14 74 10 36 50 2Z"/></svg></span>e</span>
     </a>
     <nav class="site-nav" aria-label="Site">
-      <a href="/support/">Support</a>
+      <a href="/how-it-works/">How it works</a>
       <a class="btn btn-small btn-fill header-cta" href="#join" data-header-cta>Keep me posted</a>
     </nav>
   </div>
@@ -51,7 +51,7 @@
     <div class="hero-copy">
       <p class="hero-eyebrow">Aubergenie · coming soon to iPhone</p>
       <h1>Remember when cooking was fun?</h1>
-      <p class="lede">Before the same five dinners took over? I'm making a little iPhone app to bring the fun back. Tell it what you fancy, and it takes care of the rest.</p>
+      <p class="lede">Before the same five dinners took over? I'm making a little iPhone app to bring the fun back. Tell it what you fancy, and it sorts the recipe, the shopping list and the cooking.</p>
 
       <form class="signup" action="mailto:hello@aubergenieapp.com" method="post" data-signup>
         <input type="hidden" name="source" value="home-top">
@@ -82,10 +82,10 @@
           </div>
           <label class="q-label" for="top-q3">What gets in the way of cooking more?</label>
           <input class="signup-email q-text" id="top-q3" type="text" name="wish" maxlength="200" autocomplete="off" placeholder="Ideas, time, the shopping…" aria-describedby="top-q3-hint">
-          <p class="signup-note" id="top-q3-hint">No health or allergy details, please. The beta needs iOS 26.4 or later.</p>
+          <p class="signup-note" id="top-q3-hint">No health or allergy details, please. The beta needs iOS 26.4 or later (Settings › General › About).</p>
         </fieldset>
         <div class="signup-submit"><button class="btn btn-primary btn-fill" type="submit" data-hero-cta>Keep me posted</button></div>
-        <p class="signup-note">Just launch news and beta invites. Leave whenever you like. <a href="/privacy/#email-list">Privacy</a></p>
+        <p class="signup-note">Just launch news and beta invites. No spam, and you can leave whenever you like. <a href="/privacy/#email-list">Privacy</a></p>
         <p class="signup-status" data-signup-status role="status" aria-live="polite"></p>
       </form>
     </div>
@@ -159,19 +159,20 @@
           <p>Plan the week, shop one list sorted by aisle, then cook one step at a time in big type. Timers ring even with your phone locked.</p>
         </li>
       </ul>
-      <p class="quiet">The AI only runs when you ask, needs Sign in with Apple, and can be switched off. Everything else works without it. <a href="/support/#first-recipe">How it works</a></p>
+      <p class="quiet">The AI only runs when you ask, needs Sign in with Apple, and can be switched off. Everything else works without it.</p>
+      <p class="does-more"><a class="link-quiet" href="/how-it-works/">See everything it does &rarr;</a></p>
     </div>
     <div class="does-screen reveal">
       <figure class="screen screen-glimpse">
         <picture>
-          <source media="(prefers-color-scheme: dark)" type="image/avif" srcset="/static/images/screen-create-afternoon-dark-600.avif 600w, /static/images/screen-create-afternoon-dark-1200.avif 1200w" sizes="(min-width: 900px) 320px, min(72vw, 300px)">
-          <source media="(prefers-color-scheme: dark)" srcset="/static/images/screen-create-afternoon-dark-600.jpg 600w, /static/images/screen-create-afternoon-dark-1200.jpg 1200w" sizes="(min-width: 900px) 320px, min(72vw, 300px)">
-          <source type="image/avif" srcset="/static/images/screen-create-afternoon-600.avif 600w, /static/images/screen-create-afternoon-1200.avif 1200w" sizes="(min-width: 900px) 320px, min(72vw, 300px)">
-          <img src="/static/images/screen-create-afternoon-600.jpg" srcset="/static/images/screen-create-afternoon-600.jpg 600w, /static/images/screen-create-afternoon-1200.jpg 1200w" sizes="(min-width: 900px) 320px, min(72vw, 300px)" width="600" height="1303" loading="lazy" decoding="async"
-               alt="Aubergenie's Create screen on iPhone: 'Good afternoon, Nathan. Tonight's still open.' above a box reading 'Anything you'd like to make…', with a camera button and two ideas to start from: Banana bread, 1 hour, and Chilli, 35g protein.">
+          <source media="(prefers-color-scheme: dark)" type="image/avif" srcset="/static/images/screen-plan-day-dark-600.avif 600w, /static/images/screen-plan-day-dark-1200.avif 1200w" sizes="(min-width: 900px) 300px, min(64vw, 270px)">
+          <source media="(prefers-color-scheme: dark)" srcset="/static/images/screen-plan-day-dark-600.jpg 600w, /static/images/screen-plan-day-dark-1200.jpg 1200w" sizes="(min-width: 900px) 300px, min(64vw, 270px)">
+          <source type="image/avif" srcset="/static/images/screen-plan-day-600.avif 600w, /static/images/screen-plan-day-1200.avif 1200w" sizes="(min-width: 900px) 300px, min(64vw, 270px)">
+          <img src="/static/images/screen-plan-day-600.jpg" srcset="/static/images/screen-plan-day-600.jpg 600w, /static/images/screen-plan-day-1200.jpg 1200w" sizes="(min-width: 900px) 300px, min(64vw, 270px)" width="600" height="1304" loading="lazy" decoding="async"
+               alt="Aubergenie's Plan screen for Wednesday: lunch is leftover one-pan pork souvlaki with lemon potatoes, flagged as past three days in the fridge; dinner is Cook tonight: Marry me chicken thighs with mash, with Start Cooking and Ate It buttons; below, 2,505 of 2,850 kcal and 129 of 150 g protein planned.">
         </picture>
       </figure>
-      <p class="screen-caption">The first thing you see when you open it.</p>
+      <p class="screen-caption">Your day at a glance: tonight's dinner, the leftovers and your goals.</p>
     </div>
   </div>
 </section>
@@ -179,7 +180,7 @@
 <section class="scene scene-beta-note" id="beta" data-reveal>
   <div class="wrap beta-note reveal">
     <h2>Want to try it early?</h2>
-    <p class="scene-lede">I'm opening a free beta on iPhone soon, through Apple's TestFlight. It'll have a few rough edges, and that's the point: I want to hear what works for you and what doesn't. Tick the box when you sign up and I'll be in touch when there's a space.</p>
+    <p class="scene-lede">I'm opening a free beta on iPhone soon, through TestFlight, Apple's free app for trying apps before they launch. It'll have a few rough edges, and that's the point: I want to hear what works for you and what doesn't. Tick the box when you sign up and I'll be in touch when there's a space.</p>
     <p class="beta-note-more"><a class="link-quiet" href="/beta/">What the beta involves &rarr;</a></p>
   </div>
 </section>
@@ -224,14 +225,15 @@
           </div>
           <label class="q-label" for="join-q3">What gets in the way of cooking more?</label>
           <input class="signup-email q-text" id="join-q3" type="text" name="wish" maxlength="200" autocomplete="off" placeholder="Ideas, time, the shopping…" aria-describedby="join-q3-hint">
-          <p class="signup-note" id="join-q3-hint">No health or allergy details, please. The beta needs iOS 26.4 or later.</p>
+          <p class="signup-note" id="join-q3-hint">No health or allergy details, please. The beta needs iOS 26.4 or later (Settings › General › About).</p>
         </fieldset>
         <div class="signup-submit"><button class="btn btn-primary btn-fill" type="submit">Keep me posted</button></div>
-        <p class="signup-note">Just launch news and beta invites. Leave whenever you like. <a href="/privacy/#email-list">Privacy</a></p>
+        <p class="signup-note">Just launch news and beta invites. No spam, and you can leave whenever you like. <a href="/privacy/#email-list">Privacy</a></p>
         <p class="signup-status" data-signup-status role="status" aria-live="polite"></p>
       </form>
 
     <p class="invite-trust">No ads, no tracking. Your recipes stay in your own iCloud.</p>
+    <p class="price-note">Free during the beta. I'll tell everyone on the list about pricing before launch, so there are no surprises.</p>
     <p class="founder">Questions, or just want to talk food? Email <a href="mailto:hello@aubergenieapp.com">hello@aubergenieapp.com</a>. I post what I'm cooking on Instagram at <a href="https://www.instagram.com/ndtthomas/" rel="me">@ndtthomas</a>.<span class="founder-sign">Nathan</span></p>
   </div>
 </section>
@@ -245,11 +247,11 @@
       <span class="footer-tag">Rediscover the joy of cooking.</span>
     </div>
     <nav class="footer-nav" aria-label="Legal and support">
+      <a href="/how-it-works/">How it works</a>
       <a href="/beta/">iPhone beta</a>
       <a href="/support/">Support</a>
       <a href="/privacy/">Privacy</a>
       <a href="/privacy/choices/">Privacy choices</a>
-      <a href="/recipe/">Recipe file format</a>
       <a href="mailto:hello@aubergenieapp.com">hello@aubergenieapp.com</a>
     </nav>
     <p class="footer-legal">© 2026 <span class="brgndy">BRGNDY</span> LTD · Registered in England and Wales, company number 17537333 · Registered office: 71-75 Shelton Street, London WC2H 9JQ · Aubergenie is a trading name of BRGNDY LTD</p>

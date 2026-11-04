@@ -260,3 +260,35 @@
   .gallery { display: flex; flex-wrap: wrap; justify-content: center; }
   .gallery .plate-small { flex: 0 0 calc((100% - 3 * 1.4rem) / 4); }
 }
+
+/* How it works page */
+.how-intro { padding: 2rem 0 0; }
+.how-intro h1 { font-size: clamp(2.2rem, 1.2rem + 4vw, 4.2rem); max-width: 16ch; }
+.how-intro .lede { margin-top: 1rem; max-width: 40ch; }
+.how-jump { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.6rem; }
+.how-jump a { display: inline-flex; align-items: center; min-height: 40px; padding: 0 1rem; border-radius: 999px; font-weight: 600; font-size: .95rem;
+  text-decoration: none; color: var(--accent); background: var(--accent-soft); }
+.how-jump a:hover { text-decoration: underline; }
+.page-how .scene-find { padding-top: 4rem; }
+/* Real screenshots in a phone frame */
+.screen-framed { border-radius: 46px; border: 8px solid #1B171C; background: #1B171C; box-shadow: var(--shadow), 0 0 0 1px rgba(0, 0, 0, .25); }
+.screen-framed img { border-radius: 38px; }
+@media (prefers-color-scheme: dark) { .screen-framed { border-color: #3A3340; background: #3A3340; } }
+.page-how .screen-create { aspect-ratio: auto; }
+.page-how .screen-create img { height: auto; object-fit: initial; }
+.does-more { margin-top: .8rem; font-size: 1.02rem; }
+
+/* Review round: persona fixes */
+/* Phone hero: no floating genie; the next-dish button sits top-right, clear of the lime */
+@media (max-width: 899px) {
+  .page-index .hero-float { display: none; }
+  .page-index .hero-stage [data-next-dish] { top: 4%; bottom: auto; right: var(--gutter); }
+}
+/* How it works: centre the Create screenshot on phones */
+.page-how .screen-create { margin-inline: auto; }
+/* Good to know */
+.scene-facts .wrap { max-width: 46rem; }
+.facts-list { list-style: none; margin: 1.4rem 0 0; padding: 0; display: grid; gap: .8rem; }
+.facts-list li { padding: 1rem 1.2rem; border-radius: var(--radius-s); background: var(--surface); border: 1px solid var(--hair); color: var(--ink-2); text-wrap: pretty; }
+.facts-list strong { color: var(--ink); }
+.price-note { margin-top: .2rem; font-size: .98rem; color: var(--ink-2); max-width: 40ch; text-wrap: pretty; }
