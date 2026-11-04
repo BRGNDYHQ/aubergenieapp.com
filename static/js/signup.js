@@ -16,6 +16,34 @@
     key: 'sb_publishable_DVoTUQO-e3Vp8PPdwamHHQ_-Q7oY12a'  // Publishable key: public by design. Never put the secret key here.
   };
 
+  var post = function (fn, body) {
+    var headers = { 'Content-Type': 'application/json', 'apikey': LIST.key };
+    if (LIST.key.indexOf('eyJ') === 0) headers.Authorization = 'Bearer ' + LIST.key;
+    return fetch(LIST.url.replace(/\/+$/, '') + '/rest/v1/rpc/' + fn, { method: 'POST', headers: headers, body: JSON.stringify(body) });
+  };
+
+  // "Take me off the list" (Privacy choices). Deletes by email and never says whether it was there.
+  Array.prototype.slice.call(document.querySelectorAll('form[data-leave]')).forEach(function (form) {
+    var email = form.querySelector('input[type="email"]'), status = form.querySelector('[data-signup-status]'), button = form.querySelector('button');
+    var mail = function () {
+      window.location.href = 'mailto:privacy@aubergenieapp.com?subject=' + encodeURIComponent('Please take me off the Aubergenie list') +
+        '&body=' + encodeURIComponent('Please remove this address from the Aubergenie email list: ' + email.value + '\n');
+      status.textContent = 'Your email app should open with a note ready to send. Press send and I’ll remove you.';
+    };
+    form.addEventListener('submit', function (e) {
+      email.value = email.value.trim();
+      if (!email.checkValidity()) return;
+      e.preventDefault();
+      if (!LIST.url || !LIST.key || !window.fetch) { mail(); return; }
+      button.disabled = true;
+      post('leave_list', { p_email: email.value }).then(function (res) {
+        button.disabled = false;
+        if (res.ok) { status.textContent = 'Done. If that address was on the list, it’s gone, along with any answers.'; form.reset(); }
+        else mail();
+      }).catch(function () { button.disabled = false; mail(); });
+    });
+  });
+
   var forms = Array.prototype.slice.call(document.querySelectorAll('form[data-signup]'));
   if (!forms.length) return;
 
@@ -52,7 +80,7 @@
       var subject = tester ? 'Keep me posted (happy to test)' : 'Keep me posted';
       var body = 'Please keep me posted about Aubergenie.\n\n' +
         'Email: ' + (email ? email.value : '') + '\n' +
-        "I'd like to try the beta on my iPhone: " + (tester ? 'Yes' : 'No') + '\n';
+        "I'd like to try it early on my iPhone (free beta): " + (tester ? 'Yes' : 'No') + '\n';
       if (tester) {
         body += '\nHow often I cook: ' + (label('cooks') || '-') +
           '\nWhere most of my recipes live: ' + (label('recipes_from') || '-') +

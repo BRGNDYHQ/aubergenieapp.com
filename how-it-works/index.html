@@ -28,7 +28,7 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/static/fonts/archivo-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/static/css/site.css?v=f1d834fdd0">
-<link rel="stylesheet" href="/static/css/launch.css?v=28">
+<link rel="stylesheet" href="/static/css/launch.css?v=30">
 <script>(function(d){d.classList.add('js');try{d.classList.add(matchMedia('(prefers-reduced-motion: reduce)').matches?'still':'motion')}catch(e){d.classList.add('still')}setTimeout(function(){if(!d.classList.contains('js-ready')){d.classList.remove('motion');d.classList.add('still')}},4000)})(document.documentElement)</script>
 </head>
 <body class="page-home page-launch page-how">
@@ -77,11 +77,11 @@
       <p class="truth" data-truth aria-live="polite">
         <span data-truth-for="words" hidden>Say what you fancy. Aubergenie AI writes it around how you eat.<b class="truth-tag">Uses the AI · needs Sign in with Apple</b></span>
         <span data-truth-for="link" hidden>Paste a link. Most sites copy across exactly as written.<b class="truth-tag">No account · no AI</b></span>
-        <span data-truth-for="photo">A card or cookbook page, copied as written. A dish gets Aubergenie's own take.<b class="truth-tag">Uses the AI · needs Sign in with Apple</b></span>
+        <span data-truth-for="photo">A card or cookbook page, copied as written. Snap a plate of food and Aubergenie writes its own version.<b class="truth-tag">Uses the AI · needs Sign in with Apple</b></span>
         <span data-truth-for="friend" hidden>Sam sends the recipe itself. One tap saves it.<b class="truth-tag">No account · no AI</b></span>
         <span data-truth-for="hand" hidden>Write your own, even offline.<b class="truth-tag">No account · no AI</b></span>
       </p>
-      <p class="quiet">Already got a collection? Bring it with you: links, photos of pages and cards, or files friends send. The AI is optional for all of it.</p>
+      <p class="quiet">Already got a collection? Paste links, open recipe files or type them in, all without the AI; photos use it. There's no bulk import from other apps yet, so recipes come over one at a time.</p>
     </div>
 
     <div class="find-stage reveal">
@@ -139,11 +139,11 @@
     <div class="once-words">
       <p class="scene-problem">Four at the table. One won't touch mushrooms. Only the air fryer gets used.</p>
       <h2>Say it once.</h2>
-      <p class="scene-lede">Allergies, diet, dislikes, your kitchen, how many. Asked once, remembered.</p>
+      <p class="scene-lede">Allergies, diet, dislikes, your kitchen, how many. Asked once, remembered on your devices and in your own iCloud.</p>
       <ul class="once-truths">
         <li><strong>Recipes it writes</strong> work around it.</li>
         <li><strong>Servings</strong> scale every amount, right through to the shop.</li>
-        <li><strong>Plan My Week</strong> skips anything that mentions your allergy.</li>
+        <li><strong>Plan My Week</strong> leaves out any recipe that names your allergen in its ingredients.</li>
       </ul>
     </div>
     <div class="once-stage reveal">
@@ -156,7 +156,7 @@
           <button class="chip" type="button" data-pref="allergy" data-value="milk" aria-pressed="false">Milk</button>
           <button class="chip" type="button" data-pref="allergy" data-value="egg" aria-pressed="false">Eggs</button>
         </div>
-        <p class="pref-label" id="pref-dislike">Anything you don't like?</p>
+        <p class="pref-label" id="pref-dislike">Anything someone won't eat?</p>
         <div class="chips chips-tight" role="group" aria-labelledby="pref-dislike">
           <button class="chip" type="button" data-pref="dislike" data-value="mushrooms" aria-pressed="true">Mushrooms</button>
           <button class="chip" type="button" data-pref="dislike" data-value="coriander" aria-pressed="false">Coriander</button>
@@ -183,7 +183,7 @@
         </div>
       </div>
       <p class="once-sentence" data-once-sentence aria-live="polite">Aubergenie will leave out mushrooms, make use of your air fryer and size recipes for four.</p>
-      <p class="once-caveat">It checks ingredients by name, so it can't promise a dish is safe. Always check labels.</p>
+      <p class="once-caveat">It goes by ingredient names, so it can't see inside a jar or packet, and it never calls a dish safe. Always check the label.</p>
     </div>
   </div>
 </section>
@@ -200,16 +200,16 @@
       <div class="answer answer-new reveal">
         <h3>Say what you fancy.</h3>
         <p>Type a dinner. Aubergenie AI writes it around everything you said once.</p>
-        <figure class="screen screen-create screen-framed">
+        <figure class="shot-detail">
           <picture>
-            <source media="(prefers-color-scheme: dark)" type="image/avif" srcset="/static/images/screen-create-afternoon-dark-600.avif 600w, /static/images/screen-create-afternoon-dark-1200.avif 1200w" sizes="(min-width: 900px) 300px, min(70vw, 280px)">
-            <source media="(prefers-color-scheme: dark)" srcset="/static/images/screen-create-afternoon-dark-600.jpg 600w, /static/images/screen-create-afternoon-dark-1200.jpg 1200w" sizes="(min-width: 900px) 300px, min(70vw, 280px)">
-            <source type="image/avif" srcset="/static/images/screen-create-afternoon-600.avif 600w, /static/images/screen-create-afternoon-1200.avif 1200w" sizes="(min-width: 900px) 300px, min(70vw, 280px)">
-            <img src="/static/images/screen-create-afternoon-600.jpg" srcset="/static/images/screen-create-afternoon-600.jpg 600w, /static/images/screen-create-afternoon-1200.jpg 1200w" sizes="(min-width: 900px) 300px, min(70vw, 280px)" width="600" height="1303" loading="lazy" decoding="async"
-                 alt="Aubergenie's Create screen: 'Good afternoon, Nathan. Tonight's still open.' above a box reading 'Anything you'd like to make…', with a camera button and two ideas: Banana bread, 1 hour, and Chilli, 35g protein.">
+            <source media="(prefers-color-scheme: dark)" type="image/avif" srcset="/static/images/detail-create-dark-640.avif 640w, /static/images/detail-create-dark-1280.avif 1280w" sizes="(min-width: 900px) 400px, min(100vw - 40px, 420px)">
+            <source media="(prefers-color-scheme: dark)" srcset="/static/images/detail-create-dark-640.jpg 640w, /static/images/detail-create-dark-1280.jpg 1280w" sizes="(min-width: 900px) 400px, min(100vw - 40px, 420px)">
+            <source type="image/avif" srcset="/static/images/detail-create-640.avif 640w, /static/images/detail-create-1280.avif 1280w" sizes="(min-width: 900px) 400px, min(100vw - 40px, 420px)">
+            <img src="/static/images/detail-create-640.jpg" srcset="/static/images/detail-create-640.jpg 640w, /static/images/detail-create-1280.jpg 1280w" sizes="(min-width: 900px) 400px, min(100vw - 40px, 420px)" width="640" height="335" loading="lazy" decoding="async"
+                 alt="Close-up of Aubergenie's Create screen: 'Good afternoon, Nathan. Tonight's still open.' above a box reading 'Anything you'd like to make…', a camera button, and two ideas: Banana bread, 1 hour, and Chilli, 35g protein.">
           </picture>
         </figure>
-        <p class="quiet ai-facts">Only when you ask · needs Sign in with Apple · AI from Anthropic · switch it off in Settings · <a href="/support/#first-recipe">How the AI works</a></p>
+        <p class="quiet ai-facts">The AI only runs when you ask. It needs Sign in with Apple, it's provided by Anthropic (the makers of Claude), and you can switch it off in Settings. AI can make mistakes, so check anything that matters. <a href="/support/#first-recipe">How the AI works</a></p>
       </div>
 
       <div class="answer answer-saved reveal">
@@ -228,7 +228,7 @@
 <figure class="plate plate-small" data-plate data-minutes="25" data-quick="true" data-favourite="false"><picture><source type="image/avif" srcset="/static/images/plate-spaghetti-carbonara-720.avif"><img src="/static/images/plate-spaghetti-carbonara-720.jpg" width="720" height="720" loading="lazy" decoding="async" alt="Spaghetti carbonara with grated cheese, on a red plate."></picture><figcaption><span class="dish">Spaghetti Carbonara</span><span class="facts">25 min · Italian</span></figcaption></figure>
 <figure class="plate plate-small" data-plate data-minutes="40" data-quick="false" data-favourite="false"><picture><source type="image/avif" srcset="/static/images/plate-butter-chicken-720.avif"><img src="/static/images/plate-butter-chicken-720.jpg" width="720" height="720" loading="lazy" decoding="async" alt="Butter chicken on basmati rice, on a red plate."></picture><figcaption><span class="dish">Butter Chicken</span><span class="facts">40 min · Indian</span></figcaption></figure>
 <figure class="plate plate-small" data-plate data-minutes="100" data-quick="false" data-favourite="true"><picture><source type="image/avif" srcset="/static/images/plate-lemon-drizzle-cake-720.avif"><img src="/static/images/plate-lemon-drizzle-cake-720.jpg" width="720" height="720" loading="lazy" decoding="async" alt="A lemon drizzle loaf with a slice cut, on a wooden board."></picture><figcaption><span class="dish">Lemon Drizzle Cake</span><span class="facts">1 hr 40 min · British</span></figcaption></figure>
-<figure class="plate plate-small" data-plate data-minutes="135" data-quick="false" data-favourite="false"><picture><source type="image/avif" srcset="/static/images/plate-raspberry-white-chocolate-loaf-720.avif"><img src="/static/images/plate-raspberry-white-chocolate-loaf-720.jpg" width="720" height="720" loading="lazy" decoding="async" alt="A raspberry and white chocolate loaf with a slice cut, on a wooden board."></picture><figcaption><span class="dish">Raspberry &amp; White Chocolate Loaf</span><span class="facts">2 hr 15 min · British</span></figcaption></figure>
+<figure class="plate plate-small" data-plate data-minutes="135" data-quick="false" data-favourite="false"><picture><source type="image/avif" srcset="/static/images/plate-raspberry-white-chocolate-loaf-720.avif"><img src="/static/images/plate-raspberry-white-chocolate-loaf-720.jpg" width="720" height="720" loading="lazy" decoding="async" alt="A raspberry and white chocolate loaf with a slice cut, on a wooden board."></picture><figcaption><span class="dish">Raspberry and White Chocolate Loaf</span><span class="facts">2 hr 15 min · British</span></figcaption></figure>
         </div>
         <p class="count" data-count aria-live="polite">8 recipes</p>
       </div>
@@ -247,17 +247,17 @@
       <li class="rail-step reveal" id="plan">
         <div class="rail-words">
           <h3>Plan the week.</h3>
-          <p>Plan My Week suggests from your own recipes and places the leftovers. It says why. Set a calorie or protein goal if you like, and it keeps count.</p>
+          <p>Plan My Week suggests from your own recipes and says why. Cook once, eat twice: it slots leftovers into another meal and warns when they've been in the fridge more than three days. Set a calorie or protein goal if you like, and it keeps count.</p>
         </div>
-        <figure class="screen screen-week screen-framed">
-        <picture>
-          <source media="(prefers-color-scheme: dark)" type="image/avif" srcset="/static/images/screen-plan-day-dark-600.avif 600w, /static/images/screen-plan-day-dark-1200.avif 1200w" sizes="(min-width: 900px) 300px, min(70vw, 280px)">
-          <source media="(prefers-color-scheme: dark)" srcset="/static/images/screen-plan-day-dark-600.jpg 600w, /static/images/screen-plan-day-dark-1200.jpg 1200w" sizes="(min-width: 900px) 300px, min(70vw, 280px)">
-          <source type="image/avif" srcset="/static/images/screen-plan-day-600.avif 600w, /static/images/screen-plan-day-1200.avif 1200w" sizes="(min-width: 900px) 300px, min(70vw, 280px)">
-          <img src="/static/images/screen-plan-day-600.jpg" srcset="/static/images/screen-plan-day-600.jpg 600w, /static/images/screen-plan-day-1200.jpg 1200w" sizes="(min-width: 900px) 300px, min(70vw, 280px)" width="600" height="1304" loading="lazy" decoding="async"
-               alt="Aubergenie's Plan screen for Wednesday: lunch is leftover one-pan pork souvlaki with lemon potatoes, flagged as past three days in the fridge; dinner is Cook tonight: Marry me chicken thighs with mash, with Start Cooking and Ate It buttons; below, 2,505 of 2,850 kcal and 129 of 150 g protein planned.">
-        </picture>
-      </figure>
+        <figure class="shot-detail">
+          <picture>
+            <source media="(prefers-color-scheme: dark)" type="image/avif" srcset="/static/images/detail-plan-dark-640.avif 640w, /static/images/detail-plan-dark-1280.avif 1280w" sizes="(min-width: 900px) 400px, min(100vw - 40px, 420px)">
+            <source media="(prefers-color-scheme: dark)" srcset="/static/images/detail-plan-dark-640.jpg 640w, /static/images/detail-plan-dark-1280.jpg 1280w" sizes="(min-width: 900px) 400px, min(100vw - 40px, 420px)">
+            <source type="image/avif" srcset="/static/images/detail-plan-640.avif 640w, /static/images/detail-plan-1280.avif 1280w" sizes="(min-width: 900px) 400px, min(100vw - 40px, 420px)">
+            <img src="/static/images/detail-plan-640.jpg" srcset="/static/images/detail-plan-640.jpg 640w, /static/images/detail-plan-1280.jpg 1280w" sizes="(min-width: 900px) 400px, min(100vw - 40px, 420px)" width="640" height="697" loading="lazy" decoding="async"
+                 alt="Close-up of Aubergenie's Plan for one day. Lunch: leftover one-pan pork souvlaki with lemon potatoes, from Saturday, flagged as past three days in the fridge. Dinner: Cook tonight, Marry me chicken thighs with mash, with Start Cooking and Ate It buttons. Below: 2,505 of 2,850 kcal and 129 of 150 g protein planned.">
+          </picture>
+        </figure>
       </li>
 
       <li class="rail-step reveal" id="shop">
@@ -292,17 +292,17 @@
       <li class="rail-step reveal" id="cook">
         <div class="rail-words">
           <h3>Cook in big type.</h3>
-          <p>One step at a time. Once you allow alarms, timers ring even with your iPhone locked.</p>
+          <p>One step at a time, in big type. Times in a step become timers, and once you allow alarms they ring even with your iPhone locked.</p>
         </div>
-        <figure class="screen screen-week screen-framed">
-        <picture>
-          <source media="(prefers-color-scheme: dark)" type="image/avif" srcset="/static/images/screen-cook-mode-dark-600.avif 600w, /static/images/screen-cook-mode-dark-1200.avif 1200w" sizes="(min-width: 900px) 300px, min(70vw, 280px)">
-          <source media="(prefers-color-scheme: dark)" srcset="/static/images/screen-cook-mode-dark-600.jpg 600w, /static/images/screen-cook-mode-dark-1200.jpg 1200w" sizes="(min-width: 900px) 300px, min(70vw, 280px)">
-          <source type="image/avif" srcset="/static/images/screen-cook-mode-600.avif 600w, /static/images/screen-cook-mode-1200.avif 1200w" sizes="(min-width: 900px) 300px, min(70vw, 280px)">
-          <img src="/static/images/screen-cook-mode-600.jpg" srcset="/static/images/screen-cook-mode-600.jpg 600w, /static/images/screen-cook-mode-1200.jpg 1200w" sizes="(min-width: 900px) 300px, min(70vw, 280px)" width="600" height="1304" loading="lazy" decoding="async"
-               alt="Aubergenie's Cook Mode for Shakshuka, step 1 of 5, in large text: heat 2 tbsp oil, add 1 onion, 1 pepper and a pinch of salt, cook for 8–10 minutes, with the time shown as a tappable timer. Up next: stir in garlic, tomato purée and spices. Previous and Next buttons at the bottom.">
-        </picture>
-      </figure>
+        <figure class="shot-detail">
+          <picture>
+            <source media="(prefers-color-scheme: dark)" type="image/avif" srcset="/static/images/detail-cook-dark-640.avif 640w, /static/images/detail-cook-dark-1280.avif 1280w" sizes="(min-width: 900px) 400px, min(100vw - 40px, 420px)">
+            <source media="(prefers-color-scheme: dark)" srcset="/static/images/detail-cook-dark-640.jpg 640w, /static/images/detail-cook-dark-1280.jpg 1280w" sizes="(min-width: 900px) 400px, min(100vw - 40px, 420px)">
+            <source type="image/avif" srcset="/static/images/detail-cook-640.avif 640w, /static/images/detail-cook-1280.avif 1280w" sizes="(min-width: 900px) 400px, min(100vw - 40px, 420px)">
+            <img src="/static/images/detail-cook-640.jpg" srcset="/static/images/detail-cook-640.jpg 640w, /static/images/detail-cook-1280.jpg 1280w" sizes="(min-width: 900px) 400px, min(100vw - 40px, 420px)" width="640" height="800" loading="lazy" decoding="async"
+                 alt="Close-up of Aubergenie's Cook Mode, step 1 of 5, in large text: heat 2 tbsp oil, add 1 onion, 1 pepper and a pinch of salt, and cook for 8 to 10 minutes, with the time shown as a timer. Up next: stir in garlic, tomato purée and spices.">
+          </picture>
+        </figure>
       </li>
 
       <li class="rail-step rail-step-plate reveal" id="made">
@@ -355,12 +355,12 @@
   <div class="wrap">
     <h2>Good to know.</h2>
     <ul class="facts-list">
-      <li><strong>Free during the beta.</strong> I haven't set a price yet. You'll hear it from me before launch, and nothing will ever charge you unless you choose it.</li>
+      <li><strong>Free during the beta.</strong> The AI has a monthly allowance while I test; saving, planning, shopping and cooking don't use it. I haven't set a price yet. You'll hear it from me before launch, and nothing will ever charge you unless you choose it.</li>
       <li><strong>iPhone, iPad and Mac.</strong> Your recipes sync through your own iCloud.</li>
       <li><strong>No account needed</strong> to save, plan, shop and cook. Sign in with Apple only to use the AI.</li>
-      <li><strong>Your recipes are yours.</strong> Export them whenever you like.</li>
+      <li><strong>Your recipes are yours.</strong> Export them all, any time, as one .zip of <a href="/recipe/">open recipe files</a> with their photos.</li>
       <li><strong>The AI is optional.</strong> It only helps when you ask, and you can switch it off. Your own recipes work without it.</li>
-      <li><strong>No ads, no tracking.</strong> Your recipes live in your own iCloud and only leave it when you ask the AI for help. Nothing is ever sold.</li>
+      <li><strong>No ads, no tracking.</strong> Your recipes live on your devices and in your own iCloud, and only reach my server when you ask the AI for help. Nothing is ever sold.</li>
       <li><strong>Not on Android,</strong> sorry. It's built for Apple devices.</li>
     </ul>
   </div>
@@ -386,7 +386,7 @@
         </div>
         <label class="signup-check">
           <input type="checkbox" name="tester" value="yes">
-          <span>I'd like to try the beta on my iPhone</span>
+          <span>I'd like to try it early on my iPhone (free beta)</span>
         </label>
         <fieldset class="tester-qs" data-tester-qs>
           <legend>Help me pick a good mix of testers</legend>
@@ -405,11 +405,11 @@
             <label class="choice"><input type="radio" name="recipes_from" value="in-my-head"><span>In my head, or nowhere yet</span></label>
           </div>
           <label class="q-label" for="how-q3">What gets in the way of cooking more?</label>
-          <input class="signup-email q-text" id="how-q3" type="text" name="wish" maxlength="200" autocomplete="off" placeholder="Ideas, time, the shopping… anything" aria-describedby="how-q3-hint">
-          <p class="signup-note" id="how-q3-hint">No medical details, please: "dietary needs" is plenty. The beta needs an iPhone 11 or newer on iOS 26.4 or later. Not sure? Tick anyway, and TestFlight will tell you.</p>
+          <input class="signup-email q-text" id="how-q3" type="text" name="wish" maxlength="200" autocomplete="off" placeholder="Ideas, time, the shopping…" aria-describedby="how-q3-hint">
+          <p class="signup-note" id="how-q3-hint">Please leave out health and allergy details: "dietary needs" is plenty. The beta needs an iPhone 11, SE (2nd generation) or newer, on iOS 26.4 or later. Not sure? Tick anyway, and TestFlight will tell you.</p>
         </fieldset>
         <div class="signup-submit"><button class="btn btn-primary btn-fill" type="submit">Keep me posted</button></div>
-        <p class="signup-note">Just launch news and beta invites. No spam. Want off the list? Email privacy@aubergenieapp.com. <a href="/privacy/#email-list">Privacy</a></p>
+        <p class="signup-note">Just launch news and beta invites. No spam, and you can <a href="/privacy/choices/#email-list">leave in one step</a>. <a href="/privacy/#email-list">Privacy</a></p>
         <p class="signup-status" data-signup-status role="status" aria-live="polite"></p>
       </form>
 
@@ -436,7 +436,7 @@
     <p class="footer-legal">© 2026 <span class="brgndy">BRGNDY</span> LTD · Registered in England and Wales, company number 17537333 · Registered office: 71-75 Shelton Street, London WC2H 9JQ · Aubergenie is a trading name of BRGNDY LTD</p>
   </div>
 </footer>
-<script src="/static/js/site.js?v=3" defer></script>
-<script src="/static/js/signup.js?v=6" defer></script>
+<script src="/static/js/site.js?v=4" defer></script>
+<script src="/static/js/signup.js?v=7" defer></script>
 </body>
 </html>

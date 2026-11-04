@@ -314,3 +314,31 @@
 /* Homepage desktop: no floating genie beside the plate */
 .page-index .hero-float { display: none; }
 .gallery-hint { color: var(--ink); }
+
+/* ---- Round two of the 100 reviews ---- */
+/* App close-ups: readable crops in a rounded card, not a shrunken phone */
+.shot-detail { margin: 1.4rem 0 0; width: min(100%, 420px); border-radius: 26px; overflow: hidden; background: var(--surface);
+  box-shadow: var(--shadow), 0 0 0 1px color-mix(in srgb, var(--hair-strong) 70%, transparent); }
+.shot-detail img { display: block; width: 100%; height: auto; }
+.page-how .rail-step .shot-detail, .page-how .answer-new .shot-detail { margin-inline: 0; }
+.beta-glimpse.shot-detail { justify-self: center; margin-top: 1.4rem; }
+@media (min-width: 900px) { .page-beta .beta-glimpse.shot-detail { width: 400px; margin-top: 0; } }
+/* Who it's for, under the gallery */
+.plates-for { margin-top: 1.6rem; font-size: 1.08rem; font-weight: 600; color: var(--ink); max-width: 46ch; text-wrap: pretty; }
+@media (min-width: 760px) { .plates-for { margin-inline: auto; text-align: center; } }
+/* Nothing important in tiny type */
+.page-launch .signup-note, .page-launch .quiet, .page-document .signup-note { font-size: 1rem; }
+.page-how .truth-tag { font-size: .95rem; }
+.page-how .once-caveat { font-size: 1rem; color: var(--ink); font-weight: 600; }
+.gallery-hint { font-size: 1rem; }
+@media (prefers-color-scheme: dark) { .signup-check input:not(:checked) { outline-color: #EDE4EA; } }
+/* Homepage desktop: the whole plate in view, dish name and Next dish together */
+@media (min-width: 900px) {
+  .page-index .plate-hero { margin-right: 0; justify-self: center; }
+  .page-index .hero-stage { grid-template-columns: auto auto 1fr; }
+  .page-index .hero-caption { grid-column: 1; }
+  .page-index .hero-stage [data-next-dish] { grid-column: 2; justify-self: start; margin-left: 1rem; }
+}
+/* Leave form */
+.leave-form { margin: 1rem 0 1.2rem; }
+@media (min-width: 900px) { .page-beta .hero-grid { align-items: start; } .page-beta .hero-stage { margin-top: 2.2rem; } }
