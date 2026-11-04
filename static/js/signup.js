@@ -52,7 +52,7 @@
       var subject = tester ? 'Keep me posted (happy to test)' : 'Keep me posted';
       var body = 'Please keep me posted about Aubergenie.\n\n' +
         'Email: ' + (email ? email.value : '') + '\n' +
-        "I'd be interested in testing an early version on iPhone: " + (tester ? 'Yes' : 'No') + '\n';
+        "I'd like to try the beta on my iPhone: " + (tester ? 'Yes' : 'No') + '\n';
       if (tester) {
         body += '\nHow often I cook: ' + (label('cooks') || '-') +
           '\nWhere most of my recipes live: ' + (label('recipes_from') || '-') +

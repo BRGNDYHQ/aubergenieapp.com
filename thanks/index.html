@@ -15,7 +15,7 @@
 <link rel="apple-touch-icon" href="/static/icons/icon-180.png">
 <link rel="preload" href="/static/fonts/archivo-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/static/css/site.css?v=f1d834fdd0">
-<link rel="stylesheet" href="/static/css/launch.css?v=5">
+<link rel="stylesheet" href="/static/css/launch.css?v=9">
 <script>(function(d){d.classList.add('js');try{d.classList.add(matchMedia('(prefers-reduced-motion: reduce)').matches?'still':'motion')}catch(e){d.classList.add('still')}setTimeout(function(){if(!d.classList.contains('js-ready')){d.classList.remove('motion');d.classList.add('still')}},4000)})(document.documentElement)</script>
 </head>
 <body class="page-document page-thanks">
@@ -37,13 +37,17 @@
     <img class="mascot-tile" src="/static/icons/icon-256.png?v=845df502" width="96" height="96" alt="">
     <p class="eyebrow">Thank you</p>
     <h1>You're on the list.</h1>
-    <p class="lede">I'll email you when Aubergenie launches and when early access opens. Nothing else.</p>
-    <p class="quiet" data-tester-thanks hidden>Thanks for offering to test, too. Places are limited, so I'm starting small; I'll email you personally if one becomes available.</p>
-    <p class="quiet">While you wait, follow along on Instagram at <a href="https://www.instagram.com/ndtthomas/" rel="me">@ndtthomas</a>.</p>
-    <p class="quiet">Changed your mind? Email <a href="mailto:privacy@aubergenieapp.com">privacy@aubergenieapp.com</a> and I'll take you off the list.</p>
-    <div class="actions">
-      <a class="btn btn-primary" href="/">Back to Aubergenie</a>
+    <p class="lede">I'll let you know the moment Aubergenie's out. No spam, nothing else.</p>
+    <p class="quiet" data-tester-thanks hidden>Thanks for offering to test, too. I'm starting small, so I'll email you when there's a space.</p>
+    <div class="share-box">
+      <p><strong>Know someone stuck in a dinner rut?</strong> Send them this way.</p>
+      <div class="actions">
+        <button class="btn btn-primary btn-fill" type="button" data-share>Share Aubergenie</button>
+        <a class="btn" href="/">Back to the homepage</a>
+      </div>
+      <p class="share-status" data-share-status role="status" aria-live="polite"></p>
     </div>
+    <p class="quiet">Follow along on Instagram at <a href="https://www.instagram.com/ndtthomas/" rel="me">@ndtthomas</a>. Changed your mind? Email <a href="mailto:privacy@aubergenieapp.com">privacy@aubergenieapp.com</a> and I'll take you off the list.</p>
   </header>
 </article>
 </main>
@@ -63,6 +67,18 @@
   </div>
 </footer>
 <script src="/static/js/site.js?v=95c656e06f" defer></script>
-<script>if (/[?&]tester\b/.test(location.search)) document.querySelector('[data-tester-thanks]').hidden = false;</script>
+<script>
+(function () {
+  if (/[?&]tester\b/.test(location.search)) document.querySelector('[data-tester-thanks]').hidden = false;
+  var btn = document.querySelector('[data-share]'), status = document.querySelector('[data-share-status]');
+  var data = { title: 'Aubergenie', text: 'Remember when cooking was fun? This little iPhone app is bringing it back.', url: 'https://aubergenieapp.com/' };
+  btn.addEventListener('click', function () {
+    if (navigator.share) { navigator.share(data).catch(function () {}); return; }
+    var done = function () { status.textContent = 'Link copied. Paste it wherever you like.'; };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(data.url).then(done, function () { status.textContent = 'Copy this link: ' + data.url; });
+    else status.textContent = 'Copy this link: ' + data.url;
+  });
+})();
+</script>
 </body>
 </html>
