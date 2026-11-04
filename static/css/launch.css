@@ -247,3 +247,10 @@
 
 /* Top form: the label explains why you'd leave your email */
 .signup-prompt { margin: 0 0 .6rem; font-size: 1.08rem; line-height: 1.35; font-weight: 650; color: var(--ink); text-wrap: balance; }
+
+/* App screenshot: show the whole screen, framed like an iPhone */
+.screen-glimpse { aspect-ratio: auto; width: min(64vw, 270px); border-radius: 46px; border: 8px solid #1B171C; background: #1B171C;
+  box-shadow: var(--shadow), 0 0 0 1px rgba(0, 0, 0, .25); }
+.screen-glimpse img { height: auto; object-fit: initial; border-radius: 38px; }
+@media (min-width: 900px) { .screen-glimpse { width: 300px; } }
+@media (prefers-color-scheme: dark) { .screen-glimpse { border-color: #3A3340; background: #3A3340; } }
