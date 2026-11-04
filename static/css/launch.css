@@ -260,3 +260,20 @@
   .gallery { display: flex; flex-wrap: wrap; justify-content: center; }
   .gallery .plate-small { flex: 0 0 calc((100% - 3 * 1.4rem) / 4); }
 }
+
+/* How it works page */
+.how-intro { padding: 2rem 0 0; }
+.how-intro h1 { font-size: clamp(2.2rem, 1.2rem + 4vw, 4.2rem); max-width: 16ch; }
+.how-intro .lede { margin-top: 1rem; max-width: 40ch; }
+.how-jump { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.6rem; }
+.how-jump a { display: inline-flex; align-items: center; min-height: 40px; padding: 0 1rem; border-radius: 999px; font-weight: 600; font-size: .95rem;
+  text-decoration: none; color: var(--accent); background: var(--accent-soft); }
+.how-jump a:hover { text-decoration: underline; }
+.page-how .scene-find { padding-top: 4rem; }
+/* Real screenshots in a phone frame */
+.screen-framed { border-radius: 46px; border: 8px solid #1B171C; background: #1B171C; box-shadow: var(--shadow), 0 0 0 1px rgba(0, 0, 0, .25); }
+.screen-framed img { border-radius: 38px; }
+@media (prefers-color-scheme: dark) { .screen-framed { border-color: #3A3340; background: #3A3340; } }
+.page-how .screen-create { aspect-ratio: auto; }
+.page-how .screen-create img { height: auto; object-fit: initial; }
+.does-more { margin-top: .8rem; font-size: 1.02rem; }
