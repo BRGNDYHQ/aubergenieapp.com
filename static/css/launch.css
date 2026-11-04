@@ -236,3 +236,11 @@
   .page-home .hero-float { bottom: calc(6% + 74px); }
 }
 @media (max-width: 899px) { .page-home .hero-float { bottom: calc(6% + 96px); } }
+
+/* Tester questions: heading sits inside the box, tighter spacing */
+.tester-qs legend { float: left; width: 100%; padding: 0; margin: 0 0 .2rem; font-size: 1rem; }
+.tester-qs legend + * { clear: both; }
+.tester-qs .q-label { margin: .75rem 0 .4rem; }
+.tester-qs .q-label:first-of-type { margin-top: .5rem; }
+.tester-qs p.q-label:first-of-type { margin-top: .9rem; }
+.tester-qs legend { margin-bottom: .75rem; }

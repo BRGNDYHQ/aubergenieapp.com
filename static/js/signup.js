@@ -56,7 +56,7 @@
       if (tester) {
         body += '\nHow often I cook: ' + (label('cooks') || '-') +
           '\nWhere most of my recipes live: ' + (label('recipes_from') || '-') +
-          '\nWhat would make cooking more fun: ' + (value('wish') || '-') + '\n';
+          '\nWhat gets in the way of cooking more: ' + (value('wish') || '-') + '\n';
       }
       window.location.href = mailto.split('?')[0] + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
     };

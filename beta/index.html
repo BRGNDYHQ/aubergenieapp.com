@@ -28,7 +28,7 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/static/fonts/archivo-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/static/css/site.css?v=f1d834fdd0">
-<link rel="stylesheet" href="/static/css/launch.css?v=15">
+<link rel="stylesheet" href="/static/css/launch.css?v=18">
 <script>(function(d){d.classList.add('js');try{d.classList.add(matchMedia('(prefers-reduced-motion: reduce)').matches?'still':'motion')}catch(e){d.classList.add('still')}setTimeout(function(){if(!d.classList.contains('js-ready')){d.classList.remove('motion');d.classList.add('still')}},4000)})(document.documentElement)</script>
 </head>
 <body class="page-home page-launch page-beta">
@@ -65,7 +65,7 @@
           <span>I'd like to try the beta on my iPhone</span>
         </label>
         <fieldset class="tester-qs" data-tester-qs>
-          <legend>Help me pick a good mix of testers <span>(all optional)</span></legend>
+          <legend>Help me pick a good mix of testers</legend>
           <p class="q-label" id="beta-q1">How often do you cook?</p>
           <div class="choices" role="radiogroup" aria-labelledby="beta-q1">
             <label class="choice"><input type="radio" name="cooks" value="most-days"><span>Most days</span></label>
@@ -80,9 +80,9 @@
             <label class="choice"><input type="radio" name="recipes_from" value="family"><span>Family recipes and cards</span></label>
             <label class="choice"><input type="radio" name="recipes_from" value="in-my-head"><span>In my head</span></label>
           </div>
-          <label class="q-label" for="beta-q3">What would make cooking more fun for you?</label>
-          <input class="signup-email q-text" id="beta-q3" type="text" name="wish" maxlength="200" autocomplete="off" placeholder="One line is plenty" aria-describedby="beta-q3-hint">
-          <p class="signup-note" id="beta-q3-hint">Please leave out health or allergy details. The beta needs an iPhone on iOS 26.4 or later.</p>
+          <label class="q-label" for="beta-q3">What gets in the way of cooking more?</label>
+          <input class="signup-email q-text" id="beta-q3" type="text" name="wish" maxlength="200" autocomplete="off" placeholder="Ideas, time, the shopping…" aria-describedby="beta-q3-hint">
+          <p class="signup-note" id="beta-q3-hint">No health or allergy details, please. The beta needs iOS 26.4 or later.</p>
         </fieldset>
         <div class="signup-submit"><button class="btn btn-primary btn-fill" type="submit" data-hero-cta>Keep me posted</button></div>
         <p class="signup-note">Places are limited, so I'll be in touch when there's a space. You'll also hear when Aubergenie launches. <a href="/privacy/#email-list">Privacy</a></p>
@@ -151,6 +151,6 @@
   </div>
 </footer>
 <script src="/static/js/site.js?v=3" defer></script>
-<script src="/static/js/signup.js?v=5" defer></script>
+<script src="/static/js/signup.js?v=6" defer></script>
 </body>
 </html>
