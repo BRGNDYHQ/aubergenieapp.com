@@ -28,7 +28,7 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/static/fonts/archivo-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/static/css/site.css?v=f1d834fdd0">
-<link rel="stylesheet" href="/static/css/launch.css?v=28">
+<link rel="stylesheet" href="/static/css/launch.css?v=30">
 <script>(function(d){d.classList.add('js');try{d.classList.add(matchMedia('(prefers-reduced-motion: reduce)').matches?'still':'motion')}catch(e){d.classList.add('still')}setTimeout(function(){if(!d.classList.contains('js-ready')){d.classList.remove('motion');d.classList.add('still')}},4000)})(document.documentElement)</script>
 </head>
 <body class="page-home page-launch page-beta">
@@ -51,7 +51,7 @@
     <div class="hero-copy">
       <p class="hero-eyebrow">The Aubergenie beta · iPhone</p>
       <h1>Help me test Aubergenie.</h1>
-      <p class="lede">It's a little iPhone app that makes cooking fun again. Before it launches, I'd love a small group of people who cook, keen or reluctant, to try it and tell me honestly what works and what doesn't.</p>
+      <p class="lede">It's a little iPhone app that makes cooking fun again. Before it launches, I'd love a small group of people to try it and tell me honestly what works and what doesn't. Keen cook, or never really cooked? You're exactly who I need.</p>
 
       <form class="signup signup-feature" action="mailto:hello@aubergenieapp.com" method="post" data-signup>
         <input type="hidden" name="source" value="beta-page">
@@ -62,7 +62,7 @@
         </div>
         <label class="signup-check">
           <input type="checkbox" name="tester" value="yes" checked>
-          <span>I'd like to try the beta on my iPhone</span>
+          <span>I'd like to try it early on my iPhone (free beta)</span>
         </label>
         <fieldset class="tester-qs" data-tester-qs>
           <legend>Help me pick a good mix of testers</legend>
@@ -81,25 +81,25 @@
             <label class="choice"><input type="radio" name="recipes_from" value="in-my-head"><span>In my head, or nowhere yet</span></label>
           </div>
           <label class="q-label" for="beta-q3">What gets in the way of cooking more?</label>
-          <input class="signup-email q-text" id="beta-q3" type="text" name="wish" maxlength="200" autocomplete="off" placeholder="Ideas, time, the shopping… anything" aria-describedby="beta-q3-hint">
-          <p class="signup-note" id="beta-q3-hint">No medical details, please: "dietary needs" is plenty. The beta needs an iPhone 11 or newer on iOS 26.4 or later. Not sure? Tick anyway, and TestFlight will tell you.</p>
+          <input class="signup-email q-text" id="beta-q3" type="text" name="wish" maxlength="200" autocomplete="off" placeholder="Ideas, time, the shopping…" aria-describedby="beta-q3-hint">
+          <p class="signup-note" id="beta-q3-hint">Please leave out health and allergy details: "dietary needs" is plenty. The beta needs an iPhone 11, SE (2nd generation) or newer, on iOS 26.4 or later. Not sure? Tick anyway, and TestFlight will tell you.</p>
         </fieldset>
         <div class="signup-submit"><button class="btn btn-primary btn-fill" type="submit" data-hero-cta>Keep me posted</button></div>
-        <p class="signup-note">I'm letting people in a few at a time. If you're not in the first group, your name stays on the list and you'll still hear the day it launches. <a href="/privacy/#email-list">Privacy</a></p>
+        <p class="signup-note">I'm letting people in a few at a time. If you're not in the first group, your email stays on the list and you'll still hear the day it launches. <a href="/privacy/#email-list">Privacy</a></p>
         <p class="signup-status" data-signup-status role="status" aria-live="polite"></p>
       </form>
     </div>
 
     <div class="hero-stage">
-      <figure class="screen screen-glimpse beta-glimpse">
-        <picture>
-          <source media="(prefers-color-scheme: dark)" type="image/avif" srcset="/static/images/screen-cook-mode-dark-600.avif 600w, /static/images/screen-cook-mode-dark-1200.avif 1200w" sizes="(min-width: 900px) 320px, min(64vw, 260px)">
-          <source media="(prefers-color-scheme: dark)" srcset="/static/images/screen-cook-mode-dark-600.jpg 600w, /static/images/screen-cook-mode-dark-1200.jpg 1200w" sizes="(min-width: 900px) 320px, min(64vw, 260px)">
-          <source type="image/avif" srcset="/static/images/screen-cook-mode-600.avif 600w, /static/images/screen-cook-mode-1200.avif 1200w" sizes="(min-width: 900px) 320px, min(64vw, 260px)">
-          <img src="/static/images/screen-cook-mode-600.jpg" srcset="/static/images/screen-cook-mode-600.jpg 600w, /static/images/screen-cook-mode-1200.jpg 1200w" sizes="(min-width: 900px) 320px, min(64vw, 260px)" width="600" height="1304" fetchpriority="high" decoding="async"
-               alt="Aubergenie's Cook Mode for Shakshuka, step 1 of 5, in large text: heat 2 tbsp oil, add 1 onion, 1 pepper and a pinch of salt, cook for 8–10 minutes, with the time shown as a tappable timer. Up next: stir in garlic, tomato purée and spices. Previous and Next buttons at the bottom.">
-        </picture>
-      </figure>
+      <figure class="shot-detail beta-glimpse">
+          <picture>
+            <source media="(prefers-color-scheme: dark)" type="image/avif" srcset="/static/images/detail-cook-dark-640.avif 640w, /static/images/detail-cook-dark-1280.avif 1280w" sizes="(min-width: 900px) 400px, min(100vw - 40px, 420px)">
+            <source media="(prefers-color-scheme: dark)" srcset="/static/images/detail-cook-dark-640.jpg 640w, /static/images/detail-cook-dark-1280.jpg 1280w" sizes="(min-width: 900px) 400px, min(100vw - 40px, 420px)">
+            <source type="image/avif" srcset="/static/images/detail-cook-640.avif 640w, /static/images/detail-cook-1280.avif 1280w" sizes="(min-width: 900px) 400px, min(100vw - 40px, 420px)">
+            <img src="/static/images/detail-cook-640.jpg" srcset="/static/images/detail-cook-640.jpg 640w, /static/images/detail-cook-1280.jpg 1280w" sizes="(min-width: 900px) 400px, min(100vw - 40px, 420px)" width="640" height="800" fetchpriority="high" decoding="async"
+                 alt="Close-up of Aubergenie's Cook Mode, step 1 of 5, in large text: heat 2 tbsp oil, add 1 onion, 1 pepper and a pinch of salt, and cook for 8 to 10 minutes, with the time shown as a timer. Up next: stir in garlic, tomato purée and spices.">
+          </picture>
+        </figure>
     </div>
   </div>
 </section>
@@ -113,7 +113,7 @@
       <li class="reveal"><h3>Early access</h3><p>Try Aubergenie on your iPhone before it launches. It's free, through TestFlight, Apple's free app for trying apps before they launch. Pricing comes later, and everyone on the list hears before launch.</p></li>
       <li class="reveal"><h3>A few rough edges</h3><p>Things will wobble now and then. Spotting them is half the job.</p></li>
       <li class="reveal"><h3>Your say</h3><p>Tell me what you love and what drives you mad, and I'll use it to decide what gets built next.</p></li>
-      <li class="reveal"><h3>A few at a time</h3><p>I'm starting small and letting more people in as it improves. If you're not in the first group, your name stays on the list.</p></li>
+      <li class="reveal"><h3>A few at a time</h3><p>I'm starting small and letting more people in as it improves. If you're not in the first group, your email stays on the list.</p></li>
     </ul>
   </div>
 </section>
@@ -153,7 +153,7 @@
     <p class="footer-legal">© 2026 <span class="brgndy">BRGNDY</span> LTD · Registered in England and Wales, company number 17537333 · Registered office: 71-75 Shelton Street, London WC2H 9JQ · Aubergenie is a trading name of BRGNDY LTD</p>
   </div>
 </footer>
-<script src="/static/js/site.js?v=3" defer></script>
-<script src="/static/js/signup.js?v=6" defer></script>
+<script src="/static/js/site.js?v=4" defer></script>
+<script src="/static/js/signup.js?v=7" defer></script>
 </body>
 </html>

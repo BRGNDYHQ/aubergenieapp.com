@@ -12,11 +12,15 @@
   if (header) {
     var onScroll = function () { header.classList.toggle('is-scrolled', window.scrollY > 8); };
     onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
-    var heroCta = $('[data-hero-cta]');
-    if (heroCta && 'IntersectionObserver' in window) {
-      new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) { header.classList.toggle('cta-away', e.intersectionRatio < 0.99); });
-      }, { threshold: [0, 0.99, 1] }).observe(heroCta);
+    // Show the header's button only when no sign-up button on the page is fully in view.
+    var ctas = $$('[data-hero-cta], form[data-signup] button[type="submit"]');
+    if (ctas.length && 'IntersectionObserver' in window) {
+      var inView = [];
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { inView[ctas.indexOf(e.target)] = e.intersectionRatio >= 0.99; });
+        header.classList.toggle('cta-away', inView.indexOf(true) === -1);
+      }, { threshold: [0, 0.99, 1] });
+      ctas.forEach(function (c) { io.observe(c); });
     } else { header.classList.add('cta-away'); }
   }
   $$('[data-copy]').forEach(function (btn) {
@@ -132,7 +136,9 @@
       if (dislikes.length) clauses.push('leave out ' + dislikes.join(' and '));
       if (kit.length) clauses.push('make use of your ' + join(kit));
       clauses.push(serves === '1' ? 'size recipes for one' : 'size recipes for ' + (numbers[serves] || serves));
-      var text = product + ' will ' + join(clauses) + '.';
+      var examples = { peanut: 'Satay Chicken', milk: 'Butter Chicken', egg: 'Spaghetti Carbonara' };
+      var skipped = allergies.map(function (a) { return examples[a]; }).filter(Boolean);
+      var text = product + ' will ' + join(clauses) + '.' + (skipped.length ? ' Plan My Week would leave out ' + join(skipped) + '.' : '');
       if (still) { sentence.textContent = text; return; }
       sentence.classList.add('is-changing');
       setTimeout(function () { sentence.textContent = text; sentence.classList.remove('is-changing'); }, 180);

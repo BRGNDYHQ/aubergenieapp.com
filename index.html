@@ -28,7 +28,7 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/static/fonts/archivo-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/static/css/site.css?v=f1d834fdd0">
-<link rel="stylesheet" href="/static/css/launch.css?v=28">
+<link rel="stylesheet" href="/static/css/launch.css?v=30">
 <script>(function(d){d.classList.add('js');try{d.classList.add(matchMedia('(prefers-reduced-motion: reduce)').matches?'still':'motion')}catch(e){d.classList.add('still')}setTimeout(function(){if(!d.classList.contains('js-ready')){d.classList.remove('motion');d.classList.add('still')}},4000)})(document.documentElement)</script>
 </head>
 <body class="page-home page-launch page-index">
@@ -62,7 +62,7 @@
         </div>
         <label class="signup-check">
           <input type="checkbox" name="tester" value="yes">
-          <span>I'd like to try the beta on my iPhone</span>
+          <span>I'd like to try it early on my iPhone (free beta)</span>
         </label>
         <fieldset class="tester-qs" data-tester-qs>
           <legend>Help me pick a good mix of testers</legend>
@@ -81,11 +81,11 @@
             <label class="choice"><input type="radio" name="recipes_from" value="in-my-head"><span>In my head, or nowhere yet</span></label>
           </div>
           <label class="q-label" for="top-q3">What gets in the way of cooking more?</label>
-          <input class="signup-email q-text" id="top-q3" type="text" name="wish" maxlength="200" autocomplete="off" placeholder="Ideas, time, the shopping… anything" aria-describedby="top-q3-hint">
-          <p class="signup-note" id="top-q3-hint">No medical details, please: "dietary needs" is plenty. The beta needs an iPhone 11 or newer on iOS 26.4 or later. Not sure? Tick anyway, and TestFlight will tell you.</p>
+          <input class="signup-email q-text" id="top-q3" type="text" name="wish" maxlength="200" autocomplete="off" placeholder="Ideas, time, the shopping…" aria-describedby="top-q3-hint">
+          <p class="signup-note" id="top-q3-hint">Please leave out health and allergy details: "dietary needs" is plenty. The beta needs an iPhone 11, SE (2nd generation) or newer, on iOS 26.4 or later. Not sure? Tick anyway, and TestFlight will tell you.</p>
         </fieldset>
         <div class="signup-submit"><button class="btn btn-primary btn-fill" type="submit" data-hero-cta>Keep me posted</button></div>
-        <p class="signup-note">Just launch news and beta invites. No spam. Want off the list? Email privacy@aubergenieapp.com. <a href="/privacy/#email-list">Privacy</a></p>
+        <p class="signup-note">Just launch news and beta invites. No spam, and you can <a href="/privacy/choices/#email-list">leave in one step</a>. <a href="/privacy/#email-list">Privacy</a></p>
         <p class="signup-status" data-signup-status role="status" aria-live="polite"></p>
       </form>
     </div>
@@ -132,9 +132,10 @@
 <li class="plate plate-small"><picture><source type="image/avif" srcset="/static/images/plate-ragu-720.avif"><img src="/static/images/plate-ragu-720.jpg" width="720" height="720" loading="lazy" decoding="async" alt="Rigatoni in a sausage ragu with parsley and grated Parmesan, on a red plate."></picture><p class="plate-name"><span class="dish">Sausage Ragu</span><span class="facts">45 min · Italian</span></p></li>
 <li class="plate plate-small"><picture><source type="image/avif" srcset="/static/images/plate-butter-chicken-720.avif"><img src="/static/images/plate-butter-chicken-720.jpg" width="720" height="720" loading="lazy" decoding="async" alt="Butter chicken on basmati rice, on a red plate."></picture><p class="plate-name"><span class="dish">Butter Chicken</span><span class="facts">40 min · Indian</span></p></li>
 <li class="plate plate-small"><picture><source type="image/avif" srcset="/static/images/plate-lemon-drizzle-cake-720.avif"><img src="/static/images/plate-lemon-drizzle-cake-720.jpg" width="720" height="720" loading="lazy" decoding="async" alt="A lemon drizzle loaf with a slice cut, on a wooden board."></picture><p class="plate-name"><span class="dish">Lemon Drizzle Cake</span><span class="facts">1 hr 40 min · British</span></p></li>
-<li class="plate plate-small"><picture><source type="image/avif" srcset="/static/images/plate-raspberry-white-chocolate-loaf-720.avif"><img src="/static/images/plate-raspberry-white-chocolate-loaf-720.jpg" width="720" height="720" loading="lazy" decoding="async" alt="A raspberry and white chocolate loaf with a slice cut, on a wooden board."></picture><p class="plate-name"><span class="dish">Raspberry & White Chocolate Loaf</span><span class="facts">2 hr 15 min · British</span></p></li>
+<li class="plate plate-small"><picture><source type="image/avif" srcset="/static/images/plate-raspberry-white-chocolate-loaf-720.avif"><img src="/static/images/plate-raspberry-white-chocolate-loaf-720.jpg" width="720" height="720" loading="lazy" decoding="async" alt="A raspberry and white chocolate loaf with a slice cut, on a wooden board."></picture><p class="plate-name"><span class="dish">Raspberry and White Chocolate Loaf</span><span class="facts">2 hr 15 min · British</span></p></li>
     </ul>
     <p class="gallery-hint" aria-hidden="true">Swipe for more</p>
+    <p class="plates-for">Just starting out, cooking for one or feeding a fussy family? Tell it once, and every recipe it writes fits.</p>
     <p class="plates-more"><a class="btn btn-primary" href="/how-it-works/">See how it works &rarr;</a></p>
   </div>
 </section>
@@ -167,7 +168,7 @@
         </div>
         <label class="signup-check">
           <input type="checkbox" name="tester" value="yes">
-          <span>I'd like to try the beta on my iPhone</span>
+          <span>I'd like to try it early on my iPhone (free beta)</span>
         </label>
         <fieldset class="tester-qs" data-tester-qs>
           <legend>Help me pick a good mix of testers</legend>
@@ -186,15 +187,15 @@
             <label class="choice"><input type="radio" name="recipes_from" value="in-my-head"><span>In my head, or nowhere yet</span></label>
           </div>
           <label class="q-label" for="join-q3">What gets in the way of cooking more?</label>
-          <input class="signup-email q-text" id="join-q3" type="text" name="wish" maxlength="200" autocomplete="off" placeholder="Ideas, time, the shopping… anything" aria-describedby="join-q3-hint">
-          <p class="signup-note" id="join-q3-hint">No medical details, please: "dietary needs" is plenty. The beta needs an iPhone 11 or newer on iOS 26.4 or later. Not sure? Tick anyway, and TestFlight will tell you.</p>
+          <input class="signup-email q-text" id="join-q3" type="text" name="wish" maxlength="200" autocomplete="off" placeholder="Ideas, time, the shopping…" aria-describedby="join-q3-hint">
+          <p class="signup-note" id="join-q3-hint">Please leave out health and allergy details: "dietary needs" is plenty. The beta needs an iPhone 11, SE (2nd generation) or newer, on iOS 26.4 or later. Not sure? Tick anyway, and TestFlight will tell you.</p>
         </fieldset>
         <div class="signup-submit"><button class="btn btn-primary btn-fill" type="submit">Keep me posted</button></div>
-        <p class="signup-note">Just launch news and beta invites. No spam. Want off the list? Email privacy@aubergenieapp.com. <a href="/privacy/#email-list">Privacy</a></p>
+        <p class="signup-note">Just launch news and beta invites. No spam, and you can <a href="/privacy/choices/#email-list">leave in one step</a>. <a href="/privacy/#email-list">Privacy</a></p>
         <p class="signup-status" data-signup-status role="status" aria-live="polite"></p>
       </form>
 
-    <p class="invite-trust">No ads, no tracking. Your recipes stay in your own iCloud unless you ask the AI for help.</p>
+    <p class="invite-trust">No ads, no tracking. Your recipes live on your devices and in your own iCloud, and only reach my server when you ask the AI for help.</p>
     <p class="price-note">Free during the beta. I haven't set a price yet. You'll hear it from me before launch, and nothing will ever charge you unless you choose it.</p>
     <p class="founder">Questions, or just want to talk food? Email <a href="mailto:hello@aubergenieapp.com">hello@aubergenieapp.com</a>. I post what I'm cooking on Instagram at <a href="https://www.instagram.com/ndtthomas/" rel="me">@ndtthomas</a>.<span class="founder-sign">Nathan</span></p>
   </div>
@@ -219,7 +220,7 @@
     <p class="footer-legal">© 2026 <span class="brgndy">BRGNDY</span> LTD · Registered in England and Wales, company number 17537333 · Registered office: 71-75 Shelton Street, London WC2H 9JQ · Aubergenie is a trading name of BRGNDY LTD</p>
   </div>
 </footer>
-<script src="/static/js/site.js?v=3" defer></script>
-<script src="/static/js/signup.js?v=6" defer></script>
+<script src="/static/js/site.js?v=4" defer></script>
+<script src="/static/js/signup.js?v=7" defer></script>
 </body>
 </html>

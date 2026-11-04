@@ -28,6 +28,7 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/static/fonts/archivo-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/static/css/site.css?v=f1d834fdd0">
+<link rel="stylesheet" href="/static/css/launch.css?v=30">
 <script>(function(d){d.classList.add('js');try{d.classList.add(matchMedia('(prefers-reduced-motion: reduce)').matches?'still':'motion')}catch(e){d.classList.add('still')}setTimeout(function(){if(!d.classList.contains('js-ready')){d.classList.remove('motion');d.classList.add('still')}},4000)})(document.documentElement)</script>
 </head>
 <body class="page-document">
@@ -90,10 +91,19 @@
       <p>If you are in the UK or the EU you can ask for a copy of what is held about you, ask for it to be corrected, deleted or restricted, object to how it is processed, or ask for it in a portable form. For Aubergenie that is a short list: an account identifier, the email address Apple gave the app at first sign-in, sessions, usage counts, content-free request records with their one-way fingerprints, any recipe response inside its two-hour recovery window and any photo analysis kept for the same purpose, and after deletion the one-way fingerprint of your Apple ID described in the policy. Write to <a href="mailto:privacy@aubergenieapp.com">privacy@aubergenieapp.com</a>; the reply comes within one month. If you are unhappy with the answer you can complain to the <a href="https://ico.org.uk/make-a-complaint/">Information Commissioner's Office</a>.</p>
 
       <h2 id="email-list">Leave the email list</h2>
-      <p>If you signed up on this website to hear about the launch or to test, email <a href="mailto:privacy@aubergenieapp.com">privacy@aubergenieapp.com</a> from the address you used and we will remove it, along with any answers you gave. The list is separate from your app account, so this changes nothing in the app. <a href="/privacy/#email-list">What the list holds</a></p>
+      <p>If you signed up on this website to hear about the launch or to test, enter the same address here and it's removed straight away, along with any answers you gave. Nothing tells anyone whether an address was on the list.</p>
+      <form class="signup leave-form" action="mailto:privacy@aubergenieapp.com" method="post" data-leave>
+        <label class="signup-label" for="leave-email">The email you signed up with</label>
+        <div class="signup-row">
+          <input class="signup-email" id="leave-email" type="email" name="email" autocomplete="email" autocapitalize="off" spellcheck="false" placeholder="you@example.com" required>
+          <button class="btn btn-primary btn-fill" type="submit">Take me off the list</button>
+        </div>
+        <p class="signup-status" data-signup-status role="status" aria-live="polite"></p>
+      </form>
+      <p>Or email <a href="mailto:privacy@aubergenieapp.com">privacy@aubergenieapp.com</a> from that address and we will remove it. The list is separate from your app account, so this changes nothing in the app. <a href="/privacy/#email-list">What the list holds</a></p>
 
       <h2 id="tracking">Tracking and advertising</h2>
-      <p>There is nothing to opt out of. Aubergenie has no advertising, no tracking, no third-party analytics and no data brokers, in the app or on this website. This site sets no cookies and loads nothing from other companies; its sign-up form sends what you type to our own database at Supabase.</p>
+      <p>There is nothing to opt out of. Aubergenie has no advertising, no tracking, no third-party analytics and no data brokers, in the app or on this website. This site sets no cookies and loads nothing from other companies; its sign-up form sends what you type to our own database at Supabase, which, like any web server, also sees your IP address.</p>
     </div>
   </div>
 </article>
@@ -116,6 +126,7 @@
     <p class="footer-legal">© 2026 <span class="brgndy">BRGNDY</span> LTD · Registered in England and Wales, company number 17537333 · Registered office: 71-75 Shelton Street, London WC2H 9JQ · Aubergenie is a trading name of BRGNDY LTD</p>
   </div>
 </footer>
-<script src="/static/js/site.js?v=3" defer></script>
+<script src="/static/js/site.js?v=4" defer></script>
+<script src="/static/js/signup.js?v=7" defer></script>
 </body>
 </html>
