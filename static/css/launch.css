@@ -342,3 +342,15 @@
 /* Leave form */
 .leave-form { margin: 1rem 0 1.2rem; }
 @media (min-width: 900px) { .page-beta .hero-grid { align-items: start; } .page-beta .hero-stage { margin-top: 2.2rem; } }
+
+/* ---- Round three ---- */
+/* Phone hero: say what the round button does */
+@media (max-width: 899px) {
+  .page-index .hero-stage [data-next-dish] { width: auto; min-height: 40px; padding: 0 .85rem 0 .7rem; border-radius: 999px; font-size: .88rem; gap: .35rem; }
+  .page-index .hero-stage [data-next-dish] svg { width: 1em; height: 1em; }
+}
+/* Dark mode: the email box needs a visible edge */
+@media (prefers-color-scheme: dark) { .signup-email { border-color: #8E808B; } }
+.plan-note { margin-top: .8rem; font-size: 1rem; color: var(--ink-2); max-width: 40ch; }
+@media (max-width: 459px) { .page-document .header-cta { display: none !important; } }
+@media (min-width: 900px) { .page-how .once-grid, .page-how .find-grid { align-items: start; } .page-how .once-words, .page-how .find-words { padding-top: 2.4rem; } }

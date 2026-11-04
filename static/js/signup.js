@@ -100,7 +100,7 @@
 
       if (!LIST.url || !LIST.key || !window.fetch) {
         openEmail(tester);
-        say('Your email app should open with a note ready to send. Press send and you’re on the list.');
+        say('Your email app should open with a note ready to send. Press send and I’ll add you myself.');
         return;
       }
 
@@ -137,7 +137,7 @@
       }).catch(function () {
         if (timer) clearTimeout(timer);
         busy(false);
-        say('Something went wrong on my side, so your email app will open instead. Press send and you’re on the list.');
+        say('Something went wrong on my side, so your email app will open instead. Press send and I’ll add you myself.');
         openEmail(tester);
       });
     });
