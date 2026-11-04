@@ -28,7 +28,7 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/static/fonts/archivo-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/static/css/site.css?v=f1d834fdd0">
-<link rel="stylesheet" href="/static/css/launch.css?v=27">
+<link rel="stylesheet" href="/static/css/launch.css?v=28">
 <script>(function(d){d.classList.add('js');try{d.classList.add(matchMedia('(prefers-reduced-motion: reduce)').matches?'still':'motion')}catch(e){d.classList.add('still')}setTimeout(function(){if(!d.classList.contains('js-ready')){d.classList.remove('motion');d.classList.add('still')}},4000)})(document.documentElement)</script>
 </head>
 <body class="page-home page-launch page-beta">
@@ -70,7 +70,7 @@
           <div class="choices" role="radiogroup" aria-labelledby="beta-q1">
             <label class="choice"><input type="radio" name="cooks" value="most-days"><span>Most days</span></label>
             <label class="choice"><input type="radio" name="cooks" value="few-times-a-week"><span>A few times a week</span></label>
-            <label class="choice"><input type="radio" name="cooks" value="now-and-then"><span>Now and then</span></label>
+            <label class="choice"><input type="radio" name="cooks" value="now-and-then"><span>Now and then, or hardly ever</span></label>
           </div>
           <p class="q-label" id="beta-q2">Where do most of your recipes live now?</p>
           <div class="choices" role="radiogroup" aria-labelledby="beta-q2">
@@ -78,14 +78,14 @@
             <label class="choice"><input type="radio" name="recipes_from" value="cookbooks"><span>Cookbooks</span></label>
             <label class="choice"><input type="radio" name="recipes_from" value="social"><span>Screenshots and social</span></label>
             <label class="choice"><input type="radio" name="recipes_from" value="family"><span>Family recipes and cards</span></label>
-            <label class="choice"><input type="radio" name="recipes_from" value="in-my-head"><span>In my head</span></label>
+            <label class="choice"><input type="radio" name="recipes_from" value="in-my-head"><span>In my head, or nowhere yet</span></label>
           </div>
           <label class="q-label" for="beta-q3">What gets in the way of cooking more?</label>
-          <input class="signup-email q-text" id="beta-q3" type="text" name="wish" maxlength="200" autocomplete="off" placeholder="Ideas, time, the shopping…" aria-describedby="beta-q3-hint">
-          <p class="signup-note" id="beta-q3-hint">No health or allergy details, please. The beta needs iOS 26.4 or later (Settings › General › About).</p>
+          <input class="signup-email q-text" id="beta-q3" type="text" name="wish" maxlength="200" autocomplete="off" placeholder="Ideas, time, the shopping… anything" aria-describedby="beta-q3-hint">
+          <p class="signup-note" id="beta-q3-hint">No medical details, please: "dietary needs" is plenty. The beta needs an iPhone 11 or newer on iOS 26.4 or later. Not sure? Tick anyway, and TestFlight will tell you.</p>
         </fieldset>
         <div class="signup-submit"><button class="btn btn-primary btn-fill" type="submit" data-hero-cta>Keep me posted</button></div>
-        <p class="signup-note">Places are limited, so I'll be in touch when there's a space. You'll also hear when Aubergenie launches. <a href="/privacy/#email-list">Privacy</a></p>
+        <p class="signup-note">I'm letting people in a few at a time. If you're not in the first group, your name stays on the list and you'll still hear the day it launches. <a href="/privacy/#email-list">Privacy</a></p>
         <p class="signup-status" data-signup-status role="status" aria-live="polite"></p>
       </form>
     </div>
@@ -113,7 +113,7 @@
       <li class="reveal"><h3>Early access</h3><p>Try Aubergenie on your iPhone before it launches. It's free, through TestFlight, Apple's free app for trying apps before they launch. Pricing comes later, and everyone on the list hears before launch.</p></li>
       <li class="reveal"><h3>A few rough edges</h3><p>Things will wobble now and then. Spotting them is half the job.</p></li>
       <li class="reveal"><h3>Your say</h3><p>Tell me what you love and what drives you mad, and I'll use it to decide what gets built next.</p></li>
-      <li class="reveal"><h3>A small first group</h3><p>I'm starting small, so places are limited. If one opens up, I'll email you.</p></li>
+      <li class="reveal"><h3>A few at a time</h3><p>I'm starting small and letting more people in as it improves. If you're not in the first group, your name stays on the list.</p></li>
     </ul>
   </div>
 </section>
@@ -125,11 +125,11 @@
     </header>
     <ol class="how-steps">
       <li><div><strong>Leave your email with the box ticked.</strong><p>That's all for now.</p></div></li>
-      <li><div><strong>When there's a space, I'll email you.</strong><p>It comes from me, with a link to join.</p></div></li>
+      <li><div><strong>When there's a space, I'll email you.</strong><p>A short note from me first. Then Apple emails your TestFlight invite (I give Apple your email address for that).</p></div></li>
       <li><div><strong>TestFlight installs the app.</strong><p>TestFlight is Apple's free app for trying apps early. Tap the link in Apple's email and Aubergenie lands on your Home Screen like any other app.</p></div></li>
-      <li><div><strong>Cook something, then tell me how it went.</strong><p>A quick message is plenty. Screenshots of anything odd are gold.</p></div></li>
+      <li><div><strong>Cook something, then tell me how it went.</strong><p>Whenever suits. One line is plenty, and if life gets busy, that's useful to know too.</p></div></li>
     </ol>
-    <p class="quiet">Anyone who cooks is welcome: keen or reluctant, weeknights only or long weekend projects. You'll need an iPhone on iOS 26.4 or later (Settings › General › About). Bringing your own recipes with the AI switched off is just as useful.</p>
+    <p class="quiet">Anyone who cooks is welcome: keen or reluctant, weeknights only or long weekend projects. You'll need an iPhone 11 or newer on iOS 26.4 or later (Settings › General › About). Bringing your own recipes with the AI switched off is just as useful.</p>
     <p class="founder">Questions first? Email <a href="mailto:hello@aubergenieapp.com">hello@aubergenieapp.com</a>. You can also follow along on Instagram at <a href="https://www.instagram.com/ndtthomas/" rel="me">@ndtthomas</a>.<span class="founder-sign">Nathan</span></p>
   </div>
 </section>
@@ -143,7 +143,7 @@
       <span class="footer-tag">Rediscover the joy of cooking.</span>
     </div>
     <nav class="footer-nav" aria-label="Legal and support">
-      <a href="/">About the app</a>
+      <a href="/">Home</a>
       <a href="/how-it-works/">How it works</a>
       <a href="/support/">Support</a>
       <a href="/privacy/">Privacy</a>
