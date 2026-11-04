@@ -244,3 +244,6 @@
 .tester-qs .q-label:first-of-type { margin-top: .5rem; }
 .tester-qs p.q-label:first-of-type { margin-top: .9rem; }
 .tester-qs legend { margin-bottom: .75rem; }
+
+/* Top form: the label explains why you'd leave your email */
+.signup-prompt { margin: 0 0 .6rem; font-size: 1.08rem; line-height: 1.35; font-weight: 650; color: var(--ink); text-wrap: balance; }
