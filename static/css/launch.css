@@ -198,3 +198,19 @@
   .page-home .hero-copy h1 { font-size: clamp(2.9rem, 1.2rem + 3vw, 4.2rem); }
 }
 @media (min-width: 900px) { .page-home .plate-hero { width: min(38vw, 560px); } }
+
+/* Phone hero v2: the plate leads, bleeding off the right edge, dish name beside it */
+@media (max-width: 899px) {
+  .page-home .hero-stage { order: -1; margin: .2rem 0 1.3rem; grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: auto auto auto 1fr; column-gap: 1rem; row-gap: .35rem; align-items: start; }
+  .page-home .plate-hero { grid-column: 2; grid-row: 1 / -1; align-self: center; width: min(64vw, 300px); margin-right: calc(-1 * var(--gutter) - 7vw); }
+  .page-home .hero-float { grid-column: 1; grid-row: 1; width: 46px; margin: .4rem 0 .2rem; justify-items: start; }
+  .page-home .hero-float .float-shadow { display: none; }
+  .page-home .hero-caption { grid-column: 1; grid-row: 2; }
+  .page-home .hero-caption .dish { font-size: 1.3rem; }
+  .page-home .hero-caption .facts { font-size: .82rem; line-height: 1.35; }
+  .page-home .hero-stage [data-next-dish] { grid-column: 1; grid-row: 3; justify-self: start; margin-top: .5rem; }
+  .page-home .hero-eyebrow { margin-bottom: .4rem; }
+}
+@media (max-width: 899px) {
+  .page-home .plate-hero { width: min(74vw, 340px); justify-self: end; margin-right: calc(-1 * var(--gutter) - 13vw); }
+}
