@@ -28,7 +28,7 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/static/fonts/archivo-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/static/css/site.css?v=f1d834fdd0">
-<link rel="stylesheet" href="/static/css/launch.css?v=19">
+<link rel="stylesheet" href="/static/css/launch.css?v=21">
 <script>(function(d){d.classList.add('js');try{d.classList.add(matchMedia('(prefers-reduced-motion: reduce)').matches?'still':'motion')}catch(e){d.classList.add('still')}setTimeout(function(){if(!d.classList.contains('js-ready')){d.classList.remove('motion');d.classList.add('still')}},4000)})(document.documentElement)</script>
 </head>
 <body class="page-home page-launch page-beta">
@@ -93,6 +93,8 @@
     <div class="hero-stage">
       <figure class="screen screen-glimpse beta-glimpse">
         <picture>
+          <source media="(prefers-color-scheme: dark)" type="image/avif" srcset="/static/images/screen-create-afternoon-dark-600.avif 600w, /static/images/screen-create-afternoon-dark-1200.avif 1200w" sizes="(min-width: 900px) 320px, min(64vw, 260px)">
+          <source media="(prefers-color-scheme: dark)" srcset="/static/images/screen-create-afternoon-dark-600.jpg 600w, /static/images/screen-create-afternoon-dark-1200.jpg 1200w" sizes="(min-width: 900px) 320px, min(64vw, 260px)">
           <source type="image/avif" srcset="/static/images/screen-create-afternoon-600.avif 600w, /static/images/screen-create-afternoon-1200.avif 1200w" sizes="(min-width: 900px) 320px, min(64vw, 260px)">
           <img src="/static/images/screen-create-afternoon-600.jpg" srcset="/static/images/screen-create-afternoon-600.jpg 600w, /static/images/screen-create-afternoon-1200.jpg 1200w" sizes="(min-width: 900px) 320px, min(64vw, 260px)" width="600" height="1303" fetchpriority="high" decoding="async"
                alt="Aubergenie's Create screen on iPhone: 'Good afternoon, Nathan. Tonight's still open.' above a box reading 'Anything you'd like to make…', with a camera button and two ideas to start from: Banana bread, 1 hour, and Chilli, 35g protein.">
