@@ -254,3 +254,4 @@
 .screen-glimpse img { height: auto; object-fit: initial; border-radius: 38px; }
 @media (min-width: 900px) { .screen-glimpse { width: 300px; } }
 @media (prefers-color-scheme: dark) { .screen-glimpse { border-color: #3A3340; background: #3A3340; } }
+@media (prefers-color-scheme: dark) { .screen-glimpse img { filter: none; } }
