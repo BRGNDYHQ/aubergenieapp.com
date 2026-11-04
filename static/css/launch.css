@@ -118,3 +118,22 @@
 .choice span { padding: 0 .8rem; font-size: .9rem; }
 @media (max-width: 459px) { .signup-feature { padding: 1rem .9rem 1rem; } .tester-qs { padding: .9rem .8rem 1rem; } }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+/* Review fixes */
+/* Phone header: when the button appears, drop the text link so the logo has room */
+@media (max-width: 459px) { .page-launch .site-header.cta-away .site-nav > a:not(.btn) { display: none; } }
+/* Phone: crop the app screenshot to the part with something on it */
+@media (max-width: 899px) {
+  .screen-glimpse { aspect-ratio: 600 / 830; }
+  .screen-glimpse img { height: 100%; object-fit: cover; object-position: bottom; }
+}
+@media (prefers-color-scheme: dark) { .screen-glimpse img { filter: brightness(.9); } }
+/* Phone: shorter spark cards, icon beside the heading */
+@media (max-width: 759px) {
+  .beat { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 1rem; align-items: center; padding: 1.2rem 1.2rem 1.3rem; }
+  .beat h3 { margin-top: 0; }
+  .beat p { grid-column: 1 / -1; margin-top: .7rem; }
+  .scene-join .yolk { width: min(46vw, 180px); }
+}
+/* Desktop beta page: centre the screenshot in its column */
+@media (min-width: 900px) { .page-beta .hero-stage { display: flex; justify-content: center; align-items: center; } }

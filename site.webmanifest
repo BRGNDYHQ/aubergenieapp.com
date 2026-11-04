@@ -1,7 +1,7 @@
 {
   "name": "Aubergenie",
   "short_name": "Aubergenie",
-  "description": "Your recipes, your next idea, and dinner on the table.",
+  "description": "Rediscover the joy of cooking.",
   "start_url": "/",
   "display": "browser",
   "background_color": "#FFF8EE",
