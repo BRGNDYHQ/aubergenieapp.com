@@ -246,12 +246,17 @@
       <li class="rail-step reveal" id="plan">
         <div class="rail-words">
           <h3>Plan the week.</h3>
-          <p>Plan My Week suggests from your own recipes and places the leftovers. It says why.</p>
+          <p>Plan My Week suggests from your own recipes and places the leftovers. It says why. Set a calorie or protein goal if you like, and it keeps count.</p>
         </div>
         <figure class="screen screen-week screen-framed">
-          <picture><source srcset="/static/images/screen-09-plan-today-dark-framed.jpg" media="(prefers-color-scheme: dark)"><img src="/static/images/screen-09-plan-today-framed.jpg" width="600" height="1256" loading="lazy" decoding="async"
-               alt="The Plan tab's Today page: the week along the top, and under Dinner a Cook tonight card for Satay Chicken with a Start Cooking button."></picture>
-        </figure>
+        <picture>
+          <source media="(prefers-color-scheme: dark)" type="image/avif" srcset="/static/images/screen-plan-day-dark-600.avif 600w, /static/images/screen-plan-day-dark-1200.avif 1200w" sizes="(min-width: 900px) 300px, min(70vw, 280px)">
+          <source media="(prefers-color-scheme: dark)" srcset="/static/images/screen-plan-day-dark-600.jpg 600w, /static/images/screen-plan-day-dark-1200.jpg 1200w" sizes="(min-width: 900px) 300px, min(70vw, 280px)">
+          <source type="image/avif" srcset="/static/images/screen-plan-day-600.avif 600w, /static/images/screen-plan-day-1200.avif 1200w" sizes="(min-width: 900px) 300px, min(70vw, 280px)">
+          <img src="/static/images/screen-plan-day-600.jpg" srcset="/static/images/screen-plan-day-600.jpg 600w, /static/images/screen-plan-day-1200.jpg 1200w" sizes="(min-width: 900px) 300px, min(70vw, 280px)" width="600" height="1304" loading="lazy" decoding="async"
+               alt="Aubergenie's Plan screen for Wednesday: lunch is leftover one-pan pork souvlaki with lemon potatoes, flagged as past three days in the fridge; dinner is Cook tonight: Marry me chicken thighs with mash, with Start Cooking and Ate It buttons; below, 2,505 of 2,850 kcal and 129 of 150 g protein planned.">
+        </picture>
+      </figure>
       </li>
 
       <li class="rail-step reveal" id="shop">
@@ -283,32 +288,20 @@
         </div>
       </li>
 
-      <li class="rail-step reveal" id="cook" data-cook>
+      <li class="rail-step reveal" id="cook">
         <div class="rail-words">
           <h3>Cook in big type.</h3>
           <p>One step at a time. Once you allow alarms, timers ring even with your iPhone locked.</p>
         </div>
-        <div class="cookpanel" role="group" aria-label="Example Cook Mode, step 1 of 6">
-          <p class="demo-tag" aria-hidden="true">Example · it counts down, tap to pause</p>
-          <div class="cook-bar"><span class="cook-recipe">Satay Chicken</span><span class="cook-stepcount">Step 1 of 6</span></div>
-          <div class="cook-progress" aria-hidden="true"><i class="is-on"></i><i></i><i></i><i></i><i></i><i></i></div>
-          <p class="cook-step">Mix the chicken with 100ml coconut milk, the curry powder, 1 tbsp red curry paste and 1 tbsp soy sauce. Leave to marinate for <span class="nowrap"><span class="cook-time"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="8.5"/><path d="M12 8.5V13l3 2"/><path d="M9 3h6"/></svg>10 minutes</span>.</span></p>
-          <div class="cook-timer">
-            <svg class="cook-ring" viewBox="0 0 48 48" aria-hidden="true">
-              <circle cx="24" cy="24" r="20" fill="none" stroke="var(--accent-soft)" stroke-width="5"/>
-              <circle class="cook-ring-fill" cx="24" cy="24" r="20" fill="none" stroke="var(--accent)" stroke-width="5" stroke-linecap="round" pathLength="100" stroke-dasharray="100" stroke-dashoffset="0"/>
-            </svg>
-            <div class="cook-digits-wrap">
-              <p class="cook-digits" data-cook-digits aria-live="off">9:53</p>
-              <p class="cook-label">Marinate chicken</p>
-            </div>
-            <button class="btn btn-round btn-pause" type="button" data-cook-pause aria-label="Pause the timer" hidden>
-              <svg viewBox="0 0 24 24" aria-hidden="true" data-icon-pause><path d="M8 5v14M16 5v14"/></svg>
-              <svg viewBox="0 0 24 24" aria-hidden="true" data-icon-play hidden><path d="M7 5l12 7-12 7z"/></svg>
-            </button>
-          </div>
-          <p class="cook-next"><span>Up next:</span> Meanwhile, add the remaining 300ml coconut milk, peanut butter, remaining 1 tbsp red curry paste, remaining 1 tbsp soy sauce, honey and the juice of half the lime to a small saucepan.</p>
-        </div>
+        <figure class="screen screen-week screen-framed">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" type="image/avif" srcset="/static/images/screen-cook-mode-dark-600.avif 600w, /static/images/screen-cook-mode-dark-1200.avif 1200w" sizes="(min-width: 900px) 300px, min(70vw, 280px)">
+          <source media="(prefers-color-scheme: dark)" srcset="/static/images/screen-cook-mode-dark-600.jpg 600w, /static/images/screen-cook-mode-dark-1200.jpg 1200w" sizes="(min-width: 900px) 300px, min(70vw, 280px)">
+          <source type="image/avif" srcset="/static/images/screen-cook-mode-600.avif 600w, /static/images/screen-cook-mode-1200.avif 1200w" sizes="(min-width: 900px) 300px, min(70vw, 280px)">
+          <img src="/static/images/screen-cook-mode-600.jpg" srcset="/static/images/screen-cook-mode-600.jpg 600w, /static/images/screen-cook-mode-1200.jpg 1200w" sizes="(min-width: 900px) 300px, min(70vw, 280px)" width="600" height="1304" loading="lazy" decoding="async"
+               alt="Aubergenie's Cook Mode for Shakshuka, step 1 of 5, in large text: heat 2 tbsp oil, add 1 onion, 1 pepper and a pinch of salt, cook for 8–10 minutes, with the time shown as a tappable timer. Up next: stir in garlic, tomato purée and spices. Previous and Next buttons at the bottom.">
+        </picture>
+      </figure>
       </li>
 
       <li class="rail-step rail-step-plate reveal" id="made">
