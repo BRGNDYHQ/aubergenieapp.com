@@ -255,3 +255,8 @@
 @media (min-width: 900px) { .screen-glimpse { width: 300px; } }
 @media (prefers-color-scheme: dark) { .screen-glimpse { border-color: #3A3340; background: #3A3340; } }
 @media (prefers-color-scheme: dark) { .screen-glimpse img { filter: none; } }
+/* Gallery with an odd number of dishes: centre the last row on bigger screens */
+@media (min-width: 760px) {
+  .gallery { display: flex; flex-wrap: wrap; justify-content: center; }
+  .gallery .plate-small { flex: 0 0 calc((100% - 3 * 1.4rem) / 4); }
+}
