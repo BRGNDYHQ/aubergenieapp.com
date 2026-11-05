@@ -40,7 +40,7 @@
     </a>
     <nav class="site-nav" aria-label="Site">
       <a href="/support/">Support</a>
-      <a class="btn btn-small header-cta" href="/#join" data-header-cta>Keep me posted</a>
+      <a class="btn btn-small btn-fill header-cta" href="/#join" data-header-cta>Keep me posted</a>
     </nav>
   </div>
 </header>
@@ -54,7 +54,7 @@
     <p class="meta"></p>
   </header>
   <div class="document-grid">
-    <aside class="document-aside">
+    <div class="document-aside">
       <div class="callout">
   <p class="callout-title">Recipe File</p>
   <ul>
@@ -85,7 +85,7 @@
 </div>
 
       </nav>
-    </aside>
+    </div>
     <div class="prose">
       <p><strong>Status:</strong> v1.1, 2026-10-09. Stable. Maintained alongside Chef. Changes follow §9.
 Since 2026-10-18 the recipe inside is Canonical Recipe 5.0, the launch format (optional additions, §4); the envelope is unchanged.
@@ -130,7 +130,7 @@ parser. The recipe inside is <strong>Canonical Recipe 5.0</strong>, defined by:<
 <li><strong>Size:</strong> a recipe alone is tens of kilobytes; with a photo, typically 0.5–1.5 MB. Writers should stay under 4 MiB. Readers may refuse a file over 8 MiB.</li>
 </ul>
 <h2 id="2-the-envelope">2. The envelope</h2>
-<pre><code class="language-json">{
+<pre tabindex="0"><code class="language-json">{
   &quot;format&quot; : &quot;recipe&quot;,
   &quot;version&quot; : 1,
   &quot;recipe&quot; : { &quot;schemaVersion&quot; : 4, &quot;id&quot; : &quot;…&quot;, &quot;title&quot; : &quot;…&quot;, … }
@@ -177,7 +177,7 @@ parser. The recipe inside is <strong>Canonical Recipe 5.0</strong>, defined by:<
 <li>Writers add no other top-level members in v1. Readers ignore unknown top-level members.</li>
 </ul>
 <h3 id="21-the-photograph-v11">2.1 The photograph (v1.1)</h3>
-<pre><code class="language-json">&quot;image&quot; : {
+<pre tabindex="0"><code class="language-json">&quot;image&quot; : {
   &quot;mediaType&quot; : &quot;image/jpeg&quot;,
   &quot;encoding&quot; : &quot;base64&quot;,
   &quot;width&quot; : 2560,
@@ -365,7 +365,7 @@ parser. The recipe inside is <strong>Canonical Recipe 5.0</strong>, defined by:<
 <p><strong>Collisions.</strong> Other programs have used <code>.recipe</code> for unrelated files, including calibre's news recipes (Python) and AutoPkg recipes (property lists). Identify a Recipe File by its contents (§5), never by its name alone. A reader must not treat arbitrary JSON as a recipe.</p>
 <p>There is one extension and one media type. A bare Canonical Recipe with no envelope is not a Recipe File, whatever it is called.</p>
 <h2 id="8-minimal-reader">8. Minimal reader</h2>
-<pre><code>read(bytes):
+<pre tabindex="0"><code>read(bytes):
   if size(bytes) &gt; 8 MiB: return DAMAGED
   text = trim(dropLeadingBOM(bytes))
   if text is empty: return DAMAGED

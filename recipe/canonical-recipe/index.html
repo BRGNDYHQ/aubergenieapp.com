@@ -40,7 +40,7 @@
     </a>
     <nav class="site-nav" aria-label="Site">
       <a href="/support/">Support</a>
-      <a class="btn btn-small header-cta" href="/#join" data-header-cta>Keep me posted</a>
+      <a class="btn btn-small btn-fill header-cta" href="/#join" data-header-cta>Keep me posted</a>
     </nav>
   </div>
 </header>
@@ -54,7 +54,7 @@
     <p class="meta"></p>
   </header>
   <div class="document-grid">
-    <aside class="document-aside">
+    <div class="document-aside">
       <div class="callout">
   <p class="callout-title">Recipe File</p>
   <ul>
@@ -94,7 +94,7 @@
 </div>
 
       </nav>
-    </aside>
+    </div>
     <div class="prose">
       <p><strong>Status: 5.0, the launch format (2026-10-18).</strong> v4 (FROZEN 2026-10-06,
 committed <code>660553b</code> on <code>codex/canonical-recipe-schema</code>) plus optional
@@ -160,7 +160,7 @@ reads or writes it, and every recipe-writing path ends in
 </tr>
 </tbody>
 </table>
-<pre><code class="language-bash">deno run --allow-read docs/canonical-recipe/reference/check.ts
+<pre tabindex="0"><code class="language-bash">deno run --allow-read docs/canonical-recipe/reference/check.ts
 </code></pre>
 <p><strong>Sign-off.</strong> <em>Can every legitimate Chef recipe be represented, migrated,
 validated, persisted and shared through one canonical structure without
@@ -195,7 +195,7 @@ and ready for downstream Edge Function work.</p>
 <code>valid/14-shared-kitchen-sink.json</code>,
 which uses every field. The smallest valid recipe has seven fields
 (<code>valid/12-incomplete-optional.json</code>).</p>
-<pre><code class="language-jsonc">{
+<pre tabindex="0"><code class="language-jsonc">{
   &quot;schemaVersion&quot;: 5,
   &quot;id&quot;: &quot;9e8d7c6b-5a49-4382-a716-05f4e3d2c1b0&quot;,
   &quot;title&quot;: &quot;Halloumi &amp; Chickpea Traybake with Herby Yoghurt&quot;,
@@ -872,7 +872,7 @@ by hand. Treating either as invalid would reject legitimate recipes.</p>
 </tbody>
 </table>
 <h2 id="6-validation">6. Validation</h2>
-<pre><code>producer output ─► repair (P1–P10) ─► validateRecipe ─► errors? ─► reject, persist nothing
+<pre tabindex="0"><code>producer output ─► repair (P1–P10) ─► validateRecipe ─► errors? ─► reject, persist nothing
 legacy input    ─► migrate v1→v2→v3→v4 ─► repair ─► validate ─► …
 </code></pre>
 <p><code>RecipeValidator.validate</code> returns <code>isValid</code>, actionable <code>errors</code> (code, JSON
@@ -1305,7 +1305,7 @@ credit off. Only a person's edit or Refine changes it, and then it reads as
 adapted. The photo is never signed.</p>
 <p><strong>The attestation</strong> (optional, top level, open — the shape below is Chef's
 first form; a reader keeps whatever else it holds):</p>
-<pre><code class="language-jsonc">&quot;attestation&quot;: {
+<pre tabindex="0"><code class="language-jsonc">&quot;attestation&quot;: {
   &quot;by&quot;: &quot;chef&quot;,
   &quot;key&quot;: { &quot;id&quot;: &quot;chef-2027-01&quot;, &quot;publicKey&quot;: &quot;…&quot;, &quot;validFrom&quot;: &quot;…&quot;, &quot;validUntil&quot;: &quot;…&quot;,
            &quot;certificate&quot;: &quot;…&quot; },          // the root key's Ed25519 signature over the key
