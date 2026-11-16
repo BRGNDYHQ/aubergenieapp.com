@@ -373,3 +373,15 @@
 .founder-note .founder { margin-top: .7rem; font-size: 1.12rem; line-height: 1.5; color: var(--ink); max-width: none; }
 .founder-contact { margin-top: .8rem; font-size: 1rem; color: var(--ink-2); }
 .founder-row .founder-note { margin-top: 0; }
+
+/* Streamlined homepage: Meet Nathan between the dishes and the sign-up */
+.scene-meet .meet-grid { display: grid; gap: 1.6rem; justify-items: center; text-align: center; }
+.scene-meet .founder-photo { margin: 0; width: min(64vw, 260px); }
+.scene-meet .founder-note { margin: 0 auto; }
+@media (min-width: 760px) {
+  .scene-meet .meet-grid { grid-template-columns: 300px minmax(0, 1fr); gap: 3.5rem; justify-items: start; text-align: left; align-items: center; max-width: 60rem; margin-inline: auto; }
+  .scene-meet .founder-photo { width: 300px; }
+  .scene-meet .founder-note { margin: 0; }
+}
+.scene-join .founder-contact { text-align: center; }
+.page-how .tonight-grid { grid-template-columns: 1fr; max-width: 34rem; }
