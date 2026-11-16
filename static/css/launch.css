@@ -385,3 +385,6 @@
 }
 .scene-join .founder-contact { text-align: center; }
 .page-how .tonight-grid { grid-template-columns: 1fr; max-width: 34rem; }
+/* Beta page on phones: photo centred like the homepage */
+@media (max-width: 599px) { .founder-row { justify-items: center; text-align: center; } .founder-row .founder-photo { width: min(64vw, 240px); } }
+.page-how .answer-new .shot-detail + .ai-facts { margin-top: 1.2rem; }

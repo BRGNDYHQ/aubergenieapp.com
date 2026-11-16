@@ -28,7 +28,7 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/static/fonts/archivo-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/static/css/site.css?v=f1d834fdd0">
-<link rel="stylesheet" href="/static/css/launch.css?v=35">
+<link rel="stylesheet" href="/static/css/launch.css?v=36">
 <script>(function(d){d.classList.add('js');try{d.classList.add(matchMedia('(prefers-reduced-motion: reduce)').matches?'still':'motion')}catch(e){d.classList.add('still')}setTimeout(function(){if(!d.classList.contains('js-ready')){d.classList.remove('motion');d.classList.add('still')}},4000)})(document.documentElement)</script>
 </head>
 <body class="page-home page-launch page-how">
@@ -64,7 +64,7 @@
 <section class="scene scene-find" id="find" data-reveal data-find>
   <div class="wrap find-grid">
     <div class="find-words">
-      <p class="scene-problem">Nan's card in a drawer. Sam's satay in the group chat. A craving with no recipe.</p>
+      <p class="scene-problem">A stack of meal-kit cards in a drawer. Sam's satay in the group chat. A craving with no recipe.</p>
       <h2 class="verbs"><span data-verb="find">Find it.</span> <span data-verb="save">Save it.</span> <span data-verb="make">Make it.</span></h2>
       <p class="scene-lede">However it arrives, it lands as one page: amounts, steps and timers, ready to cook.</p>
       <div class="chips" role="group" aria-label="Where a recipe comes from">
@@ -77,7 +77,7 @@
       <p class="truth" data-truth aria-live="polite">
         <span data-truth-for="words" hidden>Say what you fancy. Aubergenie AI writes it around how you eat.<b class="truth-tag">Uses the AI · needs Sign in with Apple</b></span>
         <span data-truth-for="link" hidden>Paste a link. Most sites copy across exactly as written.<b class="truth-tag">No account · no AI</b></span>
-        <span data-truth-for="photo">A card or cookbook page, copied as written. Snap a plate of food and Aubergenie writes its own version.<b class="truth-tag">Uses the AI · needs Sign in with Apple</b></span>
+        <span data-truth-for="photo">This one's a photo of the plate, so Aubergenie wrote its own version. Photograph a card or cookbook page instead and it's copied as written, for you to check before saving.<b class="truth-tag">Uses the AI · needs Sign in with Apple</b></span>
         <span data-truth-for="friend" hidden>Sam sends the recipe itself. One tap saves it.<b class="truth-tag">No account · no AI</b></span>
         <span data-truth-for="hand" hidden>Write your own, even offline.<b class="truth-tag">No account · no AI</b></span>
       </p>
@@ -201,8 +201,6 @@
 
     <div class="tonight-grid">
       <div class="answer answer-new reveal">
-        <h3>Say what you fancy.</h3>
-        <p>Type a dinner. Aubergenie AI writes it around everything you said once.</p>
         <figure class="shot-detail">
           <picture>
             <source media="(prefers-color-scheme: dark)" type="image/avif" srcset="/static/images/detail-create-dark-640.avif 640w, /static/images/detail-create-dark-1280.avif 1280w" sizes="(min-width: 900px) 400px, min(100vw - 40px, 420px)">
@@ -241,7 +239,7 @@
                  alt="Close-up of Aubergenie's Plan for one day. Lunch: leftover one-pan pork souvlaki with lemon potatoes, from Saturday, flagged as past three days in the fridge. Dinner: Cook tonight, Marry me chicken thighs with mash, with Start Cooking and Ate It buttons. Below: 2,505 of 2,850 kcal and 129 of 150 g protein planned.">
           </picture>
         </figure>
-        <p class="plan-note">Goals are optional. Leave them off and it simply plans your meals.</p>
+        <p class="plan-note">The rings show what's planned against your goal, and what you've eaten so far. Goals are optional: leave them off and it simply plans your meals.</p>
       </li>
 
       <li class="rail-step reveal" id="shop">
@@ -349,7 +347,7 @@
         </div>
         <label class="signup-check">
           <input type="checkbox" name="tester" value="yes">
-          <span>I'd like to try it early on my iPhone (free beta)</span>
+          <span>I'd like to try it early on my iPhone (free test version)</span>
         </label>
         <fieldset class="tester-qs" data-tester-qs>
           <legend>Help me pick a good mix of testers</legend>
@@ -369,7 +367,7 @@
           </div>
           <label class="q-label" for="how-q3">What gets in the way of cooking more?</label>
           <input class="signup-email q-text" id="how-q3" type="text" name="wish" maxlength="200" autocomplete="off" placeholder="Ideas, time, the shopping…" aria-describedby="how-q3-hint">
-          <p class="signup-note" id="how-q3-hint">Please leave out health and allergy details: "dietary needs" is plenty. The beta is iPhone-only for now and needs an iPhone 11, SE (2nd generation) or newer, on iOS 26.4 or later. Not sure? Tick anyway, and TestFlight will tell you. On an iPad or an older iPhone? Untick, and you'll still hear the day it launches.</p>
+          <p class="signup-note" id="how-q3-hint">No wrong answers, and please leave out health details. The test version is iPhone-only for now: an iPhone 11, SE (2nd generation) or newer. Not sure? Tick anyway. On an iPad or an older iPhone? Untick, and you'll still hear the day it launches.</p>
         </fieldset>
         <div class="signup-submit"><button class="btn btn-primary btn-fill" type="submit">Keep me posted</button></div>
         <p class="signup-note">Just launch news and beta invites. No spam, and you can <a href="/privacy/choices/#email-list">leave in one step</a>. <a href="/privacy/#email-list">Privacy</a></p>
@@ -400,6 +398,6 @@
   </div>
 </footer>
 <script src="/static/js/site.js?v=4" defer></script>
-<script src="/static/js/signup.js?v=8" defer></script>
+<script src="/static/js/signup.js?v=9" defer></script>
 </body>
 </html>
