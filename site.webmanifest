@@ -1,7 +1,7 @@
 {
   "name": "Aubergenie",
   "short_name": "Aubergenie",
-  "description": "Rediscover the joy of cooking.",
+  "description": "A recipe app that takes the faff out of dinner.",
   "start_url": "/",
   "display": "browser",
   "background_color": "#FFF8EE",

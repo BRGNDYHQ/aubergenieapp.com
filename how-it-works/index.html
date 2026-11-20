@@ -28,7 +28,7 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/static/fonts/archivo-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/static/css/site.css?v=f1d834fdd0">
-<link rel="stylesheet" href="/static/css/launch.css?v=37">
+<link rel="stylesheet" href="/static/css/launch.css?v=38">
 <script>(function(d){d.classList.add('js');try{d.classList.add(matchMedia('(prefers-reduced-motion: reduce)').matches?'still':'motion')}catch(e){d.classList.add('still')}setTimeout(function(){if(!d.classList.contains('js-ready')){d.classList.remove('motion');d.classList.add('still')}},4000)})(document.documentElement)</script>
 </head>
 <body class="page-home page-launch page-how">
@@ -40,7 +40,7 @@
     </a>
     <nav class="site-nav" aria-label="Site">
       <a href="/support/">Support</a>
-      <a class="btn btn-small btn-fill header-cta" href="#join" data-header-cta>Keep me posted</a>
+      <a class="btn btn-small btn-fill header-cta" href="#join" data-header-cta>Tell me when it's ready</a>
     </nav>
   </div>
 </header>
@@ -326,7 +326,7 @@
     <ul class="facts-list">
       <li><strong>Free while I test it.</strong> I haven't set a price yet: you'll hear it from me before launch, and you'll never be charged unless you choose to be.</li>
       <li><strong>iPhone, iPad and Mac.</strong> Everything syncs through your own iCloud. Not on Android, sorry.</li>
-      <li><strong>The AI is optional.</strong> It only helps when you ask, it has a monthly allowance during the beta, and anything it wrote says so. Saving, planning, shopping and cooking work without it, and without an account.</li>
+      <li><strong>The AI is optional.</strong> It only helps when you ask, it has a monthly allowance while I test it, and anything it wrote says so. Saving, planning, shopping and cooking work without it, and without an account.</li>
       <li><strong>Your recipes are yours.</strong> Export them all, any time, as <a href="/recipe/">open recipe files</a> with their photos.</li>
       <li><strong>No ads, no tracking.</strong> Your recipes only reach my server when you ask the AI for help. Nothing is ever sold.</li>
     </ul>
@@ -335,8 +335,8 @@
 
 <section class="scene scene-invite scene-join" id="join" data-reveal>
   <div class="wrap invite-grid reveal">
-    <h2>Fancy being first?</h2>
-    <p class="scene-lede invite-lede">Leave your email and I'll tell you the moment Aubergenie's ready. Tick the box if you'd like to try it before then.</p>
+    <h2>Want to know when it's ready?</h2>
+    <p class="scene-lede invite-lede">Leave your email and I'll tell you the moment Aubergenie's out.</p>
 
       <form class="signup signup-centre" action="mailto:hello@aubergenieapp.com" method="post" data-signup>
         <input type="hidden" name="source" value="how-it-works">
@@ -347,30 +347,10 @@
         </div>
         <label class="signup-check">
           <input type="checkbox" name="tester" value="yes">
-          <span>I'd like to try it early on my iPhone (free test version)</span>
+          <span>I'd also like to test it early on my iPhone (free)</span>
         </label>
-        <fieldset class="tester-qs" data-tester-qs>
-          <legend>Help me pick a good mix of testers</legend>
-          <p class="q-label" id="how-q1">How often do you cook?</p>
-          <div class="choices" role="radiogroup" aria-labelledby="how-q1">
-            <label class="choice"><input type="radio" name="cooks" value="most-days"><span>Most days</span></label>
-            <label class="choice"><input type="radio" name="cooks" value="few-times-a-week"><span>A few times a week</span></label>
-            <label class="choice"><input type="radio" name="cooks" value="now-and-then"><span>Now and then, or hardly ever</span></label>
-          </div>
-          <p class="q-label" id="how-q2">Where do most of your recipes live now?</p>
-          <div class="choices" role="radiogroup" aria-labelledby="how-q2">
-            <label class="choice"><input type="radio" name="recipes_from" value="websites"><span>Websites and apps</span></label>
-            <label class="choice"><input type="radio" name="recipes_from" value="cookbooks"><span>Cookbooks</span></label>
-            <label class="choice"><input type="radio" name="recipes_from" value="social"><span>Screenshots and social</span></label>
-            <label class="choice"><input type="radio" name="recipes_from" value="family"><span>Family recipes and cards</span></label>
-            <label class="choice"><input type="radio" name="recipes_from" value="in-my-head"><span>In my head, or nowhere yet</span></label>
-          </div>
-          <label class="q-label" for="how-q3">What gets in the way of cooking more?</label>
-          <input class="signup-email q-text" id="how-q3" type="text" name="wish" maxlength="200" autocomplete="off" placeholder="Ideas, time, the shopping…" aria-describedby="how-q3-hint">
-          <p class="signup-note" id="how-q3-hint">No wrong answers, and please leave out health details. With your email left out, your answers also help me decide what to build and post about. The test version is iPhone-only for now: an iPhone 11, SE (2nd generation) or newer. Not sure? Tick anyway. On an iPad or an older iPhone? Untick, and you'll still hear the day it launches.</p>
-        </fieldset>
-        <div class="signup-submit"><button class="btn btn-primary btn-fill" type="submit">Keep me posted</button></div>
-        <p class="signup-note">Just launch news and test invites. No spam, and you can <a href="/privacy/choices/#email-list">leave in one step</a>. <a href="/privacy/#email-list">Privacy</a></p>
+        <div class="signup-submit"><button class="btn btn-primary btn-fill" type="submit">Tell me when it's ready</button></div>
+        <p class="signup-note"><strong>Free while I test it. No ads, no tracking.</strong> Launch news and test invites only: no spam, and you can <a href="/privacy/choices/#email-list">leave in one step</a>. <a href="/privacy/#email-list">Privacy</a></p>
         <p class="signup-status" data-signup-status role="status" aria-live="polite"></p>
       </form>
 
@@ -384,11 +364,11 @@
   <div class="wrap">
     <div class="footer-brand">
       <span class="wordmark wordmark-small" aria-hidden="true">aubergen<span class="wm-i">ı<svg viewBox="0 0 100 100"><path d="M50 2C78 20 92 48 84 78 78 96 56 100 40 90 14 74 10 36 50 2Z"/></svg></span>e</span><span class="sr-only">Aubergenie</span>
-      <span class="footer-tag">Rediscover the joy of cooking.</span>
+      <span class="footer-tag">Remember when cooking was fun?</span>
     </div>
     <nav class="footer-nav" aria-label="Legal and support">
       <a href="/">Home</a>
-      <a href="/beta/">iPhone beta</a>
+      <a href="/beta/">Test it early</a>
       <a href="/support/">Support</a>
       <a href="/privacy/">Privacy</a>
       <a href="/privacy/choices/">Privacy choices</a>
@@ -398,6 +378,6 @@
   </div>
 </footer>
 <script src="/static/js/site.js?v=4" defer></script>
-<script src="/static/js/signup.js?v=9" defer></script>
+<script src="/static/js/signup.js?v=10" defer></script>
 </body>
 </html>

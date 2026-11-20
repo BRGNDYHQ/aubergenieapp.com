@@ -15,7 +15,7 @@
 <link rel="apple-touch-icon" href="/static/icons/icon-180.png">
 <link rel="preload" href="/static/fonts/archivo-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/static/css/site.css?v=f1d834fdd0">
-<link rel="stylesheet" href="/static/css/launch.css?v=37">
+<link rel="stylesheet" href="/static/css/launch.css?v=38">
 <script>(function(d){d.classList.add('js');try{d.classList.add(matchMedia('(prefers-reduced-motion: reduce)').matches?'still':'motion')}catch(e){d.classList.add('still')}setTimeout(function(){if(!d.classList.contains('js-ready')){d.classList.remove('motion');d.classList.add('still')}},4000)})(document.documentElement)</script>
 </head>
 <body class="page-document page-thanks">
@@ -38,7 +38,29 @@
     <p class="eyebrow">Thank you</p>
     <h1>You're on the list.</h1>
     <p class="lede">That's it, nothing to confirm. The next email from me will be launch news, or your invite if you're testing. No spam. While you wait: what's the one dish you wish you could cook? Tell me at <a href="mailto:hello@aubergenieapp.com">hello@aubergenieapp.com</a>, and I'll try it in Aubergenie.</p>
-    <p class="quiet" data-tester-thanks hidden>Thanks for offering to test, too. I'm starting small, so I'll email you when there's a space.</p>
+    <p class="quiet" data-tester-thanks hidden>Thanks for offering to test, too. I'm starting small, so I'll email you when there's a space. The test version is iPhone-only for now and needs an iPhone 11, SE (2nd generation) or newer. On an iPad or an older iPhone? You'll still hear the day it launches.</p>
+    <form class="signup answers" data-answers hidden>
+      <h2 class="answers-title">Help me pick a good mix of testers</h2>
+      <p class="q-label" id="a-q1">How often do you cook?</p>
+      <div class="choices" role="radiogroup" aria-labelledby="a-q1">
+        <label class="choice"><input type="radio" name="cooks" value="most-days"><span>Most days</span></label>
+        <label class="choice"><input type="radio" name="cooks" value="few-times-a-week"><span>A few times a week</span></label>
+        <label class="choice"><input type="radio" name="cooks" value="now-and-then"><span>Now and then, or hardly ever</span></label>
+      </div>
+      <p class="q-label" id="a-q2">Where do most of your recipes live now?</p>
+      <div class="choices" role="radiogroup" aria-labelledby="a-q2">
+        <label class="choice"><input type="radio" name="recipes_from" value="websites"><span>Websites and apps</span></label>
+        <label class="choice"><input type="radio" name="recipes_from" value="cookbooks"><span>Cookbooks</span></label>
+        <label class="choice"><input type="radio" name="recipes_from" value="social"><span>Screenshots and social</span></label>
+        <label class="choice"><input type="radio" name="recipes_from" value="family"><span>Family recipes and cards</span></label>
+        <label class="choice"><input type="radio" name="recipes_from" value="in-my-head"><span>In my head, or nowhere yet</span></label>
+      </div>
+      <label class="q-label" for="a-q3">What gets in the way of cooking more?</label>
+      <input class="signup-email q-text" id="a-q3" type="text" name="wish" maxlength="200" autocomplete="off" placeholder="Ideas, time, the shopping…" aria-describedby="a-q3-hint">
+      <p class="signup-note" id="a-q3-hint">No wrong answers, and please leave out health details. With your email left out, your answers also help me decide what to build and post about.</p>
+      <div class="signup-submit"><button class="btn btn-primary btn-fill" type="submit">Send my answers</button></div>
+      <p class="signup-status" data-signup-status role="status" aria-live="polite"></p>
+    </form>
     <div class="share-box">
       <p><strong>Know someone who'd love this?</strong> Send them this way.</p>
       <div class="actions">
@@ -56,7 +78,7 @@
   <div class="wrap">
     <div class="footer-brand">
       <span class="wordmark wordmark-small" aria-hidden="true">aubergen<span class="wm-i">ı<svg viewBox="0 0 100 100"><path d="M50 2C78 20 92 48 84 78 78 96 56 100 40 90 14 74 10 36 50 2Z"/></svg></span>e</span><span class="sr-only">Aubergenie</span>
-      <span class="footer-tag">Rediscover the joy of cooking.</span>
+      <span class="footer-tag">Remember when cooking was fun?</span>
     </div>
     <nav class="footer-nav" aria-label="Legal and support">
       <a href="/how-it-works/">How it works</a>
@@ -69,6 +91,7 @@
   </div>
 </footer>
 <script src="/static/js/site.js?v=4" defer></script>
+<script src="/static/js/signup.js?v=10" defer></script>
 <script>
 (function () {
   if (/[?&]tester\b/.test(location.search)) document.querySelector('[data-tester-thanks]').hidden = false;

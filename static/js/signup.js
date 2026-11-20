@@ -1,5 +1,5 @@
 /*
- * "Keep me posted" signup.
+ * "Tell me when it's ready" signup.
  *
  * Sign-ups are saved to Aubergenie's own Supabase database (London) through one
  * function, public.join_list, which can add to the list but never read it.
@@ -7,8 +7,12 @@
  * opens the visitor's email app with a ready-to-send note instead, so nobody is lost.
  *
  * The testing box sends tester=yes only when ticked. Adding ?test (or #test) to the
- * address ticks it, for links from tester videos. Ticking it reveals three optional
- * questions; while it is unticked they are disabled, so nothing extra is sent.
+ * address ticks it, for links from tester videos.
+ *
+ * Sign-up is one step: email, tick box, button. People who tick the box are offered
+ * three optional questions on the thanks page. Their address is kept in this tab's
+ * sessionStorage so the answers can be saved against it (join_list fills in blanks
+ * for an address already on the list), and removed once the answers are sent.
  */
 (function () {
   var LIST = {
@@ -44,48 +48,60 @@
     });
   });
 
+  // Optional tester questions on the thanks page.
+  var KEY = 'aubergenie-signup-email';
+  var remembered = function () { try { return sessionStorage.getItem(KEY) || ''; } catch (e) { return ''; } };
+  Array.prototype.slice.call(document.querySelectorAll('form[data-answers]')).forEach(function (form) {
+    var address = remembered(), status = form.querySelector('[data-signup-status]'), button = form.querySelector('button[type="submit"]');
+    if (!address || !/[?&]tester\b/.test(location.search) || !LIST.url || !LIST.key || !window.fetch) return; // stays hidden
+    form.hidden = false;
+    var pick = function (name) { var el = form.querySelector('[name="' + name + '"]:checked'); return el ? el.value : null; };
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var wish = (form.querySelector('[name="wish"]').value || '').trim() || null;
+      var cooks = pick('cooks'), from = pick('recipes_from');
+      if (!cooks && !from && !wish) { status.textContent = 'Nothing to send yet. Pick an answer or two, or skip this: it’s optional.'; return; }
+      button.disabled = true;
+      post('join_list', { p_email: address, p_wants_to_test: true, p_cooks: cooks, p_recipes_from: from, p_wish: wish, p_source: null }).then(function (res) {
+        if (!res.ok) throw new Error('save failed');
+        try { sessionStorage.removeItem(KEY); } catch (e) {}
+        Array.prototype.slice.call(form.querySelectorAll('.q-label, .choices, .q-text, .signup-note, .signup-submit')).forEach(function (el) { el.hidden = true; });
+        status.textContent = 'Thank you, that’s saved.';
+      }).catch(function () {
+        button.disabled = false;
+        status.textContent = 'That didn’t save, sorry. Try once more, or skip it: you’re on the list either way.';
+      });
+    });
+  });
+
   var forms = Array.prototype.slice.call(document.querySelectorAll('form[data-signup]'));
   if (!forms.length) return;
 
   var wantsTest = /[?&#](test|tester|beta)\b/.test(location.search + location.hash);
-  var LABEL = 'Keep me posted';
 
   forms.forEach(function (form) {
     var email = form.querySelector('input[type="email"]');
     var check = form.querySelector('input[name="tester"]');
     var status = form.querySelector('[data-signup-status]');
     var button = form.querySelector('button[type="submit"]');
-    var qs = form.querySelector('[data-tester-qs]');
     var mailto = form.getAttribute('action') || 'mailto:hello@aubergenieapp.com';
+    var LABEL = button ? button.textContent : '';
 
     if (check && wantsTest) check.checked = true;
-    var syncQs = function () { if (!qs) return; var on = !!(check && check.checked); qs.hidden = !on; qs.disabled = !on; };
-    if (check) check.addEventListener('change', syncQs);
-    syncQs();
 
     var value = function (name) {
       var el = form.querySelector('[name="' + name + '"]:checked') || form.querySelector('input[type="text"][name="' + name + '"], input[type="hidden"][name="' + name + '"]');
       if (!el || el.disabled || (el.closest && el.closest('fieldset:disabled'))) return '';
       return (el.value || '').trim();
     };
-    var label = function (name) {
-      var el = form.querySelector('[name="' + name + '"]:checked');
-      if (el && el.nextElementSibling) return el.nextElementSibling.textContent.trim();
-      return value(name);
-    };
     var say = function (text) { if (status) status.textContent = text; };
     var busy = function (on) { if (!button) return; button.disabled = on; button.textContent = on ? 'One moment…' : LABEL; };
 
     var openEmail = function (tester) {
-      var subject = tester ? 'Keep me posted (happy to test)' : 'Keep me posted';
-      var body = 'Please keep me posted about Aubergenie.\n\n' +
+      var subject = tester ? 'Tell me when Aubergenie is ready (happy to test)' : 'Tell me when Aubergenie is ready';
+      var body = 'Please tell me when Aubergenie is ready.\n\n' +
         'Email: ' + (email ? email.value : '') + '\n' +
-        "I'd like to try it early on my iPhone (free test version): " + (tester ? 'Yes' : 'No') + '\n';
-      if (tester) {
-        body += '\nHow often I cook: ' + (label('cooks') || '-') +
-          '\nWhere most of my recipes live: ' + (label('recipes_from') || '-') +
-          '\nWhat gets in the way of cooking more: ' + (value('wish') || '-') + '\n';
-      }
+        "I'd also like to test it early on my iPhone: " + (tester ? 'Yes' : 'No') + '\n';
       window.location.href = mailto.split('?')[0] + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
     };
 
@@ -116,15 +132,18 @@
         body: JSON.stringify({
           p_email: email ? email.value : '',
           p_wants_to_test: tester,
-          p_cooks: tester ? value('cooks') || null : null,
-          p_recipes_from: tester ? value('recipes_from') || null : null,
-          p_wish: tester ? value('wish') || null : null,
+          p_cooks: null,
+          p_recipes_from: null,
+          p_wish: null,
           p_source: value('source') || null
         }),
         signal: ctrl ? ctrl.signal : undefined
       }).then(function (res) {
         if (timer) clearTimeout(timer);
-        if (res.ok) { window.location.href = thanks; return; }
+        if (res.ok) {
+          try { if (tester && email) sessionStorage.setItem(KEY, email.value); else sessionStorage.removeItem(KEY); } catch (e) {}
+          window.location.href = thanks; return;
+        }
         return res.json().catch(function () { return {}; }).then(function (err) {
           busy(false);
           if (res.status === 400 && /email_check/.test(err.message || '')) {
