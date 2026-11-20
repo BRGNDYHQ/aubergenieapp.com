@@ -425,3 +425,14 @@ ul.plates-for strong { color: var(--ink); font-weight: 700; }
 .signup-hint { display: none; margin: .5rem 0 0 2.05rem; font-size: 1rem; color: var(--ink-2); }
 .signup-check:has(input:checked) + .signup-hint { display: block; }
 .signup-feature .signup-hint { margin-left: .2rem; }
+
+/* ---- Recipes library close-up, under the save demo ---- */
+.find-library { grid-column: 1 / -1; display: grid; gap: 1.2rem; min-width: 0; }
+.find-library h3 { font-size: clamp(1.4rem, 1.2rem + .9vw, 1.8rem); line-height: 1.15; }
+.find-library p { margin-top: .6rem; font-size: 1.125rem; line-height: 1.5; color: var(--ink-2); max-width: 40ch; }
+.find-library .shot-detail { margin-top: 0; }
+@media (min-width: 900px) {
+  .find-library { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 3rem; align-items: center; justify-items: start; margin-top: 1rem; }
+  @supports (grid-template-columns: subgrid) { .find-library { grid-template-columns: subgrid; } }
+  .find-library .shot-detail { width: 400px; }
+}
