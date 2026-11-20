@@ -1,0 +1,30 @@
+# Keeps the sign-up list awake.
+#
+# The website saves sign-ups to a Supabase database on the free plan. Supabase pauses
+# free projects after about a week without database activity, and while a project is
+# paused the sign-up forms cannot save. Twice a week this asks the list to remove an
+# address that is not on it: nothing changes, but it counts as activity.
+#
+# If this job fails, the list is unreachable and sign-ups are not being saved:
+# open the Supabase dashboard and check the project is running.
+name: Keep the sign-up list awake
+
+on:
+  schedule:
+    - cron: '17 6 * * 1,4'   # Mondays and Thursdays, early morning UK time
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Ask the list to remove an address that is not on it
+        run: |
+          curl --fail-with-body --silent --show-error --max-time 30 --retry 2 --retry-delay 20 \
+            -X POST "https://koalshgnvjyyiiyvvlrl.supabase.co/rest/v1/rpc/leave_list" \
+            -H "apikey: sb_publishable_DVoTUQO-e3Vp8PPdwamHHQ_-Q7oY12a" \
+            -H "Content-Type: application/json" \
+            -d '{"p_email":"keep-awake@example.invalid"}'
