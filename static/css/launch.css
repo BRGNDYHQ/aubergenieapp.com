@@ -420,3 +420,8 @@ ul.plates-for strong { color: var(--ink); font-weight: 700; }
 .answers[hidden] { display: none; }
 .answers-title { font-family: var(--font); font-stretch: normal; font-size: 1.15rem; font-weight: 700; letter-spacing: 0; line-height: 1.3; }
 .answers .q-label { margin: .9rem 0 .45rem; }
+
+/* Test requirement: shown only once the box is ticked */
+.signup-hint { display: none; margin: .5rem 0 0 2.05rem; font-size: 1rem; color: var(--ink-2); }
+.signup-check:has(input:checked) + .signup-hint { display: block; }
+.signup-feature .signup-hint { margin-left: .2rem; }
