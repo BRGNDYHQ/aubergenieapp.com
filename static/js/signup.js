@@ -3,8 +3,8 @@
  *
  * Sign-ups are saved to Aubergenie's own Supabase database (London) through one
  * function, public.join_list, which can add to the list but never read it.
- * Fill in LIST below to switch it on. Until then, or if saving fails, the form
- * opens the visitor's email app with a ready-to-send note instead, so nobody is lost.
+ * Fill in LIST below to switch it on. If saving fails, the form tries once more, then
+ * says so and offers a ready-to-send email link. It never opens the email app by itself.
  *
  * The testing box sends tester=yes only when ticked. Adding ?test (or #test) to the
  * address ticks it, for links from tester videos.
@@ -26,13 +26,27 @@
     return fetch(LIST.url.replace(/\/+$/, '') + '/rest/v1/rpc/' + fn, { method: 'POST', headers: headers, body: JSON.stringify(body) });
   };
 
+  // Show a message in a form's status line, optionally ending with an email link the visitor can choose to tap.
+  var tell = function (status, text, link) {
+    if (!status) return;
+    status.textContent = text;
+    if (!link) return;
+    var a = document.createElement('a');
+    a.href = link.href; a.textContent = link.text;
+    status.appendChild(document.createTextNode(' '));
+    status.appendChild(a);
+    status.appendChild(document.createTextNode(link.after || ''));
+  };
+
   // "Take me off the list" (Privacy choices). Deletes by email and never says whether it was there.
   Array.prototype.slice.call(document.querySelectorAll('form[data-leave]')).forEach(function (form) {
     var email = form.querySelector('input[type="email"]'), status = form.querySelector('[data-signup-status]'), button = form.querySelector('button');
     var mail = function () {
-      window.location.href = 'mailto:privacy@aubergenieapp.com?subject=' + encodeURIComponent('Please take me off the Aubergenie list') +
-        '&body=' + encodeURIComponent('Please remove this address from the Aubergenie email list: ' + email.value + '\n');
-      status.textContent = 'Your email app should open with a note ready to send. Press send and I’ll remove you.';
+      tell(status, 'Sorry, that didn’t work. Please try again in a minute, or', {
+        href: 'mailto:privacy@aubergenieapp.com?subject=' + encodeURIComponent('Please take me off the Aubergenie list') +
+          '&body=' + encodeURIComponent('Please remove this address from the Aubergenie email list: ' + email.value + '\n'),
+        text: 'email me', after: ' and I’ll remove you myself.'
+      });
     };
     form.addEventListener('submit', function (e) {
       email.value = email.value.trim();
@@ -97,12 +111,16 @@
     var say = function (text) { if (status) status.textContent = text; };
     var busy = function (on) { if (!button) return; button.disabled = on; button.textContent = on ? 'One moment…' : LABEL; };
 
-    var openEmail = function (tester) {
+    var emailLink = function (tester) {
       var subject = tester ? 'Tell me when Aubergenie is ready (happy to test)' : 'Tell me when Aubergenie is ready';
       var body = 'Please tell me when Aubergenie is ready.\n\n' +
         'Email: ' + (email ? email.value : '') + '\n' +
         "I'd also like to test it early on my iPhone: " + (tester ? 'Yes' : 'No') + '\n';
-      window.location.href = mailto.split('?')[0] + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      return mailto.split('?')[0] + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    };
+    var failed = function (tester) {
+      busy(false);
+      tell(status, 'Sorry, that didn’t save. Please try again in a minute, or', { href: emailLink(tester), text: 'email me', after: ' and I’ll add you myself.' });
     };
 
     form.addEventListener('submit', function (e) {
@@ -114,31 +132,34 @@
 
       if (value('company')) { window.location.href = thanks; return; } // a bot filled the hidden field
 
-      if (!LIST.url || !LIST.key || !window.fetch) {
-        openEmail(tester);
-        say('Your email app should open with a note ready to send. Press send and I’ll add you myself.');
-        return;
-      }
+      if (!LIST.url || !LIST.key || !window.fetch) { failed(tester); return; }
 
       busy(true); say('');
       var headers = { 'Content-Type': 'application/json', 'apikey': LIST.key };
       if (LIST.key.indexOf('eyJ') === 0) headers.Authorization = 'Bearer ' + LIST.key; // older-style anon key
-      var ctrl = window.AbortController ? new AbortController() : null;
-      var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, 12000) : null;
+      var payload = JSON.stringify({
+        p_email: email ? email.value : '',
+        p_wants_to_test: tester,
+        p_cooks: null,
+        p_recipes_from: null,
+        p_wish: null,
+        p_source: value('source') || null
+      });
+      var timer = null;
+      var send = function () {
+        var ctrl = window.AbortController ? new AbortController() : null;
+        timer = ctrl ? setTimeout(function () { ctrl.abort(); }, 12000) : null;
+        return fetch(LIST.url.replace(/\/+$/, '') + '/rest/v1/rpc/join_list', { method: 'POST', headers: headers, body: payload, signal: ctrl ? ctrl.signal : undefined });
+      };
+      // If the request never arrives (a dropped connection), wait a moment and try once more.
+      var sendTwice = function () {
+        return send().catch(function () {
+          if (timer) clearTimeout(timer);
+          return new Promise(function (resolve) { setTimeout(resolve, 1500); }).then(send);
+        });
+      };
 
-      fetch(LIST.url.replace(/\/+$/, '') + '/rest/v1/rpc/join_list', {
-        method: 'POST',
-        headers: headers,
-        body: JSON.stringify({
-          p_email: email ? email.value : '',
-          p_wants_to_test: tester,
-          p_cooks: null,
-          p_recipes_from: null,
-          p_wish: null,
-          p_source: value('source') || null
-        }),
-        signal: ctrl ? ctrl.signal : undefined
-      }).then(function (res) {
+      sendTwice().then(function (res) {
         if (timer) clearTimeout(timer);
         if (res.ok) {
           try { if (tester && email) sessionStorage.setItem(KEY, email.value); else sessionStorage.removeItem(KEY); } catch (e) {}
@@ -155,9 +176,7 @@
         });
       }).catch(function () {
         if (timer) clearTimeout(timer);
-        busy(false);
-        say('Something went wrong on my side, so your email app will open instead. Press send and I’ll add you myself.');
-        openEmail(tester);
+        failed(tester);
       });
     });
 

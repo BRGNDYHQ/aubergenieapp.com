@@ -450,3 +450,13 @@ ul.plates-for strong { color: var(--ink); font-weight: 700; }
   .page-how .scene-tonight > .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 3rem; align-items: center; }
   .page-how .scene-tonight .tonight-grid { margin-top: 0; }
 }
+
+/* ---- In-between widths (600 to 899px): narrow windows and tablets ---- */
+/* The homepage keeps the phone layout here (plate on top, copy below) instead of two columns, where the plate sat over the text. */
+@media (min-width: 600px) and (max-width: 899px) {
+  .page-index .hero-grid { grid-template-columns: minmax(0, 1fr); }
+  .page-index .hero-stage { height: 330px; }
+  .page-index .plate-hero { right: -40px; width: 372px; }
+  .page-index .hero-copy h1 { max-width: none; }
+  .page-index .hero-copy .signup { max-width: 34rem; }
+}
