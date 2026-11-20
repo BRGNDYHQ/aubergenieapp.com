@@ -373,3 +373,80 @@
 .founder-note .founder { margin-top: .7rem; font-size: 1.12rem; line-height: 1.5; color: var(--ink); max-width: none; }
 .founder-contact { margin-top: .8rem; font-size: 1rem; color: var(--ink-2); }
 .founder-row .founder-note { margin-top: 0; }
+
+/* Streamlined homepage: Meet Nathan between the dishes and the sign-up */
+.scene-meet .meet-grid { display: grid; gap: 1.6rem; justify-items: center; text-align: center; }
+.scene-meet .founder-photo { margin: 0; width: min(64vw, 260px); }
+.scene-meet .founder-note { margin: 0 auto; }
+@media (min-width: 760px) {
+  .scene-meet .meet-grid { grid-template-columns: 300px minmax(0, 1fr); gap: 3.5rem; justify-items: start; text-align: left; align-items: center; max-width: 60rem; margin-inline: auto; }
+  .scene-meet .founder-photo { width: 300px; }
+  .scene-meet .founder-note { margin: 0; }
+}
+.scene-join .founder-contact { text-align: center; }
+.page-how .tonight-grid { grid-template-columns: 1fr; max-width: 34rem; }
+/* Beta page on phones: photo centred like the homepage */
+@media (max-width: 599px) { .founder-row { justify-items: center; text-align: center; } .founder-row .founder-photo { width: min(64vw, 240px); } }
+.page-how .answer-new .shot-detail + .ai-facts { margin-top: 1.2rem; }
+
+/* Who it's for: three short lines under the gallery */
+ul.plates-for { list-style: none; padding: 0; display: grid; gap: .5rem; font-weight: 500; color: var(--ink-2); max-width: 34rem; }
+ul.plates-for strong { color: var(--ink); font-weight: 700; }
+@media (min-width: 760px) { ul.plates-for { text-align: center; } }
+/* Phone hero: a slightly smaller plate so the sign-up reaches the first screen */
+@media (max-width: 899px) {
+  .page-index .hero-stage { height: min(69vw, 330px); }
+  .page-index .plate-hero { width: min(78vw, 372px); }
+}
+
+/* ---- One-step sign-up, app peek, tidy ---- */
+.signup-note strong { color: var(--ink); font-weight: 650; }
+/* The app, shown once, beside who it's for */
+.peek { display: grid; gap: 1.4rem; margin-top: 1.6rem; }
+.peek .plates-for, .peek .plates-more, .peek .peek-shot { margin-top: 0; }
+.peek-shot { width: min(100%, 380px); justify-self: center; }
+.peek-shot figcaption { padding: .8rem 1rem .9rem; font-size: 1rem; font-weight: 600; color: var(--ink-2); background: var(--surface); }
+@media (min-width: 760px) {
+  .peek { grid-template-columns: minmax(0, 1fr) 380px; column-gap: 3.5rem; align-items: center; max-width: 60rem; margin: 2.6rem auto 0; }
+  .peek ul.plates-for { text-align: left; grid-column: 1; grid-row: 1; align-self: end; margin: 0; font-size: 1.15rem; }
+  .peek .plates-more { text-align: left; grid-column: 1; grid-row: 2; align-self: start; }
+  .peek .peek-shot { grid-column: 2; grid-row: 1 / span 2; }
+}
+/* Readable dish details */
+.gallery .plate-name .facts { font-size: 1rem; }
+.page-launch .hero-eyebrow { font-size: 1rem; }
+/* Questions on the thanks page */
+.answers { margin-top: 1.6rem; padding: 1.3rem 1.2rem 1.2rem; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--hair); max-width: 34rem; }
+.answers[hidden] { display: none; }
+.answers-title { font-family: var(--font); font-stretch: normal; font-size: 1.15rem; font-weight: 700; letter-spacing: 0; line-height: 1.3; }
+.answers .q-label { margin: .9rem 0 .45rem; }
+
+/* Test requirement: shown only once the box is ticked */
+.signup-hint { display: none; margin: .5rem 0 0 2.05rem; font-size: 1rem; color: var(--ink-2); }
+.signup-check:has(input:checked) + .signup-hint { display: block; }
+.signup-feature .signup-hint { margin-left: .2rem; }
+
+/* ---- Recipes library close-up, under the save demo ---- */
+.find-library { grid-column: 1 / -1; display: grid; gap: 1.2rem; min-width: 0; }
+.find-library h3 { font-size: clamp(1.4rem, 1.2rem + .9vw, 1.8rem); line-height: 1.15; }
+.find-library p { margin-top: .6rem; font-size: 1.125rem; line-height: 1.5; color: var(--ink-2); max-width: 40ch; }
+.find-library .shot-detail { margin-top: 0; }
+@media (min-width: 900px) {
+  .find-library { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 3rem; align-items: start; justify-items: start; }
+  .find-library-words { padding-top: 1.2rem; }
+  @supports (grid-template-columns: subgrid) { .find-library { grid-template-columns: subgrid; } }
+  .find-library .shot-detail { width: 400px; }
+}
+
+/* ---- Desktop gaps on How it works ---- */
+@media (min-width: 600px) {
+  /* The Plan close-up spans both rows, so its caption sits under the words, not under the picture */
+  .page-how #plan { align-items: start; row-gap: 1.2rem; grid-template-rows: auto 1fr; }
+  .page-how #plan .shot-detail { grid-column: 2; grid-row: 1 / span 2; margin-top: 0; }
+  .page-how #plan .plan-note { grid-column: 1; margin-top: 0; }
+}
+@media (min-width: 900px) {
+  /* "What should I cook tonight?": heading on the left, the Create close-up on the right */
+  .page-how .scene-tonight > .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 3rem; align-items: center; }
+  .page-how .scene-tonight .tonight-grid { margin-top: 0; }
+}

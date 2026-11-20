@@ -12,6 +12,13 @@
   if (header) {
     var onScroll = function () { header.classList.toggle('is-scrolled', window.scrollY > 8); };
     onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
+    // The header's button goes to the nearest sign-up form and puts the cursor in its email box.
+    var headerCta = $('[data-header-cta]', header), boxes = $$('form[data-signup] input[type="email"]');
+    if (headerCta && boxes.length) headerCta.addEventListener('click', function (e) {
+      var best = boxes[0], d = Infinity;
+      boxes.forEach(function (b) { var y = Math.abs(b.getBoundingClientRect().top - 200); if (y < d) { d = y; best = b; } });
+      e.preventDefault(); best.scrollIntoView({ block: 'center', behavior: still ? 'auto' : 'smooth' }); best.focus({ preventScroll: true });
+    });
     // Show the header's button only when no sign-up button on the page is fully in view.
     var ctas = $$('[data-hero-cta], form[data-signup] button[type="submit"]');
     if (ctas.length && 'IntersectionObserver' in window) {
