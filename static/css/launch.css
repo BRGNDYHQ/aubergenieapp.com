@@ -432,7 +432,21 @@ ul.plates-for strong { color: var(--ink); font-weight: 700; }
 .find-library p { margin-top: .6rem; font-size: 1.125rem; line-height: 1.5; color: var(--ink-2); max-width: 40ch; }
 .find-library .shot-detail { margin-top: 0; }
 @media (min-width: 900px) {
-  .find-library { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 3rem; align-items: center; justify-items: start; margin-top: 1rem; }
+  .find-library { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 3rem; align-items: start; justify-items: start; }
+  .find-library-words { padding-top: 1.2rem; }
   @supports (grid-template-columns: subgrid) { .find-library { grid-template-columns: subgrid; } }
   .find-library .shot-detail { width: 400px; }
+}
+
+/* ---- Desktop gaps on How it works ---- */
+@media (min-width: 600px) {
+  /* The Plan close-up spans both rows, so its caption sits under the words, not under the picture */
+  .page-how #plan { align-items: start; row-gap: 1.2rem; grid-template-rows: auto 1fr; }
+  .page-how #plan .shot-detail { grid-column: 2; grid-row: 1 / span 2; margin-top: 0; }
+  .page-how #plan .plan-note { grid-column: 1; margin-top: 0; }
+}
+@media (min-width: 900px) {
+  /* "What should I cook tonight?": heading on the left, the Create close-up on the right */
+  .page-how .scene-tonight > .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 3rem; align-items: center; }
+  .page-how .scene-tonight .tonight-grid { margin-top: 0; }
 }
